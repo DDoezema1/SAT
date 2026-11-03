@@ -187,6 +187,7 @@
     $("#retryBtn").onclick = startTrouble;
     $("#playbookBtn").onclick = playbook;
     $("#parentBtn").onclick = parentGate;
+    if ($("#coachAll")) $("#coachAll").onclick = () => showCoach(overallSummary(), "overall progress");
     $$("[data-session]").forEach((b) => (b.onclick = () => results(state.sessions.find((s) => s.id === b.dataset.session))));
   }
 
@@ -281,6 +282,7 @@
     };
     $("#retryBtn").onclick = startTrouble;
     $("#parentBtn").onclick = parentGate;
+    if ($("#coachAll")) $("#coachAll").onclick = () => showCoach(overallSummary(), "overall progress");
     $$("[data-session]").forEach((b) => (b.onclick = () => results(state.sessions.find((s) => s.id === b.dataset.session))));
   }
 
@@ -340,6 +342,7 @@
         ${RW ? `<div class="stat"><div class="v">${weakRules().length}</div><div class="l">Rules still costing<br>you points</div></div>`
           : `<div class="stat"><div class="v">${st.dN ? pct(st.dUsed, st.dN) + "%" : "&mdash;"}</div><div class="l">Desmos opened on<br>Desmos questions</div></div>`}
       </div>
+      <p><button class="btn small" id="coachAll">Get pointers from Claude on overall progress</button></p>
       <p class="small muted">Chance on a hard question counts slow answers as only partly mastered, because time is points on test day.</p>
       ${RW ? rwRuleTable() : ""}
       <div class="tablewrap"><table class="skills"><thead><tr><th>Skill</th><th>Chance on a hard question</th><th></th><th>History</th></tr></thead><tbody>${rows}</tbody></table></div>`;
@@ -1001,7 +1004,7 @@
     }
     view(`<div class="page">
       <div class="hero"><div><h1>${esc(rec.title)}: Results</h1><p>${new Date(rec.date).toLocaleString()}</p></div>
-        <div><button class="btn primary" id="homeBtn">Back to home</button></div></div>
+        <div><button class="btn" id="coachBtn">Get pointers from Claude</button> <button class="btn primary" id="homeBtn">Back to home</button></div></div>
       ${header}
       <div class="cards" style="margin-bottom:10px">${timingCard}${desmosCard}
         <div class="card"><h2>By domain</h2><table class="skills"><tbody>${domRows}</tbody></table></div>
@@ -1009,6 +1012,7 @@
       ${reviewListHTML(rec.modules)}
     </div>`);
     $("#homeBtn").onclick = home;
+    $("#coachBtn").onclick = () => showCoach(sessionSummary(rec), "this session");
     bindReviewList(app);
   }
 
@@ -1043,6 +1047,11 @@
         el.classList.toggle("hidden", !show);
       }
       $$(".modhead", root).forEach((h) => { const list = h.nextElementSibling; h.classList.toggle("hidden", !$$(".qitem:not(.hidden)", list).length); });
+      const hint = $("#reviewHint", root);
+      if (hint) hint.textContent = ({ missed: "Showing the questions you missed or skipped, with the correct answer and explanation open.",
+        slow: "Showing questions you got right but slower than the target time; each has the faster route.",
+        marked: "Showing the questions you marked for review during the test.",
+        all: "Showing every question. Missed ones are open; click any other to see its solution." })[k] + " Times in red were over target.";
     };
     $$("[data-filter]", root).forEach((b) => (b.onclick = () => apply(b.dataset.filter)));
     $$("[data-expand]", root).forEach((b) => (b.onclick = () => items.forEach((el) => { if (!el.classList.contains("hidden")) el.open = b.dataset.expand === "1"; })));
@@ -1078,6 +1087,121 @@
       <div class="body">${wrong ? `<div class="whatwrong ${res === "ok" ? "slow" : ""}">${wrong}</div>` : ""}${RW ? `<div class="passage-r">${q.passage}</div>` : ""}<div class="stem">${q.stem}</div>${choices}
         <div class="answers"><span>Your answer: <b>${yours}</b></span><span>Correct answer: <b>${key}</b></span><span>Time: ${fmtTime(i.secs)} (target ${fmtTime(target(q))})</span><span class="muted">${q.id}</span></div>
         <div class="explain">${q.explain}</div>${tipBox(q)}</div></details>`;
+  }
+
+  // ================================================================== COACHING SUMMARY
+  // Plain-text summaries meant to be pasted into a chat with Claude for focused pointers.
+  // They include question IDs (so a Claude session with this repository can look up every
+  // question) plus enough text to make sense on their own in any Claude chat.
+  function plain(h, max) {
+    const d = document.createElement("textarea");
+    d.innerHTML = String(h || "").replace(/<(table|tr|p|li|br|div)[^>]*>/gi, " ").replace(/<[^>]+>/g, "");
+    let t = d.value.replace(/\\[()[\]]/g, "").replace(/\\lt\b/g, "<").replace(/\\gt\b/g, ">").replace(/\\le\b/g, "≤").replace(/\\ge\b/g, "≥")
+      .replace(/\{,\}/g, ",").replace(/\\(?:tfrac|dfrac)/g, "\\frac").replace(/\s+/g, " ").trim();
+    if (max && t.length > max) t = t.slice(0, max - 1) + "…";
+    return t;
+  }
+  const subjectName = () => (RW ? "Reading & Writing" : "Math");
+  const choiceOf = (q, letter) => (q.type === "mc" ? plain(q.choices[L.indexOf(letter)], 120) : letter);
+
+  function sessionSummary(rec) {
+    const all = rec.modules.flatMap((m) => m.items).filter((i) => byId[i.id]);
+    const correct = all.filter((i) => i.correct).length;
+    const time = all.reduce((a, i) => a + i.secs, 0);
+    const allowed = rec.modules.reduce((a, m) => a + (m.allowed || 0), 0);
+    const out = [];
+    out.push(`SAT ${subjectName()} practice results (from the SAT practice app)`);
+    out.push(`Latest official SAT ${subjectName()} score: ${state.settings.baseline}. App's current estimate: ${level(state.theta)}.`);
+    out.push(`Session: ${rec.title}, ${new Date(rec.date).toLocaleDateString()}. Correct: ${correct}/${all.length}.` +
+      (rec.score ? ` Estimated score ${rec.score.score} (range ${rec.score.low}-${rec.score.high}), Module 2 ${rec.route === "m2hard" ? "harder" : "standard"} version.` : ""));
+    out.push(`Time: ${fmtTime(time)} used${allowed ? ` of ${fmtTime(allowed)} allowed` : ""}; average ${fmtTime(all.length ? time / all.length : 0)} per question (SAT pace ${fmtTime(Engine.PACE_SEC)}).`);
+    const byDom = {};
+    for (const i of all) { const d = (byDom[byId[i.id].domain] = byDom[byId[i.id].domain] || [0, 0]); d[1]++; if (i.correct) d[0]++; }
+    out.push("By domain: " + Object.entries(byDom).map(([d, [c, n]]) => `${DOMAINS[d]} ${c}/${n}`).join("; ") + ".");
+    if (!RW) {
+      const dq = all.filter((i) => byId[i.id].desmos);
+      out.push(`Desmos: opened on ${dq.filter((i) => i.calc).length} of ${dq.length} Desmos-route questions.`);
+    }
+    out.push("");
+    out.push("Question by question (number. result | ID | skill | difficulty | " + (RW ? "rule" : "route") + " | time vs target | notes):");
+    all.forEach((i, n) => {
+      const q = byId[i.id];
+      const slow = i.correct && Engine.isSlow(q, i.secs);
+      const res = i.resp == null ? "SKIPPED" : i.correct ? (slow ? "correct but slow" : "correct") : "WRONG";
+      const notes = [i.marked ? "marked for review" : "", i.hint ? "used hint" : "", !RW && i.calc ? "used Desmos" : "", !RW && q.desmos && !i.calc ? "no Desmos" : ""].filter(Boolean).join(", ");
+      out.push(`${n + 1}. ${res} | ${q.id} | ${q.skill} | ${Engine.DIFF_NAME[q.diff]} | ${RW ? ruleTitle(q.rule) : q.desmos ? "Desmos" : "by hand"} | ${fmtTime(i.secs)} vs ${fmtTime(target(q))}${notes ? " | " + notes : ""}`);
+      if (!i.correct || slow) {
+        if (RW) out.push(`   Passage: ${plain(q.passage, 320)}`);
+        out.push(`   Question: ${plain(q.stem, RW ? 160 : 300)}`);
+        if (!i.correct) out.push(`   Answer given: ${i.resp == null ? "(blank)" : choiceOf(q, i.resp)} | Correct: ${choiceOf(q, q.answer)}`);
+      }
+    });
+    out.push("");
+    out.push(coachRequest());
+    return out.join("\n");
+  }
+
+  function overallSummary() {
+    const out = [];
+    const answered = Object.values(state.items).reduce((a, it) => a + it.n, 0);
+    const st = habitStats();
+    out.push(`SAT ${subjectName()} overall progress (from the SAT practice app)`);
+    out.push(`Latest official SAT ${subjectName()} score: ${state.settings.baseline}. App's current estimate: ${level(state.theta)}. Questions answered: ${answered}.`);
+    out.push(`Average time on correct answers: ${st.correctN ? fmtTime(st.avgCorrect) : "n/a"} (SAT pace ${fmtTime(Engine.PACE_SEC)}). Correct-but-slow questions: ${st.slowN}.` +
+      (!RW && st.dN ? ` Desmos opened on ${pct(st.dUsed, st.dN)}% of Desmos-route questions.` : ""));
+    const skills = Object.entries(state.skills).filter(([, r]) => r.n).map(([sk, r]) => [sk, Engine.mastery(state, sk), r]).sort((a, b) => a[1] - b[1]);
+    out.push("");
+    out.push("Skills, weakest first (chance on a hard question | correct/attempted):");
+    for (const [sk, p, r] of skills) out.push(`- ${sk}: ${Math.round(p * 100)}% | ${r.correct}/${r.n}`);
+    if (RW) {
+      const rs = ruleStats();
+      const rows = window.SAT_RULES.filter((r) => rs[r.id]).map((r) => [r.title, rs[r.id].score / rs[r.id].n, rs[r.id]]).sort((a, b) => a[1] - b[1]);
+      out.push("");
+      out.push("Rules, weakest first (mastery | questions seen | slow):");
+      for (const [t, p, r] of rows) out.push(`- ${t}: ${Math.round(p * 100)}% | ${r.n} | ${r.slow}`);
+    }
+    const trouble = Engine.troubleIds(state, QUESTIONS);
+    out.push("");
+    out.push(`Trouble spots (missed, slow, or needed a hint), ${trouble.length}: ${trouble.slice(0, 40).join(", ")}${trouble.length > 40 ? ", …" : ""}`);
+    if (state.sessions.length) {
+      out.push("");
+      out.push("Recent sessions:");
+      for (const r of state.sessions.slice(-8)) {
+        const all = r.modules.flatMap((m) => m.items);
+        out.push(`- ${new Date(r.date).toLocaleDateString()} ${r.title}: ${all.filter((i) => i.correct).length}/${all.length}${r.score ? `, est. ${r.score.score}` : ""}`);
+      }
+    }
+    out.push("");
+    out.push(coachRequest());
+    return out.join("\n");
+  }
+
+  function coachRequest() {
+    return `Please act as my SAT ${subjectName()} coach. Based on these results, give me focused pointers:\n` +
+      `1. The 2-3 patterns behind my mistakes and slow answers (concepts, traps, or habits), citing question numbers.\n` +
+      (RW ? `2. Which rules to drill next, and the one trap I keep falling for.\n` : `2. Where Desmos would have been faster, and one Desmos habit to build.\n`) +
+      `3. A pacing fix, if timing cost me points.\n4. Exactly what to practice next in the app (which mode, length, and focus).\nKeep it short and specific.`;
+  }
+
+  function showCoach(text, what) {
+    const canShare = typeof navigator.share === "function";
+    const ov = overlay(`<div class="pop wide"><button class="close" aria-label="Close">&times;</button><h3>Get pointers from Claude</h3>
+      <div class="modal-body">
+        <p>Copy this summary of ${esc(what)} and paste it into a chat with Claude (claude.ai or the Claude app). It lists every question with your answer, the correct answer, and your time, and asks for focused pointers.</p>
+        <textarea id="coachText" readonly rows="14" class="coachtext">${esc(text)}</textarea>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+          <button class="btn primary" id="copyCoach">Copy summary</button>
+          ${canShare ? `<button class="btn" id="shareCoach">Share…</button>` : ""}
+          <span class="small muted" id="copyMsg"></span>
+        </div>
+        <p class="small muted">Tip: pasting it into the Claude Code session that built this app gives the most specific advice, because it can open each question by its ID. Nothing is sent anywhere until you paste it yourself.</p>
+      </div></div>`);
+    $("#copyCoach", ov).onclick = async () => {
+      const ta = $("#coachText", ov);
+      try { await navigator.clipboard.writeText(text); $("#copyMsg", ov).textContent = "Copied. Now paste it into Claude."; }
+      catch (e) { ta.focus(); ta.select(); $("#copyMsg", ov).textContent = "Selected. Press Ctrl/Cmd+C (or tap Copy) to copy."; }
+    };
+    if (canShare) $("#shareCoach", ov).onclick = () => navigator.share({ title: "SAT practice results", text }).catch(() => {});
   }
 
   // ================================================================== DESMOS PLAYBOOK

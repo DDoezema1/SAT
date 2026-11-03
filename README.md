@@ -30,6 +30,13 @@ The math section is tuned for a student who already scores in the 700s, so the g
 - On every review, missed and skipped questions open automatically. Each shows a plain line ("You chose B (…), but the correct answer is A (…)"), the choices marked red and green, the full explanation, and the faster Desmos route or rule.
 - Filters show Missed & skipped / Correct but slow / Marked for review / All.
 
+**Getting pointers from Claude.**
+- Every results page has a **Get pointers from Claude** button.
+- The home page has one for overall progress.
+- Each produces a plain-text summary: every question with its ID, result, time against target, and Desmos use; for misses, the question, the answer given, and the correct answer.
+- The summary ends with a request for focused coaching. Copy it (or Share it on a phone) and paste it into a chat with Claude.
+- Nothing is sent anywhere automatically.
+
 **Results after every session** cover:
 
 - **Timing:** time used vs. allowed, average per question, correct-but-slow count, time spent on missed questions, and the biggest time sinks

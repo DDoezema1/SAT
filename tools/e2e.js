@@ -101,7 +101,7 @@ const server = http.createServer((req, res) => {
   assert.strictEqual(await page.locator(".qitem").count(), 22);
   assert.strictEqual(await page.locator(".qitem:not(.hidden)").count(), 6, "missed questions shown by default");
   assert.strictEqual(await page.locator(".qitem[open]:not(.hidden)").count(), 6, "missed questions open automatically");
-  assert.match(await page.textContent(".qitem:not(.hidden) .whatwrong"), /You chose .* but the correct answer is/);
+  assert.match(await page.textContent(".qitem:not(.hidden) .whatwrong"), /You (chose|entered) .* but the correct answer is/);
   await shot("04b-module1-review");
   await page.click("[data-filter='all']");
   assert.strictEqual(await page.locator(".qitem:not(.hidden)").count(), 22);
@@ -167,6 +167,18 @@ const server = http.createServer((req, res) => {
   assert.strictEqual(await page.locator(".qitem[open]:not(.hidden)").count(), missedShown);
   await page.click("[data-filter='all']");
   assert.strictEqual(await page.locator(".qitem:not(.hidden)").count(), 44);
+  // coaching summary for Claude
+  await page.click("#coachBtn");
+  const coach = await page.inputValue("#coachText");
+  assert.match(coach, /^SAT Math practice results/);
+  assert.match(coach, /Estimated score \d+/);
+  assert.match(coach, /\d+\. WRONG \| [A-Z]+-\d+ \|/);
+  assert.match(coach, /Answer given: .* \| Correct: /);
+  assert(!/\\lt|\{,\}/.test(coach), "math codes converted to plain symbols");
+  assert.match(coach, /Please act as my SAT Math coach/);
+  if (process.env.COACH_OUT) require("fs").writeFileSync(process.env.COACH_OUT, coach);
+  await shot("08b-coach");
+  await page.click("#overlay .close");
   await page.click("[data-filter='missed']");
   await shot("08-results");
 
@@ -274,6 +286,12 @@ const server = http.createServer((req, res) => {
   step("parent area: render every question");
   await page.click("#homeBtn");
   await shot("10-home-progress");
+  await page.click("#coachAll");
+  const overall = await page.inputValue("#coachText");
+  assert.match(overall, /overall progress/);
+  assert.match(overall, /Skills, weakest first/);
+  assert.match(overall, /Trouble spots/);
+  await page.click("#overlay .close");
   await page.click("#parentBtn");
   const n = await page.locator(".bank-q").count();
   const katexErrors = await page.locator(".katex-error").count();

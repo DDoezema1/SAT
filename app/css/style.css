@@ -272,3 +272,6 @@ svg.fig { max-width: 100%; height: auto; display: inline-block; }
 .whatwrong { background: var(--red-soft); border: 1px solid #f0c3c0; border-radius: 8px; padding: 10px 14px; margin: 14px 0 4px; font-size: 15px; line-height: 1.5; }
 .whatwrong.slow { background: var(--amber-soft); border-color: #f3d9a8; }
 .qitem.hidden { display: none; }
+
+/* coaching summary */
+.coachtext { width: 100%; font: 12.5px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; border: 1px solid var(--line); border-radius: 8px; padding: 10px; resize: vertical; background: var(--soft); color: var(--ink); }

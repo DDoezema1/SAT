@@ -99,6 +99,14 @@ const server = http.createServer((req, res) => {
   assert.strictEqual(await page.locator(".qitem[open]:not(.hidden)").count(), 4, "the 4 missed questions are open");
   assert.match(await page.textContent(".qitem:not(.hidden) .whatwrong"), /You chose .* but the correct answer is/);
   assert(await page.locator(".qitem .passage-r").count() >= 1);
+  await page.click("#coachBtn");
+  const coach = await page.inputValue("#coachText");
+  assert.match(coach, /^SAT Reading & Writing practice results/);
+  assert.match(coach, /WRONG \| RW-[A-Z]+-\d+ \|/);
+  assert.match(coach, /Passage: /);
+  assert.match(coach, /Which rules to drill next/);
+  if (process.env.COACH_OUT_RW) require("fs").writeFileSync(process.env.COACH_OUT_RW, coach);
+  await page.click("#overlay .close");
   await shot("rw-06-results");
 
   // ------------------------------------------------ progress, trouble spots, separate storage
