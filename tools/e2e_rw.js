@@ -6,7 +6,10 @@ const path = require("path");
 const assert = require("assert");
 
 const ROOT = path.join(__dirname, "..", "app");
-const SHOTS = process.argv[2];
+// Usage: node tools/e2e_rw.js [screenshotDir] [--url=https://site/]
+const URL_ARG = (process.argv.find((a) => a.startsWith("--url=")) || "").slice(6);
+const LIVE = !!URL_ARG;
+const SHOTS = process.argv.slice(2).find((a) => !a.startsWith("--"));
 const TYPES = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".woff2": "font/woff2" };
 const server = http.createServer((req, res) => {
   const p = path.join(ROOT, decodeURIComponent(req.url.split("?")[0]).replace(/^\/$/, "/index.html"));
@@ -16,8 +19,8 @@ const server = http.createServer((req, res) => {
 });
 
 (async () => {
-  await new Promise((r) => server.listen(0, r));
-  const base = `http://localhost:${server.address().port}/`;
+  if (!LIVE) await new Promise((r) => server.listen(0, r));
+  const base = LIVE ? URL_ARG : `http://localhost:${server.address().port}/`;
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1366, height: 860 } });
   const errors = [];
@@ -125,5 +128,5 @@ const server = http.createServer((req, res) => {
   assert.deepStrictEqual(errors, [], "browser errors");
   console.log(`\nR&W E2E passed (${n} questions, ${nRules} rules, 0 page errors)`);
   await browser.close();
-  server.close();
+  if (!LIVE) server.close();
 })().catch((e) => { console.error(e); process.exit(1); });

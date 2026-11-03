@@ -821,7 +821,11 @@
     return desmosLoading;
   }
   function markCalcUse() {
-    if (calcOpen && S && S.phase === "q") { const it = S.items[S.idx]; if (!it.locked) it.calc = true; }
+    if (calcOpen && S && S.phase === "q") {
+      const it = S.items[S.idx];
+      // save right away: mobile browsers may close the page before the next periodic save
+      if (!it.locked && !it.calc) { it.calc = true; save(); }
+    }
   }
   function toggleCalc(force) {
     calcOpen = force == null ? !calcOpen : force;
