@@ -1,0 +1,12 @@
+{
+  "name": "sat-math-practice-tools",
+  "private": true,
+  "description": "Build and test tools for the SAT Math Practice app",
+  "scripts": {
+    "check": "python3 ../tools/build_bank.py && node check_render.js && node test_engine.js",
+    "e2e": "node e2e.js"
+  },
+  "dependencies": {
+    "katex": "0.16.11"
+  }
+}
