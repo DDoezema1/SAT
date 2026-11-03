@@ -1,0 +1,59 @@
+name: Verify questions and deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: pip install sympy
+      - run: npm ci
+        working-directory: tools
+      - name: "Round 1: re-derive every answer key"
+        run: python3 tools/build_bank.py
+      - name: "Generated bank must be committed"
+        run: git diff --exit-code app/js/questions.js
+      - name: "Round 2: compile every math snippet"
+        run: node tools/check_render.js
+      - name: "Engine tests (grading, adaptivity, scoring)"
+        run: node tools/test_engine.js
+      - name: "End-to-end browser test"
+        run: |
+          npx --yes playwright@1.48.2 install --with-deps chromium
+          npm install --no-save playwright@1.48.2
+          node e2e.js
+        working-directory: tools
+
+  deploy:
+    # Publishes app/ to GitHub Pages. One-time setup: Settings -> Pages -> Source: "GitHub Actions".
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: app
+      - id: deployment
+        uses: actions/deploy-pages@v4
