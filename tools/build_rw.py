@@ -26,6 +26,7 @@ sys.path.insert(0, ROOT)
 sys.dont_write_bytecode = True   # never run a stale cached copy of the bank
 from bank_rw.rules import RULES  # noqa: E402
 from bank_rw.questions import QUESTIONS  # noqa: E402
+import bank_rw.hard  # noqa: E402,F401  (adds the harder, calibrated questions)
 
 DOMAINS = {"CRAFT": "Craft and Structure", "INFO": "Information and Ideas",
            "SEC": "Standard English Conventions", "EXPR": "Expression of Ideas"}

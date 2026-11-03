@@ -58,7 +58,7 @@ The math section is tuned for a student who already scores in the 700s, so the g
 
 ## Math question bank
 
-There are 169 original questions, 15 of them with a figure, graph, or table:
+There are 182 original questions, 15 of them with a figure, graph, or table:
 
 | Domain | Count | Medium / Hard / Very hard |
 |---|---|---|
@@ -76,7 +76,7 @@ Every answer key went through several review rounds before it could reach the ap
 
 ## Reading & Writing
 
-This page is built around **must-know rules** rather than a big question bank. Each of its 86 questions is tied to one of 21 high-impact rules. They are weighted toward the question types that are pure rules: grammar/punctuation, transitions, and student-notes questions. Those make up about half of each module and can be answered in 20–40 seconds once the rules are automatic.
+This page is built around **must-know rules** rather than a big question bank. Each of its 104 questions is tied to one of 21 high-impact rules. They include 18 dense, official-style hard questions (100–150-word research passages and long-sentence grammar), calibrated against College Board's Question Bank. They are weighted toward the question types that are pure rules: grammar/punctuation, transitions, and student-notes questions. Those make up about half of each module and can be answered in 20–40 seconds once the rules are automatic.
 
 - **Must-Know Rules:** every rule on one page, ordered by points, each with an example, the trap the test sets, and a "Drill this rule" button. Covers:
   - punctuation: joining sentences, colons, nonessential elements, no punctuation in the core, *however*, possessives

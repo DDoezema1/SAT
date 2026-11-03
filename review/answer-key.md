@@ -362,6 +362,45 @@ A line in the \(xy\)-plane passes through the point \((1,-4)\) and through the p
 
 **Explanation:** An absolute value equals 31 when the inside is 31 or \(-31\). \(-4x+9=31\) gives \(x=-5.5\); \(-4x+9=-31\) gives \(x=10\). The sum is \(4.5\).
 
+### HM-03 · Linear functions · Hard · By hand · computed
+
+A plumber charges \(\$95\) for the first hour of a job and \(\$62\) for each additional hour. Which function \(f\) gives the total charge, in dollars, for a job that takes \(x\) hours, where \(x\) is a whole number and \(x\ge1\)?
+
+- A) \(f(x)=62x+33\)
+- B) \(f(x)=62x+95\)
+- C) \(f(x)=95x+62\)
+- D) \(f(x)=62x-33\)
+
+**Answer:** A
+
+**Explanation:** The first hour costs 95 and each of the remaining \(x-1\) hours costs 62: \(f(x)=95+62(x-1)=62x+33\). Check: \(f(1)=95\) ✓, \(f(2)=157\) ✓. \(62x+95\) is the trap: it charges the first hour twice.
+
+### HM-04 · Linear functions · Very hard · By hand · computed
+
+A print shop charges a \(\$35\) setup fee plus \(\$0.18\) per page for the first \(500\) pages of an order and \(\$0.12\) per page for each page after the first \(500\). Which function \(C\) gives the total cost, in dollars, of an order of \(x\) pages, where \(x \gt 500\)?
+
+- A) \(C(x)=0.12x+65\)
+- B) \(C(x)=0.12x+125\)
+- C) \(C(x)=0.18x+35\)
+- D) \(C(x)=0.12x+35\)
+
+**Answer:** A
+
+**Explanation:** Setup: 35. First 500 pages: \(0.18(500)=90\). Remaining \(x-500\) pages: \(0.12(x-500)=0.12x-60\). Total: \(35+90+0.12x-60=0.12x+65\). \(0.12x+125\) forgets to subtract the 500 pages already charged at the higher rate.
+
+### HM-10 · Systems of two linear equations in two variables · Very hard · By hand · computed
+
+\[3x-4y=10\]\[9x-12y=30\]For each real number \(r\), which of the following points lies on the graph of each equation in the \(xy\)-plane for the given system?
+
+- A) \(\left(r,\ \dfrac{3r-10}{4}\right)\)
+- B) \(\left(r,\ \dfrac{10-3r}{4}\right)\)
+- C) \(\left(\dfrac{4r-10}{3},\ r\right)\)
+- D) \(\left(r,\ 3r-10\right)\)
+
+**Answer:** A
+
+**Explanation:** The second equation is 3 times the first, so both describe the same line, and every point on \(3x-4y=10\) works. Let \(x=r\): \(3r-4y=10\), so \(y=\frac{3r-10}{4}\). Check the others: \(\left(\frac{4r-10}{3},r\right)\) gives \(3x-4y=4r-10-4r=-10\), not 10, and the remaining two don't satisfy the equation for every \(r\).
+
 ## Advanced Math
 
 ### ADV-01 · Nonlinear equations in one variable and systems of equations in two variables · Hard · Desmos · computed
@@ -936,6 +975,22 @@ The function \(f\) is defined by \(f(x)=x^2-6x+5\). The function \(g\) is define
 
 **Explanation:** \(f(0)=a=3\). Then \(f(2)=3b^2=12\), so \(b^2=4\) and \(b=2\). So \(f(3)=3(2)^3=24\). (Reading the graph alone at \(x=3\) is hard to do precisely; use the two labeled points.)
 
+### HM-09 · Nonlinear functions · Very hard · Desmos · computed
+
+\[g(t)=800(0.9)^{t/2}\]For the given function \(g\), the value of \(g(t)\) decreases by \(p\%\) for every increase of \(t\) by \(6\). What is the value of \(p\)?
+
+**Answer:** 271/10
+
+**Explanation:** An increase of 6 in \(t\) raises the exponent \(\frac t2\) by 3, so \(g\) is multiplied by \(0.9^3=0.729\). Multiplying by 0.729 is a decrease of \(1-0.729=0.271\), or 27.1%. The trap is \(3\times10\%=30\%\): percent decreases compound.
+
+### HM-12 · Equivalent expressions · Very hard · By hand · computed
+
+The expression \(\dfrac{11x-40}{(x-5)(x+3)}\) is equivalent to \(\dfrac{p}{x-5}+\dfrac{w}{x+3}\), where \(p\) and \(w\) are constants. What is the value of \(p+w\)?
+
+**Answer:** 11
+
+**Explanation:** Combine the right side: \(\frac{p(x+3)+w(x-5)}{(x-5)(x+3)}\). The numerators must match: \(p(x+3)+w(x-5)=11x-40\). Comparing the \(x\)-coefficients gives \(p+w=11\) immediately, with no need to find \(p\) and \(w\) separately. (They are \(\frac{15}{8}\) and \(\frac{73}{8}\).)
+
 ## Problem-Solving and Data Analysis
 
 ### PSD-01 · Percentages · Medium · By hand · computed
@@ -1437,6 +1492,48 @@ A car accelerates at a constant rate of 3.2 meters per second squared. What is t
 
 **Explanation:** Convert meters to kilometers (divide by 1,000) and seconds squared to minutes squared. Since 1 minute = 60 seconds, 1 minute squared = \(60^2=3{,}600\) seconds squared, so multiply by 3,600: \(3.2\times\frac{3600}{1000}=11.52\) kilometers per minute squared. The trap is multiplying by 60 instead of \(60^2\), which gives 0.192.
 
+### HM-01 · Percentages · Very hard · By hand · computed
+
+The result of increasing the positive quantity \(x\) by \(250\%\) is \(91\). What is the value of \(x\)?
+
+**Answer:** 26
+
+**Explanation:** Increasing by 250% means adding 250% of \(x\) to \(x\) itself, so the result is \(x+2.5x=3.5x\). Then \(3.5x=91\) and \(x=26\). The trap is \(2.5x=91\) (giving 36.4), which treats &ldquo;increasing by 250%&rdquo; as &ldquo;250% of.&rdquo;
+
+### HM-02 · Percentages · Very hard · By hand · computed
+
+The number \(a\) is \(35\%\) less than the positive number \(b\). The number \(c\) is \(80\%\) greater than \(a\). The number \(c\) is how many times \(b\)?
+
+**Answer:** 117/100
+
+**Explanation:** \(a=0.65b\) (35% less means 65% remains), and \(c=1.8a=1.8(0.65b)=1.17b\). So \(c\) is 1.17 times \(b\). Adding the percents (\(-35+80=45\), giving 1.45) is the trap: each percent applies to a different base.
+
+### HM-07 · Ratios, rates, proportional relationships, and units · Very hard · By hand · computed
+
+A farm has an area of \(7{,}744{,}000\) square yards. What is the area of the farm, in square miles? \((1\text{ mile}=1{,}760\text{ yards})\)
+
+- A) \(0.25\)
+- B) \(2.5\)
+- C) \(25\)
+- D) \(4{,}400\)
+
+**Answer:** B
+
+**Explanation:** One square mile is \(1{,}760\times1{,}760=3{,}097{,}600\) square yards. So the area is \(\frac{7{,}744{,}000}{3{,}097{,}600}=2.5\) square miles. Dividing by 1,760 only once gives 4,400, the most common mistake.
+
+### HM-08 · Ratios, rates, proportional relationships, and units · Very hard · Desmos · computed
+
+Copper has a density of \(8{,}960\) kilograms per cubic meter. A solid copper cube has a mass of \(3.5\) kilograms. To the nearest hundredth of a centimeter, what is the length of one edge of the cube? \((1\text{ meter}=100\text{ centimeters})\)
+
+- A) \(0.07\)
+- B) \(3.91\)
+- C) \(7.31\)
+- D) \(19.76\)
+
+**Answer:** C
+
+**Explanation:** Volume \(=\frac{\text{mass}}{\text{density}}=\frac{3.5}{8960}\approx0.000390625\) cubic meters. One cubic meter is \(100^3=1{,}000{,}000\) cubic centimeters, so the volume is about \(390.625\) cm³. Edge \(=\sqrt[3]{390.625}\approx7.31\) cm. The square root (19.76) and the edge in meters (0.07) are the traps.
+
 ## Geometry and Trigonometry
 
 ### GEO-01 · Circles · Hard · By hand · computed
@@ -1816,4 +1913,41 @@ In the \(xy\)-plane, a triangle has vertices at \((0,0)\), \((10,0)\), and \((4,
 **Answer:** 9
 
 **Explanation:** \(AB=\sqrt{15^2+20^2}=25\). Triangles \(ADC\) and \(ACB\) are similar (each has a right angle and shares angle \(A\)), so \(\frac{AD}{AC}=\frac{AC}{AB}\). That gives \(AD=\frac{15^2}{25}=9\).
+
+### HM-05 · Area and volume · Hard · By hand · computed
+
+Pentagon \(P\) and pentagon \(Q\) are similar. The length of each side of pentagon \(P\) is \(23\) times the length of the corresponding side of pentagon \(Q\). The area of pentagon \(P\) is how many times the area of pentagon \(Q\)?
+
+**Answer:** 529
+
+**Explanation:** For similar figures, areas scale by the square of the length scale factor: \(23^2=529\). The trap is answering 23.
+
+### HM-06 · Area and volume · Very hard · By hand · computed
+
+A right circular cylinder has a volume of \(17{,}640\pi\) cubic centimeters, and the area of its base is \(441\pi\) square centimeters. A plane through the cylinder's central axis cuts the cylinder in a rectangle. What is the length, in centimeters, of a diagonal of this rectangle?
+
+**Answer:** 58
+
+**Explanation:** Base area \(\pi r^2=441\pi\) gives \(r=21\), so the diameter is 42. Height: \(\frac{17{,}640\pi}{441\pi}=40\). The cross-section through the axis is a 42-by-40 rectangle, whose diagonal is \(\sqrt{42^2+40^2}=\sqrt{3364}=58\). Using the radius (21) instead of the diameter is the trap.
+
+### HM-11 · Circles · Very hard · Desmos · computed
+
+A circle in the \(xy\)-plane has its center at \((2,-3)\). Line \(t\) is tangent to this circle at the point \((7,9)\). Which of the following points also lies on line \(t\)?
+
+- A) \((19,4)\)
+- B) \((19,14)\)
+- C) \((12,21)\)
+- D) \((-5,4)\)
+
+**Answer:** A
+
+**Explanation:** The radius to \((7,9)\) has slope \(\frac{9-(-3)}{7-2}=\frac{12}{5}\), and a tangent is perpendicular to the radius, so line \(t\) has slope \(-\frac{5}{12}\). From \((7,9)\), moving 12 right means moving 5 down: \((19,4)\). \((12,21)\) lies on the radius line, the trap.
+
+### HM-13 · Right triangles and trigonometry · Very hard · By hand · computed
+
+An equilateral triangle is inscribed in a circle, so all three of its vertices lie on the circle. The radius of the circle is \(14\sqrt3\) centimeters. What is the perimeter, in centimeters, of the triangle?
+
+**Answer:** 126
+
+**Explanation:** The center of the circle is also the triangle's center, and the segments from the center to two vertices form a 30-30-120 triangle. Splitting it in half gives a 30-60-90 triangle with hypotenuse \(r\) and long leg \(\frac{s}{2}\), so \(\frac s2=\frac{\sqrt3}{2}r\) and \(s=r\sqrt3\). Then \(s=14\sqrt3\cdot\sqrt3=42\), and the perimeter is \(3(42)=126\).
 

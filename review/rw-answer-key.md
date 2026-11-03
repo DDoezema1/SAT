@@ -62,6 +62,21 @@ The Great Pacific Garbage Patch is not a solid island of floating ______ consist
 
 **Why:** “The Great Pacific Garbage Patch is not a solid island of floating trash” and “It consists mostly of tiny plastic particles…” are both complete sentences, so a period works: “trash. It”. The comma version is a splice, the version with no punctuation is a run-on, and “and it,” puts a comma between the subject and its verb.
 
+### RW-HARD-17 · Boundaries · difficulty 3
+
+In 2011, researchers analyzing DNA preserved in 30,000-year-old permafrost from the Yukon reported finding genes that make bacteria resistant to several modern ______ the discovery showed that antibiotic resistance is an ancient natural phenomenon, far older than the medical use of antibiotics.
+
+*Which choice completes the text so that it conforms to the conventions of Standard English?*
+
+- A) antibiotics,
+- B) antibiotics;
+- C) antibiotics
+- D) antibiotics, which
+
+**Answer:** B
+
+**Why:** Both parts are complete sentences: “researchers … reported finding genes …” and “the discovery showed …”. They need a semicolon: “antibiotics;”. A comma alone is a comma splice, no punctuation is a run-on, and “which the discovery showed” is ungrammatical. The length of the first clause is the distraction.
+
 ## Colons
 
 ### RW-SEC-06 · Boundaries · difficulty 2
@@ -170,6 +185,21 @@ The James Webb Space Telescope (launched on December 25, ______ observes the uni
 **Answer:** A
 
 **Why:** The parenthesis opened after “Telescope,” so it must close: “2021)”. Nothing else goes there, because after the parenthesis the subject (“The James Webb Space Telescope”) runs straight into its verb (“observes”).
+
+### RW-HARD-16 · Boundaries · difficulty 3
+
+Italian-born Brazilian architect Lina Bo Bardi's ______ admired in Brazil during her lifetime but little known abroad, have attracted growing international attention in recent decades, particularly the São Paulo Museum of Art, whose main gallery is suspended above a public plaza.
+
+*Which choice completes the text so that it conforms to the conventions of Standard English?*
+
+- A) buildings,
+- B) buildings
+- C) building's,
+- D) buildings'
+
+**Answer:** A
+
+**Why:** “Admired in Brazil … but little known abroad” is extra information about the buildings, and it closes with the comma before “have attracted.” So it must open with a comma: “buildings,”. The plural verb “have” confirms the plural, non-possessive “buildings.”
 
 ## Don't punctuate the core
 
@@ -388,6 +418,21 @@ The James Webb Space Telescope's primary mirror, made of eighteen gold-coated he
 **Answer:** B
 
 **Why:** The subject is “mirror,” which is singular; “eighteen … segments” is part of the description between the commas. The sentence needs a finite singular verb: “has”. “Having” and “to have” would leave the sentence without a main verb.
+
+### RW-HARD-15 · Form, Structure, and Sense · difficulty 3
+
+The collection of essays that the poet published late in her career, together with several letters discovered among her papers after her death, ______ scholars a much fuller picture of how her views on the natural world changed over five decades.
+
+*Which choice completes the text so that it conforms to the conventions of Standard English?*
+
+- A) give
+- B) gives
+- C) have given
+- D) are giving
+
+**Answer:** B
+
+**Why:** The subject is “The collection,” which is singular. “Of essays” is a prepositional phrase, and “together with several letters” adds extra information without creating a plural subject (only “and” does that). So the verb is “gives”.
 
 ## Pronoun agreement & clarity
 
@@ -622,6 +667,21 @@ After examining the chemical makeup of the glass ingots recovered from the ancie
 
 **Why:** The subject “the archaeologists” needs a main verb, and only “concluded” is a finite verb. The other choices leave the sentence without one, making it a fragment.
 
+### RW-HARD-18 · Form, Structure, and Sense · difficulty 3
+
+Completed in 1883 after fourteen years of construction, the Brooklyn Bridge, whose steel-wire cables were a technological novelty and whose Gothic stone towers rose higher than nearly every other structure in New York at the time, ______ the longest suspension bridge in the world when it opened.
+
+*Which choice completes the text so that it conforms to the conventions of Standard English?*
+
+- A) was
+- B) being
+- C) having been
+- D) to be
+
+**Answer:** A
+
+**Why:** After two long “whose” clauses, the subject “the Brooklyn Bridge” still needs a main verb. Only “was” is a finite verb; the others leave the sentence a fragment.
+
 ## Transitions: name the relationship first
 
 ### RW-EXP-01 · Transitions · difficulty 2
@@ -823,7 +883,7 @@ While researching a topic, a student has taken the following notes: A pangram is
 
 ## Words in context: predict, then match
 
-### RW-CRF-01 · Words in Context · difficulty 2
+### RW-CRF-01 · Words in Context · difficulty 1
 
 Although the senator's speech ran for nearly an hour, her central argument was ______ she believed that public libraries deserved more funding, and she said so plainly and repeatedly.
 
@@ -838,7 +898,7 @@ Although the senator's speech ran for nearly an hour, her central argument was _
 
 **Why:** The colon introduces a description of the argument: she said it “plainly and repeatedly.” Your own word might be “simple,” which matches “straightforward.” “Although” contrasts the argument with the long speech.
 
-### RW-CRF-02 · Words in Context · difficulty 3
+### RW-CRF-02 · Words in Context · difficulty 2
 
 When the composer's first symphony premiered, many critics found its dissonant chords jarring. Over the following decades, however, audiences came to ______ those same chords as the most distinctive feature of her style rather than as a flaw.
 
@@ -853,7 +913,7 @@ When the composer's first symphony premiered, many critics found its dissonant c
 
 **Why:** “However” signals a shift from the critics' negative view, and “the most distinctive feature … rather than … a flaw” is positive. “Appreciate” fits. “Tolerate” is too weak: tolerating something still treats it as a flaw.
 
-### RW-CRF-03 · Words in Context · difficulty 3
+### RW-CRF-03 · Words in Context · difficulty 2
 
 The photographer's large prints of glaciers collapsing into the sea are arresting: in the gallery, visitors often stand in front of a single image for several minutes without moving on.
 
@@ -868,7 +928,7 @@ The photographer's large prints of glaciers collapsing into the sea are arrestin
 
 **Why:** The colon explains the word: visitors are held by the images for minutes. That means they are “captivating”. “Stopping” and “detaining” are the common-meaning traps.
 
-### RW-CRF-04 · Words in Context · difficulty 3
+### RW-CRF-04 · Words in Context · difficulty 2
 
 Reporters hoping for a clear answer were disappointed: the committee's report was notably ______ offering no firm recommendations and hedging nearly every claim with qualifications.
 
@@ -883,7 +943,7 @@ Reporters hoping for a clear answer were disappointed: the committee's report wa
 
 **Why:** The report offered “no firm recommendations” and hedged every claim, so it was vague and noncommittal: “equivocal,”. “Incisive” means the opposite (sharp and clear).
 
-### RW-CRF-09 · Words in Context · difficulty 2
+### RW-CRF-09 · Words in Context · difficulty 1
 
 Although the new documentary covers the composer's entire career, it devotes the most attention to her early years in Havana, a period that earlier biographers had largely ______ in favor of her later international fame.
 
@@ -898,7 +958,7 @@ Although the new documentary covers the composer's entire career, it devotes the
 
 **Why:** “In favor of her later international fame” tells you earlier biographers focused elsewhere, so they paid little attention to the early years: “overlooked”. “Emphasized” and “celebrated” reverse the logic, and nothing suggests anyone made anything up.
 
-### RW-CRF-10 · Words in Context · difficulty 2
+### RW-CRF-10 · Words in Context · difficulty 1
 
 The engineers' initial design for the pedestrian bridge proved remarkably ______ in load tests, it supported nearly three times the weight required by the city's safety codes without any measurable damage.
 
@@ -913,7 +973,7 @@ The engineers' initial design for the pedestrian bridge proved remarkably ______
 
 **Why:** The colon introduces evidence: the bridge held three times the required weight without damage. That describes a strong design, so “robust:”. “Fragile” is the opposite, and “ornate” (decorative) and “provisional” (temporary) aren't supported.
 
-### RW-CRF-11 · Words in Context · difficulty 3
+### RW-CRF-11 · Words in Context · difficulty 2
 
 Rather than ______ the earlier study's conclusions about sleep and memory, the new research builds on them, using a sample ten times larger to confirm the original findings and extend them to older adults.
 
@@ -928,7 +988,7 @@ Rather than ______ the earlier study's conclusions about sleep and memory, the n
 
 **Why:** “Rather than” signals the opposite of what the new research does. It confirms and builds on the earlier conclusions, so the contrast is with disproving them: “refute”. “Corroborate,” “replicate,” and “extend” all describe what the new research actually does, which is the trap.
 
-### RW-CRF-12 · Words in Context · difficulty 3
+### RW-CRF-12 · Words in Context · difficulty 2
 
 Many reviewers found the novel's ending ______ after hundreds of pages of slowly building tension between the two families, the conflict is resolved in a single abrupt paragraph that leaves several major questions unanswered.
 
@@ -943,7 +1003,7 @@ Many reviewers found the novel's ending ______ after hundreds of pages of slowly
 
 **Why:** The explanation after the colon describes an ending that is rushed and incomplete (“a single abrupt paragraph”), so “perfunctory:” (done quickly and without care) fits. “Meticulous” is the opposite. Nothing suggests the ending was predictable or overly emotional.
 
-### RW-CRF-13 · Words in Context · difficulty 2
+### RW-CRF-13 · Words in Context · difficulty 1
 
 The historian cautions that the surviving letters offer only a ______ picture of daily life in the colony: nearly all of them were written by a handful of wealthy merchants, so the experiences of farmers, laborers, and enslaved people are largely missing.
 
@@ -958,7 +1018,7 @@ The historian cautions that the surviving letters offer only a ______ picture of
 
 **Why:** “Only” and the explanation that most people's experiences are “largely missing” point to an incomplete picture: “partial”. “Comprehensive” is the opposite, and nothing suggests the letters are invented.
 
-### RW-CRF-14 · Words in Context · difficulty 2
+### RW-CRF-14 · Words in Context · difficulty 1
 
 Oceanographer Sylvia Earle has spent more than five decades advocating for marine conservation. Her ______ efforts led her organization, Mission Blue, to recognize more than 100 “Hope Spots,” ocean areas that are critical to the health of the sea and deserve special protection.
 
@@ -973,7 +1033,7 @@ Oceanographer Sylvia Earle has spent more than five decades advocating for marin
 
 **Why:** “More than five decades” of advocacy that produced more than 100 Hope Spots describes sustained, energetic work: “tireless”. “Sporadic” (occasional) and “reluctant” contradict decades of commitment, and “clandestine” (secret) doesn't fit public advocacy.
 
-### RW-CRF-15 · Words in Context · difficulty 3
+### RW-CRF-15 · Words in Context · difficulty 2
 
 The following text is from Jack London's 1903 novel The Call of the Wild . Buck did not read the newspapers, or he would have known that trouble was brewing, not alone for himself, but for every tide-water dog, strong of muscle and with warm, long hair, from Puget Sound to San Diego.
 
@@ -988,7 +1048,7 @@ The following text is from Jack London's 1903 novel The Call of the Wild . Buck 
 
 **Why:** Trouble that is “brewing” is trouble that is beginning to form and will soon arrive: “developing”. “Fermenting,” “steeping,” and “boiling” are literal meanings related to making drinks, which is the common-meaning trap.
 
-### RW-CRF-16 · Words in Context · difficulty 2
+### RW-CRF-16 · Words in Context · difficulty 1
 
 The following text is from Herman Melville's 1851 novel Moby-Dick . Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.
 
@@ -1003,7 +1063,7 @@ The following text is from Herman Melville's 1851 novel Moby-Dick . Call me Ishm
 
 **Why:** Ishmael has nothing on shore to hold his attention, so “interest” means to occupy or hold his attention: “engage”. “Charge” plays on the financial meaning of interest (prompted by the mention of money), which is the trap.
 
-### RW-CRF-17 · Words in Context · difficulty 2
+### RW-CRF-17 · Words in Context · difficulty 1
 
 Because the theory makes ______ predictions, stating exactly how many arc seconds a planet's orbit should shift each century, scientists can test it directly against telescope observations.
 
@@ -1018,7 +1078,7 @@ Because the theory makes ______ predictions, stating exactly how many arc second
 
 **Why:** The text explains that the predictions state exactly how much the orbit should shift, and that is why they can be tested. So the predictions are “precise”. “Vague” is the opposite.
 
-### RW-CRF-18 · Words in Context · difficulty 3
+### RW-CRF-18 · Words in Context · difficulty 2
 
 The architect's designs are deliberately ______ although her buildings use the clean lines and glass walls of modern architecture, they are organized around open courtyards modeled on traditional homes found throughout the region.
 
@@ -1032,6 +1092,21 @@ The architect's designs are deliberately ______ although her buildings use the c
 **Answer:** A
 
 **Why:** The explanation after the colon describes designs that combine elements from different styles (modern and traditional), which is what “eclectic:” means. “Derivative” is negative and suggests mere copying, which the text doesn't imply. “Austere” and “whimsical” don't describe a combination.
+
+### RW-HARD-14 · Words in Context · difficulty 3
+
+The expedition crossed thousands of miles of territory that Indigenous peoples had known and named for centuries. Earlier histories of the expedition portrayed its leaders as flawless heroes. The historian's new account is notably ______ rather than simply celebrating the explorers, she weighs their genuine achievements against the hardships their journey imposed on the communities they encountered along the way.
+
+*Which choice completes the text with the most logical and precise word or phrase?*
+
+- A) hagiographic;
+- B) even-handed;
+- C) cursory;
+- D) sensational;
+
+**Answer:** B
+
+**Why:** The new account weighs achievements against costs instead of simply celebrating, which is a balanced approach: “even-handed;”. “Hagiographic” (treating a subject as a saint) describes the earlier histories, which is the trap. “Cursory” (hasty) and “sensational” don't fit careful weighing.
 
 ## Purpose & structure: what does it DO?
 
@@ -1050,7 +1125,7 @@ In April 1815, Mount Tambora in present-day Indonesia produced the largest volca
 
 **Why:** The last sentence moves from weather effects to a novel that may have been influenced by them, so it presents a cultural development possibly connected to the climate effects. It doesn't challenge anything, explain science, or concern crops.
 
-### RW-CRF-06 · Text Structure and Purpose · difficulty 2
+### RW-CRF-06 · Text Structure and Purpose · difficulty 1
 
 Many people believe that sharks must swim constantly in order to breathe. This is true of some species, such as the great white shark, which relies on water flowing over its gills as it moves forward. But other sharks, including the nurse shark, can actively pump water over their gills while resting motionless on the seafloor.
 
@@ -1065,7 +1140,7 @@ Many people believe that sharks must swim constantly in order to breathe. This i
 
 **Why:** The text states a belief, confirms it for some species, then gives an exception (“But other sharks…”). That pattern is qualifying a common belief. No scientists debate, no steps are listed, and no theories are compared.
 
-### RW-CRF-19 · Text Structure and Purpose · difficulty 2
+### RW-CRF-19 · Text Structure and Purpose · difficulty 1
 
 In 1977, Kenyan environmentalist Wangari Maathai founded the Green Belt Movement, which pays women in rural communities to plant trees. The trees help restore damaged soil and provide firewood, but Maathai saw the program as more than an environmental project: by earning income and organizing their communities, the women gained a voice in local decisions. In 2004, Maathai became the first African woman to receive the Nobel Peace Prize.
 
@@ -1080,7 +1155,7 @@ In 1977, Kenyan environmentalist Wangari Maathai founded the Green Belt Movement
 
 **Why:** The text presents the Green Belt Movement and stresses that Maathai saw it as “more than an environmental project,” because it gave women income and a voice. The first choice captures both parts. No argument about the “most effective” method is made, no comparison appears, and firewood is a minor detail.
 
-### RW-CRF-20 · Text Structure and Purpose · difficulty 3
+### RW-CRF-20 · Text Structure and Purpose · difficulty 2
 
 The Venus flytrap's leaves snap shut when an insect touches the small trigger hairs on their inner surface. A single touch, however, is not enough: the trap closes only if a second hair is touched within about 20 seconds of the first. This two-touch requirement likely keeps the plant from wasting energy by closing on raindrops or bits of debris that brush against it only once.
 
@@ -1095,9 +1170,39 @@ The Venus flytrap's leaves snap shut when an insect touches the small trigger ha
 
 **Why:** The second sentence describes the two-touch requirement, and the third explains why it probably exists (to avoid wasting energy). So it offers a likely explanation for that requirement. It doesn't introduce a new trap, contradict the first sentence, or name an insect.
 
+### RW-HARD-10 · Text Structure and Purpose · difficulty 3
+
+Several studies published in the 2000s reported that bilingual children outperform monolingual children on tasks requiring executive control, such as ignoring distracting information or switching between rules. Later, however, several large studies failed to find this advantage, and some researchers have suggested that the earlier positive results partly reflected publication bias, the tendency for striking findings to be published more readily than null results. Other researchers respond that the advantage may appear only under specific conditions, such as when tasks are especially demanding. Settling the question will likely require large studies whose methods are fixed before any data are collected.
+
+*Which choice best describes the function of the underlined sentence in the text as a whole?*
+
+- A) It presents evidence and an argument that cast doubt on the claim described in the previous sentence.
+- B) It explains the method that the earlier studies used to measure executive control.
+- C) It offers additional examples of tasks on which bilingual children perform well.
+- D) It summarizes the conclusion that all researchers now accept.
+
+**Answer:** A
+
+**Why:** The first sentence reports a claimed bilingual advantage. The underlined sentence reports failures to replicate it and a possible reason (publication bias), so it casts doubt on that claim. It doesn't explain methods or add examples, and the final sentence shows researchers still disagree, so there's no conclusion that “all researchers now accept.”
+
+### RW-HARD-11 · Text Structure and Purpose · difficulty 3
+
+In 1901, sponge divers recovered corroded lumps of bronze from a shipwreck off the Greek island of Antikythera. For decades the fragments, now known as the Antikythera mechanism, puzzled scholars, who could see only traces of gears. Beginning in the early 2000s, high-resolution X-ray imaging revealed dozens of interlocking gears and thousands of tiny inscriptions, showing that the more than 2,000-year-old device modeled the movements of the Sun and Moon and predicted eclipses. In 2021, researchers drew on this evidence to propose a reconstruction of the device's missing front display, which they believe also showed the positions of the planets.
+
+*Which choice best states the main purpose of the text?*
+
+- A) To describe how modern imaging has revealed the sophistication of an ancient device
+- B) To argue that ancient Greek astronomy was more accurate than modern astronomy
+- C) To explain how sponge divers located ancient shipwrecks
+- D) To compare the Antikythera mechanism with other ancient calendars
+
+**Answer:** A
+
+**Why:** The text moves from a puzzling discovery to what X-ray imaging revealed and the reconstruction it made possible, so its purpose is to describe how modern imaging has revealed the sophistication of an ancient device. It makes no comparison with modern astronomy or other calendars, and the divers are only part of the background.
+
 ## Two texts: how would author 2 respond?
 
-### RW-CRF-07 · Cross-Text Connections · difficulty 2
+### RW-CRF-07 · Cross-Text Connections · difficulty 1
 
 Text 1 Some economists argue that raising the minimum wage reduces employment. When labor becomes more expensive, they reason, businesses respond by hiring fewer workers. Text 2 In a widely cited 1994 study, economists David Card and Alan Krueger compared fast-food restaurants in New Jersey, which had just raised its minimum wage, with restaurants in neighboring Pennsylvania, which had not. They found no evidence that the increase reduced employment in New Jersey.
 
@@ -1112,7 +1217,7 @@ Text 1 Some economists argue that raising the minimum wage reduces employment. W
 
 **Why:** Card and Krueger's study is a counterexample to Text 1's prediction, so they would point to evidence that, in one case, the increase did not reduce employment. Their study doesn't support the “always” claim, says nothing about who should set wages, and doesn't claim that the industry is unaffected in general.
 
-### RW-CRF-08 · Cross-Text Connections · difficulty 3
+### RW-CRF-08 · Cross-Text Connections · difficulty 2
 
 Text 1 For much of the twentieth century, many paleontologists pictured dinosaurs as sluggish, cold-blooded reptiles that dragged their tails along the ground. Text 2 The discovery of Deinonychus in the 1960s changed that picture. With its lightweight build and a large, curved claw on each foot that seemed suited to active hunting, Deinonychus led paleontologist John Ostrom to argue that at least some dinosaurs were agile, energetic animals.
 
@@ -1127,9 +1232,39 @@ Text 1 For much of the twentieth century, many paleontologists pictured dinosaur
 
 **Why:** Ostrom argued that “at least some” dinosaurs were agile, which contradicts the sluggish picture for those species. So he'd call the older view incomplete. “Every dinosaur except Deinonychus ” is too narrow; he generalized to some dinosaurs.
 
+### RW-HARD-12 · Cross-Text Connections · difficulty 3
+
+Text 1 Historians often credit the printing press with the rapid spread of the Protestant Reformation. Printed pamphlets could be produced cheaply and in large numbers, carrying reformers' arguments across Europe far faster than handwritten copies ever could. Martin Luther's writings in particular were reprinted again and again within a few years of their first appearance. Text 2 In the early sixteenth century, most Europeans could not read. Printed pamphlets mattered, but chiefly because literate people read them aloud in taverns and marketplaces, and because printers paired the text with woodcut images. Sermons and songs carried the same messages to many more people than print alone could reach.
+
+*Based on the texts, how would the author of Text 2 most likely respond to the view described in Text 1?*
+
+- A) By agreeing that printing contributed to the Reformation's spread while arguing that its reach depended heavily on spoken and visual forms of communication
+- B) By arguing that the printing press had no effect on the spread of the Reformation
+- C) By claiming that handwritten copies spread reformers' arguments faster than printed pamphlets did
+- D) By suggesting that most Europeans learned to read because of the Reformation
+
+**Answer:** A
+
+**Why:** Text 2 concedes that “printed pamphlets mattered” but stresses reading aloud, images, sermons, and songs. So its author would agree that printing contributed while arguing that its reach depended on spoken and visual communication. “No effect” contradicts “mattered,” and neither text says handwritten copies were faster or that literacy rose.
+
+### RW-HARD-13 · Cross-Text Connections · difficulty 3
+
+Text 1 In a widely publicized 1993 study, college students who listened to ten minutes of a Mozart sonata scored higher on a spatial reasoning task than students who sat in silence. The finding, quickly dubbed the “Mozart effect,” inspired products promising to make children smarter, and many parents began playing classical recordings for their infants. Text 2 Later researchers found that the improvement was small and lasted only minutes. Moreover, listeners showed similar gains after hearing other upbeat music, but not after slow, sad music, suggesting that the gains came from improved mood and arousal rather than from anything special about Mozart.
+
+*Based on the texts, how would the researchers in Text 2 most likely describe the finding reported in Text 1?*
+
+- A) As a real but short-lived improvement that is better explained by listeners' mood and arousal than by Mozart's music in particular
+- B) As evidence that listening to Mozart permanently increases intelligence
+- C) As the result of an error in how spatial reasoning was measured
+- D) As a finding that applies to sad music as well as to upbeat music
+
+**Answer:** A
+
+**Why:** Text 2 accepts that there was an improvement but says it was small, brief, and produced by any upbeat music through mood and arousal. So they'd call it a real but short-lived improvement better explained by mood and arousal. They reject a permanent effect, never claim a measurement error, and specifically say sad music did not produce gains.
+
 ## Evidence must match the whole claim
 
-### RW-INF-01 · Command of Evidence · difficulty 3
+### RW-INF-01 · Command of Evidence · difficulty 2
 
 “‘Hope’ is the thing with feathers” is an 1861 poem by Emily Dickinson. In the poem, the speaker suggests that hope asks nothing of the person who holds it, even in the most desperate times.
 
@@ -1144,7 +1279,7 @@ Text 1 For much of the twentieth century, many paleontologists pictured dinosaur
 
 **Why:** The claim has two parts: hope asks nothing , and that holds even in the most desperate times . “Yet - never - in Extremity, / It asked a crumb - of me.” matches both: “Extremity” is the most desperate time, and hope never “asked a crumb.” The quotation about the chillest land shows hope present in hard places but says nothing about asking; “never stops” is about persistence.
 
-### RW-INF-02 · Command of Evidence · difficulty 2
+### RW-INF-02 · Command of Evidence · difficulty 1
 
 American crows live in family groups and often band together to harass predators that threaten them. Researchers hypothesized that American crows can recognize individual human faces and remember people who have threatened them.
 
@@ -1159,9 +1294,54 @@ American crows live in family groups and often band together to harass predators
 
 **Why:** Only the mask finding shows crows telling apart particular faces and remembering a threat: they react to one face but not another, years later. The other findings are true facts about crows but don't involve recognizing humans.
 
+### RW-HARD-01 · Command of Evidence · difficulty 3
+
+The giraffe's extraordinarily long neck is usually explained as an adaptation for feeding: by reaching leaves that shorter herbivores cannot, giraffes would face less competition for food. Field observations complicate this account, however. During the dry season, when food is scarcest and height should matter most, giraffes often feed at about shoulder height rather than stretching upward. Some zoologists have therefore proposed the “necks-for-sex” hypothesis, which holds that long necks evolved mainly because males use their necks as weapons, swinging them to strike rivals in contests over access to mates.
+
+*Which finding, if true, would most directly support the necks-for-sex hypothesis?*
+
+- A) Among adult male giraffes, those with longer and heavier necks win more contests against rivals and mate more often than those with shorter necks.
+- B) Giraffes spend more of their feeding time browsing on tall trees during the wet season than during the dry season.
+- C) Female giraffes, which do not engage in neck contests, have necks that are just as long relative to their body size as males' necks are.
+- D) Young giraffes grow taller more quickly in their first year than the young of most other large herbivores do.
+
+**Answer:** A
+
+**Why:** The hypothesis says long necks evolved because males with longer necks do better in fights for mates. Evidence that males with longer, heavier necks win more contests and mate more often directly supports that link. The feeding-season finding is about the competing feeding explanation, not about mating. Equally long necks in females, who don't fight, would actually weaken the hypothesis. Growth rates of young giraffes are irrelevant.
+
+### RW-HARD-02 · Command of Evidence · difficulty 3
+
+Low-frequency noise from traffic dominates the soundscape of most cities. Many songbirds rely on song both to attract mates and to defend territories, so being heard is essential. Ecologists studying great tits, small songbirds common in both European cities and forests, have found that urban great tits tend to sing songs with higher minimum pitches than their forest-dwelling counterparts. The researchers hypothesize that the difference is a response to noise itself: because traffic noise is concentrated at low frequencies, songs with higher pitches are less likely to be drowned out, so birds that shift their songs upward in noisy places are more likely to be heard by mates and rivals.
+
+*Which finding, if true, would most directly weaken the researchers' hypothesis?*
+
+- A) Great tits living beside loud highways in otherwise rural areas sing at the same pitches as great tits living in quiet forests.
+- B) Urban great tits sing more often in the early morning, before traffic noise peaks, than later in the day.
+- C) Several other songbird species in European cities also sing at higher pitches than their forest-dwelling relatives do.
+- D) Female great tits respond more strongly to loud songs than to quiet songs.
+
+**Answer:** A
+
+**Why:** The hypothesis is that noise causes the higher pitch. Birds exposed to loud traffic noise outside cities that do not sing higher would show that noise doesn't produce the shift, which weakens the hypothesis. The early-morning finding concerns when birds sing, not their pitch. Other urban species singing higher would support the hypothesis. A preference for loud songs is unrelated to pitch.
+
+### RW-HARD-04 · Command of Evidence · difficulty 2
+
+“Because I could not stop for Death” is a poem by Emily Dickinson, written around 1863. In the poem, the speaker portrays Death not as a frightening figure but as a courteous companion who is in no hurry.
+
+*Which quotation from the poem most effectively illustrates the claim?*
+
+- A) “We slowly drove – He knew no haste / And I had put away / My labor and my leisure too, / For His Civility –”
+- B) “We passed the School, where Children strove / At Recess – in the Ring –”
+- C) “We paused before a House that seemed / A Swelling of the Ground –”
+- D) “Since then – ’tis Centuries – and yet / Feels shorter than the Day”
+
+**Answer:** A
+
+**Why:** The claim has two parts: Death is courteous, and Death is in no hurry. The quotation with “He knew no haste” and “His Civility” shows both. The school and the house describe scenes along the way, and the last quotation is about time passing since the ride, not about Death's character.
+
 ## Tables & graphs: read the claim first
 
-### RW-INF-03 · Command of Evidence · difficulty 3
+### RW-INF-03 · Command of Evidence · difficulty 2
 
 A student examining results from four community gardens in a city's pilot program claims that larger plots did not necessarily produce larger harvests. Garden Plot area (square meters) Harvest (kilograms) A 40 120 B 55 210 C 70 180 D 30 95
 
@@ -1176,7 +1356,7 @@ A student examining results from four community gardens in a city's pilot progra
 
 **Why:** To show that bigger doesn't always mean more, you need a larger plot with a smaller harvest: Garden C had the largest plot area but a smaller harvest than Garden B (70 m² and 180 kg vs. 55 m² and 210 kg). The Garden D choice is accurate but fits the opposite pattern, the Garden B choice is accurate but irrelevant, and the Garden A choice is false.
 
-### RW-INF-04 · Command of Evidence · difficulty 3
+### RW-INF-04 · Command of Evidence · difficulty 2
 
 A city's transportation department surveyed residents in 2010 and 2020 about how they made their daily trips. An analyst claims that the increase in bicycling accounted for most of the decline in car trips. Mode 2010 (% of trips) 2020 (% of trips) Car 72 64 Bus 15 14 Bicycle 3 9 Walking 10 13
 
@@ -1191,7 +1371,7 @@ A city's transportation department surveyed residents in 2010 and 2020 about how
 
 **Why:** The claim compares the bicycle increase to the car decline. The bicycle share rose by 6 percentage points while the car share fell by 8 percentage points: 6 of the 8 points is “most.” The walking and bus choices are accurate but don't address the claim, and the last choice misreads 64 as 54.
 
-### RW-INF-13 · Command of Evidence · difficulty 3
+### RW-INF-13 · Command of Evidence · difficulty 2
 
 A student researching a town's energy use claims that solar power overtook wind power as a source of the town's electricity during the period shown in the table. Year Solar (gigawatt-hours) Wind (gigawatt-hours) 2018 12 14 2019 15 13 2020 21 16
 
@@ -1206,9 +1386,24 @@ A student researching a town's energy use claims that solar power overtook wind 
 
 **Why:** “Overtook” requires wind to be ahead first and solar to be ahead later. Only the first choice shows both: wind led in 2018 (14 vs. 12), and solar led in 2019 and 2020. The second and third choices are true but don't show solar passing wind. The last choice is false, because wind led in 2018.
 
+### RW-HARD-03 · Command of Evidence · difficulty 3
+
+Many students prepare for exams by rereading or highlighting their notes, but cognitive psychologists have found that retrieval practice (testing oneself on material) often produces more durable learning. In one experiment, three groups of students studied the same passage using different methods and were tested either one day or one week later. A student analyzing the results claims that the benefit of self-testing was not apparent at first but emerged over time. Study method Recalled after 1 day (%) Recalled after 1 week (%) Rereading 62 34 Highlighting 60 31 Self-testing 64 56
+
+*Which choice most effectively uses data from the table to support the student's claim?*
+
+- A) After one day, recall differed by only a few percentage points across the three methods, but after one week, students who self-tested recalled 56 percent compared with 34 and 31 percent for the other methods.
+- B) Students who self-tested recalled 64 percent of the material after one day, more than students in either of the other groups.
+- C) Recall declined from one day to one week for all three study methods.
+- D) Students who highlighted their notes recalled the least after both one day and one week.
+
+**Answer:** A
+
+**Why:** The claim has two parts: little difference at first, then a clear benefit later. Only the first choice shows both: after one day the methods were within 4 points of each other, and after one week self-testing (56%) far outpaced rereading (34%) and highlighting (31%). The 64% figure alone suggests an early advantage, the opposite of “not apparent at first.” The other two choices are true but don't address the claim.
+
 ## Inferences: the most modest conclusion
 
-### RW-INF-05 · Inferences · difficulty 3
+### RW-INF-05 · Inferences · difficulty 2
 
 Many crops rely on bees for pollination. Tomato flowers release pollen most effectively when they are vibrated, a process called buzz pollination. Bumblebees grab the flowers and vibrate their flight muscles to shake the pollen loose, but honeybees cannot perform buzz pollination. In greenhouse studies, tomato plants visited by bumblebees produced larger fruit than plants left to pollinate without bees. These findings suggest that ______
 
@@ -1223,7 +1418,7 @@ Many crops rely on bees for pollination. Tomato flowers release pollen most effe
 
 **Why:** Bumblebees can buzz-pollinate, honeybees can't, and buzz pollination is linked to larger tomatoes. So growers seeking large tomatoes may benefit more from bumblebees. The other choices overreach: nothing suggests damage, “all fruit crops” goes beyond tomatoes, and the plants without bees still produced fruit.
 
-### RW-INF-06 · Inferences · difficulty 3
+### RW-INF-06 · Inferences · difficulty 2
 
 At Jerimalai, a cave site in East Timor, archaeologists found the bones of tuna and other deep-ocean fish in layers dated to about 42,000 years ago. Catching such fish requires boats and specialized techniques, such as fishing in open water far from shore. The archaeologists therefore concluded that ______
 
@@ -1238,7 +1433,7 @@ At Jerimalai, a cave site in East Timor, archaeologists found the bones of tuna 
 
 **Why:** If catching deep-ocean fish requires boats and specialized techniques, and those fish were caught 42,000 years ago, then people had seafaring skills by then. The other choices aren't supported: nothing mentions abandonment, the text doesn't discuss changes in tuna habitat, and “the first place in the world” overreaches.
 
-### RW-INF-07 · Inferences · difficulty 2
+### RW-INF-07 · Inferences · difficulty 1
 
 Mercury is the planet closest to the Sun, and Venus is the second closest. Since Venus is farther from the Sun and is covered by thick clouds that reflect most incoming sunlight, one might expect it to be cooler than Mercury. However, Venus's dense carbon dioxide atmosphere traps heat so effectively that ______
 
@@ -1253,7 +1448,7 @@ Mercury is the planet closest to the Sun, and Venus is the second closest. Since
 
 **Why:** “However” signals that the expectation (Venus is cooler) is wrong, and “traps heat so effectively” explains why: Venus's surface is hotter than Mercury's. The second choice contradicts the “thick clouds” that reflect light, and the last choice contradicts the first sentence.
 
-### RW-INF-11 · Inferences · difficulty 2
+### RW-INF-11 · Inferences · difficulty 1
 
 Many songbirds learn their songs by listening to adult birds during a sensitive period early in life. In classic experiments, young white-crowned sparrows raised without hearing adult songs developed abnormal songs, while those that heard recordings of adult songs during their first months developed normal ones. These findings suggest that ______
 
@@ -1268,7 +1463,7 @@ Many songbirds learn their songs by listening to adult birds during a sensitive 
 
 **Why:** Birds that heard adult songs early developed normal songs, and birds that didn't developed abnormal ones, so hearing adult songs early in life is important for typical songs. The second choice is contradicted (the isolated birds' songs were abnormal), the third is contradicted (recordings worked), and the text never says adults teach deliberately.
 
-### RW-INF-12 · Inferences · difficulty 3
+### RW-INF-12 · Inferences · difficulty 2
 
 Coral reefs cover less than 1 percent of the ocean floor, yet they are home to roughly a quarter of all known marine species. Because so many species depend on such a small area, ______
 
@@ -1283,9 +1478,54 @@ Coral reefs cover less than 1 percent of the ocean floor, yet they are home to r
 
 **Why:** If about 25 percent of species depend on less than 1 percent of the ocean floor, then harming that small area could harm a share of species far larger than its size: damage to coral reefs could affect a disproportionately large share of the ocean's biodiversity. The other choices are unsupported or contradicted (“only,” “no marine life”).
 
+### RW-HARD-05 · Inferences · difficulty 3
+
+Young sunflower plants track the sun across the sky during the day and reorient toward the east overnight, but once the plants mature, their flower heads stop moving and face east permanently. Both behaviors are governed by the plants' internal circadian clock. To learn why, plant biologists compared mature sunflowers whose heads had been turned to face west with plants left facing east. The east-facing flower heads warmed up more quickly in the morning, and they received roughly five times as many visits from pollinating insects as the west-facing heads did. Because many pollinators prefer warmer flowers, these results suggest that ______
+
+*Which choice most logically completes the text?*
+
+- A) the eastward orientation of mature sunflowers increases pollinator visits by helping the flowers warm up early in the day.
+- B) young sunflowers track the sun mainly in order to attract more pollinators.
+- C) west-facing sunflowers are unable to produce any seeds.
+- D) pollinating insects cannot detect flowers that face west.
+
+**Answer:** A
+
+**Why:** East-facing heads warm faster, warm flowers attract pollinators, and east-facing heads got far more visits. The logical conclusion: facing east increases pollinator visits by helping the flowers warm early. The study was about mature plants, not why young plants track the sun. “Unable to produce any seeds” and “cannot detect” overreach: west-facing heads still got some visits.
+
+### RW-HARD-06 · Inferences · difficulty 3
+
+Many of the first planets discovered orbiting other stars were “hot Jupiters,” giant planets that circle their stars in just a few days. The first planet found orbiting a sunlike star, 51 Pegasi b, announced in 1995, completes an orbit in about four days. Some astronomers argued that this abundance reflected the detection method more than the true population of planets. The radial-velocity method detects a planet by the slight wobble it induces in its star, and that wobble is largest for massive planets on tight orbits, exactly the kind of planet that would be found first. Consistent with this view, later surveys using methods better suited to detecting smaller planets and wider orbits have found that ______
+
+*Which choice most logically completes the text?*
+
+- A) hot Jupiters are relatively rare compared with smaller planets.
+- B) the radial-velocity method cannot detect planets of any kind.
+- C) most stars have no planets at all.
+- D) hot Jupiters are more common than astronomers originally believed.
+
+**Answer:** A
+
+**Why:** If hot Jupiters were overrepresented only because they're the easiest to detect, then methods that can find other kinds of planets should show hot Jupiters to be uncommon: “hot Jupiters are relatively rare compared with smaller planets.” The radial-velocity method obviously detects some planets, nothing is said about stars without planets, and “more common” contradicts the argument.
+
+### RW-HARD-07 · Inferences · difficulty 3
+
+Many retailers sell furniture that customers must put together themselves, a chore that might be expected to make the products less appealing. In a series of experiments, behavioral economists found that people valued storage boxes they had assembled themselves more highly than identical boxes that came already assembled: participants were willing to pay more for the boxes they had built. The researchers called this the “IKEA effect.” In a follow-up experiment, however, some participants built a box and then took it apart, while others were stopped before they could finish. Neither group showed the increase in valuation. These results suggest that ______
+
+*Which choice most logically completes the text?*
+
+- A) the extra value people place on things they build depends on completing the task.
+- B) people value all products more highly after spending time with them.
+- C) pre-assembled furniture is generally of higher quality than furniture that buyers assemble themselves.
+- D) taking a product apart increases how much people are willing to pay for it.
+
+**Answer:** A
+
+**Why:** Effort alone wasn't enough: people who built and then dismantled their boxes, or didn't finish, showed no boost. So the effect depends on successfully completing the task. The second choice contradicts the follow-up, the quality of furniture is never discussed, and taking a box apart removed the effect rather than increasing value.
+
 ## Main idea: the whole text, not one detail
 
-### RW-INF-08 · Central Ideas and Details · difficulty 2
+### RW-INF-08 · Central Ideas and Details · difficulty 1
 
 Tardigrades are microscopic animals that can survive conditions that would kill most other life forms. When their surroundings dry out, they curl into a dehydrated state called a tun and slow their metabolism almost to a stop. In this state, tardigrades have survived extreme cold, intense radiation, and even, in a 2007 experiment, exposure to the vacuum of space, reviving once they were rehydrated.
 
@@ -1300,7 +1540,7 @@ Tardigrades are microscopic animals that can survive conditions that would kill 
 
 **Why:** The whole passage explains how tardigrades survive extreme conditions by entering a dormant, dehydrated state. The space experiment is one supporting detail (too narrow), the claim about most life forms is background, and “most common” is never stated.
 
-### RW-INF-09 · Central Ideas and Details · difficulty 3
+### RW-INF-09 · Central Ideas and Details · difficulty 2
 
 The following text is from Jane Austen's 1813 novel Pride and Prejudice . It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered the rightful property of some one or other of their daughters.
 
@@ -1315,7 +1555,7 @@ The following text is from Jane Austen's 1813 novel Pride and Prejudice . It is 
 
 **Why:** The narrator is ironic: the “truth” is really the families' assumption, made “however little known” the man's own feelings may be. So the main idea is that local families assume he'll marry one of their daughters, whatever his wishes. The second choice takes the ironic first sentence literally, which is the classic trap.
 
-### RW-INF-10 · Central Ideas and Details · difficulty 2
+### RW-INF-10 · Central Ideas and Details · difficulty 1
 
 For centuries, sailors navigated by the stars, but determining longitude at sea remained a dangerous guessing game. Finding longitude required knowing the exact time at a reference location while far from it, and pendulum clocks failed on rolling ships. In the eighteenth century, English clockmaker John Harrison spent decades building a series of increasingly precise sea clocks, or marine chronometers. His fourth design, completed in 1759, kept time accurately enough on long voyages to make reliable longitude measurements possible.
 
@@ -1329,4 +1569,34 @@ For centuries, sailors navigated by the stars, but determining longitude at sea 
 **Answer:** A
 
 **Why:** The text sets up a problem (longitude) and presents its solution (Harrison's accurate sea clocks). The first choice covers both. The second and fourth choices are details, and the third contradicts the text, since pendulum clocks failed at sea.
+
+### RW-HARD-08 · Central Ideas and Details · difficulty 3
+
+The ability to delay gratification, giving up a smaller reward now for a better one later, has been studied mostly in humans, apes, and birds, which are social animals with long lives. Researchers therefore tested common cuttlefish, which are solitary and short-lived. Cuttlefish learned that a less preferred food was available immediately while a preferred food, live shrimp, would appear only after a delay, and many waited for the shrimp. Moreover, the individuals that waited longest also learned a separate task most quickly. The findings suggest that self-control may be linked to learning ability even in animals whose lifestyles differ sharply from those of the species usually studied.
+
+*Which choice best states the main idea of the text?*
+
+- A) Cuttlefish can delay gratification, and their self-control appears to be related to learning ability, which suggests that such abilities are not limited to long-lived social animals.
+- B) Cuttlefish prefer live shrimp to other kinds of food.
+- C) Delayed gratification has been studied more often in apes than in any other animal.
+- D) Cuttlefish learn new tasks more quickly than humans and birds do.
+
+**Answer:** A
+
+**Why:** The text describes the cuttlefish experiment and ends with its significance: self-control and learning may be linked even in solitary, short-lived animals. The first choice captures both the result and why it matters. The shrimp preference is a detail, the apes claim isn't stated, and no comparison of learning speed with humans or birds is made.
+
+### RW-HARD-09 · Central Ideas and Details · difficulty 2
+
+The following text is from Charles Dickens's 1859 novel A Tale of Two Cities . The novel is set in London and Paris in the years before and during the French Revolution. It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us.
+
+*Which choice best states the main idea of the text?*
+
+- A) The narrator characterizes the period as one of sharp contradictions.
+- B) The narrator argues that the period was mostly a time of hope.
+- C) The narrator suggests that people of the period were unaware of events around them.
+- D) The narrator explains the causes of the French Revolution.
+
+**Answer:** A
+
+**Why:** Every phrase pairs opposites: best and worst, wisdom and foolishness, belief and incredulity, Light and Darkness. The main idea is that the narrator characterizes the period as one of sharp contradictions. Choosing “mostly a time of hope” ignores half of each pair. Nothing is said about awareness of events or about causes.
 
