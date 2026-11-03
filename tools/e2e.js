@@ -7,7 +7,12 @@ const path = require("path");
 const assert = require("assert");
 
 const ROOT = path.join(__dirname, "..", "app");
-const SHOTS = process.argv[2];
+// Usage: node tools/e2e.js [screenshotDir] [--url=https://site/] [--real-desmos]
+// --url tests a deployed site instead of the local app/ folder, and uses the real Desmos calculator.
+const URL_ARG = (process.argv.find((a) => a.startsWith("--url=")) || "").slice(6);
+const LIVE = !!URL_ARG;
+const REAL_DESMOS = LIVE || process.argv.includes("--real-desmos");
+const SHOTS = process.argv.slice(2).find((a) => !a.startsWith("--"));
 const TYPES = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".woff2": "font/woff2" };
 
 const server = http.createServer((req, res) => {
@@ -18,8 +23,8 @@ const server = http.createServer((req, res) => {
 });
 
 (async () => {
-  await new Promise((r) => server.listen(0, r));
-  const url = `http://localhost:${server.address().port}/`;
+  if (!LIVE) await new Promise((r) => server.listen(0, r));
+  const url = LIVE ? URL_ARG : `http://localhost:${server.address().port}/`;
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1366, height: 860 } });
   const errors = [];
@@ -29,7 +34,7 @@ const server = http.createServer((req, res) => {
   // The sandbox that runs this test can't reach desmos.com, so serve a stand-in that
   // implements the parts of the Desmos API the app uses. Pass --real-desmos to skip.
   const calls = [];
-  if (!process.argv.includes("--real-desmos")) {
+  if (!REAL_DESMOS) {
     await page.route(/desmos\.com\/api/, (route) => route.fulfill({ contentType: "text/javascript", body: `
       window.Desmos = { GraphingCalculator(el, opts) {
         window.__desmosCalls = (window.__desmosCalls || []).concat(["create:" + JSON.stringify(opts)]);
@@ -94,9 +99,12 @@ const server = http.createServer((req, res) => {
 
   // calculator
   await page.click("#calcBtn");
-  await page.waitForTimeout(4000);
+  if (REAL_DESMOS) await page.waitForSelector("#desmos .dcg-container", { timeout: 30000 }).catch(() => {});
+  else await page.waitForTimeout(4000);
   const desmosOk = await page.evaluate(() => !!document.querySelector("#desmos .dcg-container, #desmos .dcg-calculator-api-container"));
-  if (!process.argv.includes("--real-desmos")) {
+  if (REAL_DESMOS) {
+    assert(desmosOk, "real Desmos calculator should mount");
+  } else {
     assert(desmosOk, "Desmos stand-in should mount");
     await page.click("#calcWide");
     assert(await page.evaluate(() => document.querySelector("#calcPanel").classList.contains("wide")));
@@ -106,6 +114,17 @@ const server = http.createServer((req, res) => {
   step(desmosOk ? "Desmos calculator loaded" : "Desmos unavailable here; fallback message shown: " + /couldn't load/.test(desmosMsg));
   assert(desmosOk || /couldn't load/.test(desmosMsg));
   await shot("05-calculator");
+  // Desmos use must be saved immediately, including on the next question while the panel stays open
+  await page.click("#nextBtn");
+  const readFlags = () => page.evaluate(() => { const a = JSON.parse(localStorage.getItem("satMathPractice.v1")).active; return [a.items[a.idx - 1].calc, a.items[a.idx].calc]; });
+  let flags = await readFlags();
+  if (LIVE && !(flags[0] && flags[1])) {      // a deployed site may predate the immediate-save fix
+    await page.waitForTimeout(6000);
+    flags = await readFlags();
+    step("NOTE: Desmos use was saved only by the periodic save (immediate-save fix not deployed yet)");
+  }
+  assert.deepStrictEqual(flags, [true, true], "Desmos use saved immediately");
+  await page.click("#backBtn");
   await page.click("#calcClose");
 
   // reference + navigator
@@ -266,5 +285,5 @@ const server = http.createServer((req, res) => {
   assert.deepStrictEqual(errors, [], "browser errors");
   console.log(`\nE2E passed (${n} questions rendered, 0 KaTeX errors, 0 page errors)`);
   await browser.close();
-  server.close();
+  if (!LIVE) server.close();
 })().catch(async (e) => { console.error(e); process.exit(1); });
