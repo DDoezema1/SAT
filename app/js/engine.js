@@ -17,7 +17,15 @@
   let DEFAULT_BASELINE = 740;     // most recent official SAT Math score (editable in the Parent area)
   let MODULE_SEC = 35 * 60;
   let MODULE_LEN = 22;
-  const BLUEPRINT = { ALG: 7, ADV: 7, PSD: 4, GEO: 4 };   // per module, ~SAT domain weights
+  // Per 22-question module. College Board: Algebra 13-15, Advanced Math 13-15, PSDA 5-7,
+  // Geometry & Trig 5-7 of the 40 scored questions (+4 unscored pretest) -> 16/16/6/6 per test.
+  const BLUEPRINT = { ALG: 8, ADV: 8, PSD: 3, GEO: 3 };
+  let SPR_SHARE = 0.25;           // College Board: ~75% multiple choice, ~25% student-produced response
+  // How questions are ordered within a module. Math: easiest to hardest. Reading & Writing:
+  // by domain (in blueprint order), similar skills grouped, easiest to hardest within each.
+  let ORDER = "difficulty";
+  let SKILL_ORDER = [];
+  let UNGROUPED_DOMAINS = [];     // domains sorted purely by difficulty regardless of skill
   const DIFF_MIX = {
     m1: { 1: 6, 2: 10, 3: 6 },
     m2hard: { 1: 2, 2: 9, 3: 11 },
@@ -228,27 +236,59 @@
     const base = opts.filter ? questions.filter(opts.filter) : questions;
     const domains = opts.domain && opts.domain !== "ALL" ? [opts.domain] : null;
     const picked = [];
+    // Student-produced responses: aim for SPR_SHARE of the set, spread across domains.
+    let sprLeft = SPR_SHARE == null ? null : Math.round(n * SPR_SHARE);
+    let slotsLeft = n;
+    // Which formats to try for the next slot. The SPR share is a soft preference (spread
+    // evenly across the module) until the end of the module, where it becomes a hard limit.
+    const typeOrder = () => {
+      if (sprLeft == null) return [null];
+      if (sprLeft >= slotsLeft) return ["spr"];
+      if (sprLeft <= 0) return ["mc"];
+      return rand(rng) < sprLeft / slotsLeft ? ["spr", "mc"] : ["mc", "spr"];
+    };
     for (const [dom, count] of Object.entries(scaleBlueprint(n, domains))) {
       const want = allocate(count, mix);
       for (const d of [3, 2, 1]) {
         for (let i = 0; i < want[d]; i++) {
           const pool = available(state, base, used).filter((q) => q.domain === dom);
-          // exact difficulty first, then the nearest difficulty
+          // Difficulty comes first: try the target difficulty in either allowed format before
+          // stepping to the nearest difficulty.
           const order = d === 2 ? [2, 3, 1] : d === 3 ? [3, 2, 1] : [1, 2, 3];
+          const types = typeOrder();
           let q = null;
           for (const dd of order) {
-            q = pickBest(pool.filter((x) => x.diff === dd), state, now, rng);
+            for (const t of types) {
+              q = pickBest(pool.filter((x) => x.diff === dd && (t == null || x.type === t)), state, now, rng);
+              if (q) break;
+            }
             if (q) break;
+          }
+          if (!q) {   // a hard format limit couldn't be met in this domain: relax it
+            for (const dd of order) { q = pickBest(pool.filter((x) => x.diff === dd), state, now, rng); if (q) break; }
           }
           if (!q) q = pickBest(available(state, base, used), state, now, rng);
           if (!q) break;
           picked.push(q); used.add(q.id);
+          slotsLeft--; if (q.type === "spr" && sprLeft != null) sprLeft--;
         }
       }
     }
-    // Real modules get harder toward the end: order by difficulty, shuffling within each level.
-    const shuffled = picked.map((q) => [q.diff + rand(rng), q]).sort((a, b) => a[0] - b[0]).map((p) => p[1]);
-    return shuffled;
+    return orderModule(picked, rng);
+  }
+
+  /** Order a module the way the real test does (see ORDER). Ties are shuffled. */
+  function orderModule(qs, rng) {
+    const doms = Object.keys(BLUEPRINT);
+    const key = (q) => {
+      if (ORDER !== "domain") return [q.diff];
+      const skill = UNGROUPED_DOMAINS.includes(q.domain) ? 0 : Math.max(0, SKILL_ORDER.indexOf(q.skill));
+      return [doms.indexOf(q.domain), skill, q.diff];
+    };
+    return qs.map((q) => [key(q), rand(rng), q]).sort((a, b) => {
+      for (let i = 0; i < a[0].length; i++) if (a[0][i] !== b[0][i]) return a[0][i] - b[0][i];
+      return a[1] - b[1];
+    }).map((p) => p[2]);
   }
 
   function route(module1Responses) {
@@ -326,6 +366,10 @@
     if (cfg.moduleLen) MODULE_LEN = cfg.moduleLen;
     if (cfg.moduleSec) MODULE_SEC = cfg.moduleSec;
     if (cfg.baseline) DEFAULT_BASELINE = cfg.baseline;
+    if ("sprShare" in cfg) SPR_SHARE = cfg.sprShare;
+    if (cfg.order) ORDER = cfg.order;
+    if (cfg.skillOrder) SKILL_ORDER = cfg.skillOrder;
+    if (cfg.ungrouped) UNGROUPED_DOMAINS = cfg.ungrouped;
     Object.assign(api, { PACE_SEC, SPEED_PACE_SEC, MODULE_LEN, MODULE_SEC, DEFAULT_BASELINE });
   }
 
@@ -334,7 +378,7 @@
     B, DIFF_NAME, PACE_SEC, SPEED_PACE_SEC, TARGET_SEC, SLOW_FACTOR, MODULE_SEC, MODULE_LEN, BLUEPRINT, ROUTE_THRESHOLD, DEFAULT_BASELINE,
     parseRational, sprInputAllowed, gradeSPR, isCorrect, isSlow, isTrouble, troubleIds,
     defaultState, setBaseline, scoreToTheta, thetaToScore, recordAnswer, mastery, levelMix, scaleBlueprint,
-    buildModule, route, nextPractice, estimateScore,
+    buildModule, orderModule, route, nextPractice, estimateScore,
   };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.Engine = api;

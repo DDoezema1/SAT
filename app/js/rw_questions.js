@@ -351,7 +351,7 @@ window.SAT_QUESTIONS = [
   "skill": "Boundaries",
   "diff": 3,
   "rule": "colon",
-  "passage": "<p>The museum's new exhibit on twentieth-century Mexican art features works by <span class=\"blank\">______</span> Frida Kahlo, Diego Rivera, and Rufino Tamayo.</p>",
+  "passage": "<p>The museum's new exhibit on twentieth-century Mexican art focuses on painters who helped shape the country's cultural identity after the Mexican Revolution. It features works by <span class=\"blank\">______</span> Frida Kahlo, Diego Rivera, and Rufino Tamayo.</p>",
   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
   "choices": [
    "artists such as:",
@@ -637,7 +637,7 @@ window.SAT_QUESTIONS = [
   "skill": "Boundaries",
   "diff": 2,
   "rule": "possessive",
-  "passage": "<p>The Andean <span class=\"blank\">______</span> wings, which can span ten feet, allow it to soar for hours over the mountains while barely flapping.</p>",
+  "passage": "<p>Andean condors are among the largest flying birds in the world. The Andean <span class=\"blank\">______</span> wings, which can span ten feet, allow it to soar for hours over the mountains while barely flapping.</p>",
   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
   "choices": [
    "condors",
@@ -681,7 +681,7 @@ window.SAT_QUESTIONS = [
   "skill": "Form, Structure, and Sense",
   "diff": 3,
   "rule": "agreement",
-  "passage": "<p>Near the center of the Milky Way <span class=\"blank\">______</span> a supermassive black hole, Sagittarius A*, with a mass about four million times that of the Sun.</p>",
+  "passage": "<p>Astronomers have long suspected that most large galaxies have enormous black holes at their centers, and our own galaxy is no exception. Near the center of the Milky Way <span class=\"blank\">______</span> a supermassive black hole, Sagittarius A*, with a mass about four million times that of the Sun.</p>",
   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
   "choices": [
    "lie",
@@ -703,7 +703,7 @@ window.SAT_QUESTIONS = [
   "skill": "Form, Structure, and Sense",
   "diff": 2,
   "rule": "agreement",
-  "passage": "<p>Each of the volunteers who participated in last winter's bird count <span class=\"blank\">______</span> trained in advance to identify local species by their songs and calls.</p>",
+  "passage": "<p>Bird counts depend on volunteers who can identify species quickly and accurately, often without ever seeing the birds. Each of the volunteers who participated in last winter's bird count <span class=\"blank\">______</span> trained in advance to identify local species by their songs and calls.</p>",
   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
   "choices": [
    "were",
@@ -879,7 +879,7 @@ window.SAT_QUESTIONS = [
   "skill": "Form, Structure, and Sense",
   "diff": 3,
   "rule": "modifier",
-  "passage": "<p>Born in 1907 in Coyoac&aacute;n, Mexico, <span class=\"blank\">______</span></p>",
+  "passage": "<p>Frida Kahlo is among the most celebrated painters of the twentieth century, and many of her best-known works are self-portraits. Born in 1907 in Coyoac&aacute;n, Mexico, <span class=\"blank\">______</span></p>",
   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
   "choices": [
    "Frida Kahlo's self-portraits explore themes of identity, pain, and Mexican culture.",
@@ -901,7 +901,7 @@ window.SAT_QUESTIONS = [
   "skill": "Form, Structure, and Sense",
   "diff": 3,
   "rule": "modifier",
-  "passage": "<p>After analyzing thousands of hours of underwater recordings, <span class=\"blank\">______</span></p>",
+  "passage": "<p>Male humpback whales in a population sing a shared song, but the song does not stay the same from one season to the next. After analyzing thousands of hours of underwater recordings, <span class=\"blank\">______</span></p>",
   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
   "choices": [
    "the researchers concluded that humpback whale songs change gradually from year to year.",
@@ -923,7 +923,7 @@ window.SAT_QUESTIONS = [
   "skill": "Form, Structure, and Sense",
   "diff": 2,
   "rule": "modifier",
-  "passage": "<p>Stretching thousands of miles across northern China, <span class=\"blank\">______</span></p>",
+  "passage": "<p>The Great Wall is not a single continuous structure but a network of walls and fortifications built and connected by different dynasties. Stretching thousands of miles across northern China, <span class=\"blank\">______</span></p>",
   "stem": "Which choice completes the text so that it conforms to the conventions of Standard English?",
   "choices": [
    "the Great Wall's construction took place over many centuries.",
@@ -1495,7 +1495,7 @@ window.SAT_QUESTIONS = [
   "skill": "Command of Evidence",
   "diff": 2,
   "rule": "evidence",
-  "passage": "<p>Researchers hypothesized that American crows can recognize individual human faces and remember people who have threatened them.</p>",
+  "passage": "<p>American crows live in family groups and often band together to harass predators that threaten them. Researchers hypothesized that American crows can recognize individual human faces and remember people who have threatened them.</p>",
   "stem": "Which finding, if true, would most directly support the researchers' hypothesis?",
   "choices": [
    "Crows that had been captured by researchers wearing a particular mask scolded people wearing that mask years later but ignored people wearing a different mask.",

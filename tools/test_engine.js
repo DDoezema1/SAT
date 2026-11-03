@@ -87,7 +87,7 @@ test("module 1 follows the blueprint: 22 unique questions, domain counts, mixed 
   assert.strictEqual(m.length, 22);
   assert.strictEqual(new Set(m.map((q) => q.id)).size, 22);
   const dom = {}; for (const q of m) dom[q.domain] = (dom[q.domain] || 0) + 1;
-  assert.deepStrictEqual(dom, { ALG: 7, ADV: 7, PSD: 4, GEO: 4 });
+  assert.deepStrictEqual(dom, { ALG: 8, ADV: 8, PSD: 3, GEO: 3 });
   const diffs = new Set(m.map((q) => q.diff));
   assert(diffs.size === 3);
   for (let i = 1; i < m.length; i++) assert(m[i].diff >= m[i - 1].diff, "ordered by difficulty");
@@ -99,7 +99,12 @@ test("harder module 2 is harder than the standard one, and never repeats module 
   const hard = E.buildModule(st, Q, "m2hard", new Set(used1), rng(3));
   const std = E.buildModule(st, Q, "m2std", new Set(used1), rng(3));
   const avg = (m) => m.reduce((a, q) => a + q.diff, 0) / m.length;
-  assert(avg(hard) > avg(std) + 0.5, `${avg(hard)} vs ${avg(std)}`);
+  assert(avg(hard) > avg(std) + 0.5 && avg(hard) >= 2.2 && avg(std) <= 2.0, `${avg(hard)} vs ${avg(std)}`);
+  for (let seed = 10; seed < 30; seed++) {           // holds across many random draws, not just one
+    const u = new Set(); E.buildModule(st, Q, "m1", u, rng(seed));
+    const h = E.buildModule(st, Q, "m2hard", new Set(u), rng(seed)), d = E.buildModule(st, Q, "m2std", new Set(u), rng(seed));
+    assert(avg(h) > avg(d) + 0.5, `seed ${seed}: ${avg(h)} vs ${avg(d)}`);
+  }
   for (const q of hard.concat(std)) assert(!used1.has(q.id));
   assert.strictEqual(hard.length, 22);
   assert.strictEqual(std.length, 22);
@@ -236,8 +241,8 @@ test("trouble spots are re-served ahead of mastered questions after a few days",
 });
 
 test("timed sets: 11 and 22 questions, scaled blueprint, top-band mix at 740", () => {
-  assert.deepStrictEqual(E.scaleBlueprint(11), { ALG: 4, ADV: 3, PSD: 2, GEO: 2 });
-  assert.deepStrictEqual(E.scaleBlueprint(22), { ALG: 7, ADV: 7, PSD: 4, GEO: 4 });
+  assert.deepStrictEqual(E.scaleBlueprint(11), { ALG: 4, ADV: 4, PSD: 2, GEO: 1 });
+  assert.deepStrictEqual(E.scaleBlueprint(22), { ALG: 8, ADV: 8, PSD: 3, GEO: 3 });
   const st = E.defaultState();
   assert.strictEqual(E.levelMix(st), "top");
   for (const n of [11, 22]) {
@@ -251,6 +256,19 @@ test("timed sets: 11 and 22 questions, scaled blueprint, top-band mix at 740", (
   assert(dset.every((q) => q.desmos));
   const alg = E.buildModule(st, Q, "top", new Set(), rng(1), null, 11, { domain: "ALG" });
   assert(alg.length === 11 && alg.every((q) => q.domain === "ALG"));
+});
+
+test("modules are about 25% student-produced response, like the real test", () => {
+  for (let seed = 1; seed <= 20; seed++) {
+    const st = E.defaultState();
+    for (const key of ["m1", "m2hard", "m2std", "top"]) {
+      const m = E.buildModule(st, Q, key, new Set(), rng(seed), null, 22);
+      const spr = m.filter((q) => q.type === "spr").length;
+      assert(spr >= 5 && spr <= 6, `${key} seed ${seed}: ${spr} SPR`);
+    }
+    const half = E.buildModule(st, Q, "top", new Set(), rng(seed), null, 11).filter((q) => q.type === "spr").length;
+    assert(half >= 2 && half <= 3, `11-question set: ${half} SPR`);
+  }
 });
 
 console.log(`\n${passed} tests passed`);

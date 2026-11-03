@@ -83,6 +83,8 @@ const server = http.createServer((req, res) => {
   assert(await page.locator("#refBtn.hidden").count() === 1, "no rules button during a timed set");
   const doms = await page.evaluate((k) => JSON.parse(localStorage.getItem(k)).active.items.map((i) => window.SAT_QUESTIONS.find((q) => q.id === i.id).domain), KEY);
   assert(doms.every((d) => d === "SEC" || d === "EXPR"), doms.join(","));
+  const ORDER = ["CRAFT", "INFO", "SEC", "EXPR"];
+  for (let i = 1; i < doms.length; i++) assert(ORDER.indexOf(doms[i]) >= ORDER.indexOf(doms[i - 1]), "official domain order: " + doms.join(","));
   await page.waitForTimeout(1100);
   assert.match(await page.textContent("#pace"), /on pace|ahead|behind/);
   await shot("rw-05-timed-set");
