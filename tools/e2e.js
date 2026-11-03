@@ -94,6 +94,20 @@ const server = http.createServer((req, res) => {
   const route = await page.evaluate(() => JSON.parse(localStorage.getItem("satMathPractice.v1")).active.route);
   assert.strictEqual(route, "m2hard", "16/22 correct must route to the harder module");
   step("routed to harder module 2 after 16/22");
+  // optional Module 1 review before Module 2: 16 right, 6 wrong were answered above
+  step("Module 1 answer review before Module 2");
+  await page.click("#reviewM1");
+  assert.match(await page.textContent(".hero"), /16 of 22/);
+  assert.strictEqual(await page.locator(".qitem").count(), 22);
+  assert.strictEqual(await page.locator(".qitem:not(.hidden)").count(), 6, "missed questions shown by default");
+  assert.strictEqual(await page.locator(".qitem[open]:not(.hidden)").count(), 6, "missed questions open automatically");
+  assert.match(await page.textContent(".qitem:not(.hidden) .whatwrong"), /You (chose|entered) .* but the correct answer is/);
+  await shot("04b-module1-review");
+  await page.click("[data-filter='all']");
+  assert.strictEqual(await page.locator(".qitem:not(.hidden)").count(), 22);
+  await page.click("[data-filter='marked']");
+  assert.strictEqual(await page.locator(".qitem:not(.hidden)").count(), 1, "the one marked question");
+  await page.click("[data-expand='1']");
   await page.click("#beginM2");
   assert.strictEqual(await page.textContent("#secTitle"), "Section 1, Module 2: Math");
 
@@ -148,7 +162,24 @@ const server = http.createServer((req, res) => {
   step(`results page: estimated score ${score}`);
   assert(score >= 200 && score <= 800);
   assert.strictEqual(await page.locator(".qitem").count(), 44);
-  await page.click(".qitem summary");
+  const missedShown = await page.locator(".qitem:not(.hidden)").count();
+  assert(missedShown > 0 && missedShown < 44, "results open on missed questions only");
+  assert.strictEqual(await page.locator(".qitem[open]:not(.hidden)").count(), missedShown);
+  await page.click("[data-filter='all']");
+  assert.strictEqual(await page.locator(".qitem:not(.hidden)").count(), 44);
+  // coaching summary for Claude
+  await page.click("#coachBtn");
+  const coach = await page.inputValue("#coachText");
+  assert.match(coach, /^SAT Math practice results/);
+  assert.match(coach, /Estimated score \d+/);
+  assert.match(coach, /\d+\. WRONG \| [A-Z]+-\d+ \|/);
+  assert.match(coach, /Answer given: .* \| Correct: /);
+  assert(!/\\lt|\{,\}/.test(coach), "math codes converted to plain symbols");
+  assert.match(coach, /Please act as my SAT Math coach/);
+  if (process.env.COACH_OUT) require("fs").writeFileSync(process.env.COACH_OUT, coach);
+  await shot("08b-coach");
+  await page.click("#overlay .close");
+  await page.click("[data-filter='missed']");
   await shot("08-results");
 
   // ---------------------------------------------------------------- practice with feedback
@@ -176,7 +207,7 @@ const server = http.createServer((req, res) => {
   // ---------------------------------------------------------------- timed set (11 questions, speed pace, coach)
   step("timed set: 11 questions at speed pace with pacing coach");
   await page.click("#homeBtn");
-  assert.match(await page.textContent(".hero p"), /Starting point: 740/);
+  assert(!/\b[2-8]\d0\b/.test(await page.textContent(".hero")), "no score on the home screen");
   await page.selectOption("#sLen", "11");
   await page.selectOption("#sPace", "speed");
   assert.match(await page.textContent("#setTime"), /14:40/);
@@ -255,7 +286,15 @@ const server = http.createServer((req, res) => {
   step("parent area: render every question");
   await page.click("#homeBtn");
   await shot("10-home-progress");
+  await page.click("#coachAll");
+  const overall = await page.inputValue("#coachText");
+  assert.match(overall, /overall progress/);
+  assert.match(overall, /Skills, weakest first/);
+  assert.match(overall, /Trouble spots/);
+  await page.click("#overlay .close");
+  assert(!/Est\. score|Current level/.test(await page.textContent(".page")), "no scores on the home page");
   await page.click("#parentBtn");
+  assert.match(await page.textContent(".cards"), /Latest official score: 740[\s\S]*Recent full-section estimates:/);
   const n = await page.locator(".bank-q").count();
   const katexErrors = await page.locator(".katex-error").count();
   const rawDelims = await page.evaluate(() => [...document.querySelectorAll(".bank-q")].filter((el) => /\\\(|\\\[/.test(el.innerText)).map((el) => el.querySelector("b").textContent));

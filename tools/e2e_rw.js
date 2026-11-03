@@ -44,7 +44,8 @@ const server = http.createServer((req, res) => {
   await page.click(".subjtabs a[href='english.html']");
   await page.waitForSelector("#playbookBtn");
   step("R&W home loads from the Math tab");
-  assert.match(await page.textContent(".hero"), /Reading & Writing[\s\S]*Starting point: 700/);
+  assert.match(await page.textContent(".hero"), /Reading & Writing/);
+  assert(!/\b[2-8]\d0\b/.test(await page.textContent(".hero")), "no score on the home screen");
   const nRules = await page.evaluate(() => window.SAT_RULES.length);
   await shot("rw-01-home");
 
@@ -96,8 +97,17 @@ const server = http.createServer((req, res) => {
   await page.waitForSelector(".bigscore");
   assert.strictEqual((await page.textContent(".bigscore")).trim(), "9/13");
   assert.match(await page.textContent(".cards"), /Timing[\s\S]*By rule/);
-  await page.click(".qitem summary");
+  assert.strictEqual(await page.locator(".qitem[open]:not(.hidden)").count(), 4, "the 4 missed questions are open");
+  assert.match(await page.textContent(".qitem:not(.hidden) .whatwrong"), /You chose .* but the correct answer is/);
   assert(await page.locator(".qitem .passage-r").count() >= 1);
+  await page.click("#coachBtn");
+  const coach = await page.inputValue("#coachText");
+  assert.match(coach, /^SAT Reading & Writing practice results/);
+  assert.match(coach, /WRONG \| RW-[A-Z]+-\d+ \|/);
+  assert.match(coach, /Passage: /);
+  assert.match(coach, /Which rules to drill next/);
+  if (process.env.COACH_OUT_RW) require("fs").writeFileSync(process.env.COACH_OUT_RW, coach);
+  await page.click("#overlay .close");
   await shot("rw-06-results");
 
   // ------------------------------------------------ progress, trouble spots, separate storage

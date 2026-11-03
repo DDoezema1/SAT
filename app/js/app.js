@@ -113,7 +113,7 @@
     <div class="page">
       ${subjectTabs()}
       <div class="hero">
-        <div><h1>SAT Math Practice</h1><p>Starting point: <b>${state.settings.baseline}</b> &middot; current estimate: <b>${level(state.theta)}</b> &middot; goal: faster, and Desmos-first</p></div>
+        <div><h1>SAT Math Practice</h1><p>Hard questions &middot; faster pacing &middot; Desmos first</p></div>
         <label class="namefield">Student name <input id="nameIn" value="${esc(state.name)}" placeholder="Your name" maxlength="30"></label>
       </div>
       <div class="cards">
@@ -187,6 +187,7 @@
     $("#retryBtn").onclick = startTrouble;
     $("#playbookBtn").onclick = playbook;
     $("#parentBtn").onclick = parentGate;
+    if ($("#coachAll")) $("#coachAll").onclick = () => showCoach(overallSummary(), "overall progress");
     $$("[data-session]").forEach((b) => (b.onclick = () => results(state.sessions.find((s) => s.id === b.dataset.session))));
   }
 
@@ -212,7 +213,7 @@
     <div class="page">
       ${subjectTabs()}
       <div class="hero">
-        <div><h1>SAT Reading &amp; Writing</h1><p>Starting point: <b>${state.settings.baseline}</b> &middot; current estimate: <b>${level(state.theta)}</b> &middot; focus: the must-know rules that win the most points</p></div>
+        <div><h1>SAT Reading &amp; Writing</h1><p>The must-know rules that win the most points</p></div>
         <label class="namefield">Student name <input id="nameIn" value="${esc(state.name)}" placeholder="Your name" maxlength="30"></label>
       </div>
       <div class="cards">
@@ -281,6 +282,7 @@
     };
     $("#retryBtn").onclick = startTrouble;
     $("#parentBtn").onclick = parentGate;
+    if ($("#coachAll")) $("#coachAll").onclick = () => showCoach(overallSummary(), "overall progress");
     $$("[data-session]").forEach((b) => (b.onclick = () => results(state.sessions.find((s) => s.id === b.dataset.session))));
   }
 
@@ -333,13 +335,13 @@
     return `
       <h3 class="section-title">Your progress</h3>
       <div class="statrow">
-        <div class="stat"><div class="v">${level(state.theta)}</div><div class="l">Current level<br>(started at ${state.settings.baseline})</div></div>
         <div class="stat"><div class="v">${answered}</div><div class="l">Questions answered</div></div>
         <div class="stat"><div class="v">${st.correctN ? fmtTime(st.avgCorrect) : "&mdash;"}</div><div class="l">Average time on<br>correct answers</div></div>
         <div class="stat"><div class="v">${st.slowN}</div><div class="l">Correct but slow<br>(over target)</div></div>
         ${RW ? `<div class="stat"><div class="v">${weakRules().length}</div><div class="l">Rules still costing<br>you points</div></div>`
           : `<div class="stat"><div class="v">${st.dN ? pct(st.dUsed, st.dN) + "%" : "&mdash;"}</div><div class="l">Desmos opened on<br>Desmos questions</div></div>`}
       </div>
+      <p><button class="btn small" id="coachAll">Get pointers from Claude on overall progress</button></p>
       <p class="small muted">Chance on a hard question counts slow answers as only partly mastered, because time is points on test day.</p>
       ${RW ? rwRuleTable() : ""}
       <div class="tablewrap"><table class="skills"><thead><tr><th>Skill</th><th>Chance on a hard question</th><th></th><th>History</th></tr></thead><tbody>${rows}</tbody></table></div>`;
@@ -362,11 +364,10 @@
       const all = s.modules.flatMap((m) => m.items);
       const c = all.filter((i) => i.correct).length;
       return `<tr><td>${new Date(s.date).toLocaleDateString()}</td><td>${esc(s.title)}</td><td>${c}/${all.length}</td>
-        <td>${s.score ? `<b>${s.score.score}</b> <span class="muted small">(${s.score.low}&ndash;${s.score.high})</span>` : ""}</td>
         <td><button class="linkbtn" data-session="${s.id}">Review</button></td></tr>`;
     }).join("");
     return `<h3 class="section-title">Recent sessions</h3>
-      <div class="tablewrap"><table class="skills"><thead><tr><th>Date</th><th>Session</th><th>Correct</th><th>Est. score</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`;
+      <div class="tablewrap"><table class="skills"><thead><tr><th>Date</th><th>Session</th><th>Correct</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`;
   }
 
   // ================================================================== START
@@ -886,9 +887,27 @@
       <h1>Module 1 complete</h1>
       <p>Nice work. Module 2 has 22 questions and 35 minutes. On the real SAT, which version of Module 2 you get depends on how you did on Module 1. You'll find out which one you got on your score report.</p>
       <p class="muted">Short on time? Save and exit now and start Module 2 later. The timer starts when you click Begin.</p>
-      <p><button class="btn primary" id="beginM2">Begin Module 2</button> <button class="btn" id="laterM2">Save and exit</button></p></div>`);
+      <p><button class="btn primary" id="beginM2">Begin Module 2</button> <button class="btn" id="reviewM1">Review Module 1 answers first</button> <button class="btn" id="laterM2">Save and exit</button></p>
+      <p class="small muted">Reviewing Module 1 now doesn't use any Module 2 time. On the real SAT you can't see answers until your score report, so skip it for a test-day dress rehearsal.</p></div>`);
     $("#beginM2").onclick = () => { S.phase = "q"; save(); renderTest(); };
+    $("#reviewM1").onclick = reviewModule1;
     $("#laterM2").onclick = () => { save(); home(); };
+  }
+
+  function reviewModule1() {
+    const m1 = S.done[0];
+    const items = m1.items.map((i) => ({ id: i.id, resp: i.resp, correct: !!i.correct, secs: i.secs, order: i.order, calc: !!i.calc, hint: !!i.hint, slow: !!i.slow, marked: !!i.marked }));
+    const c = items.filter((i) => i.correct).length;
+    view(`<div class="page">
+      <div class="hero"><div><h1>Module 1 review</h1><p><b>${c} of ${items.length}</b> correct &middot; ${c >= Engine.ROUTE_THRESHOLD ? "enough for the harder Module 2" : `${Engine.ROUTE_THRESHOLD} needed for the harder Module 2`}</p></div>
+        <div><button class="btn primary" id="beginM2">Begin Module 2</button> <button class="btn" id="backBetween">Back</button></div></div>
+      ${reviewListHTML([{ label: "Module 1", items }])}
+      <p style="margin-top:24px"><button class="btn primary" id="beginM2b">Begin Module 2</button></p>
+    </div>`);
+    bindReviewList(app);
+    const begin = () => { S.phase = "q"; save(); renderTest(); };
+    $("#beginM2").onclick = begin; $("#beginM2b").onclick = begin;
+    $("#backBetween").onclick = betweenModules;
   }
 
   function finishSession() {
@@ -901,7 +920,7 @@
     const rec = {
       id: S.id, kind: S.kind, title: S.title, date: Date.now(), route: S.route, pace: S.pace,
       modules: S.done.map((m) => ({ label: m.label, route: m.route, allowed: m.allowed,
-        items: m.items.map((i) => ({ id: i.id, resp: i.resp, correct: !!i.correct, secs: i.secs, order: i.order, calc: !!i.calc, hint: !!i.hint, slow: !!i.slow })) })),
+        items: m.items.map((i) => ({ id: i.id, resp: i.resp, correct: !!i.correct, secs: i.secs, order: i.order, calc: !!i.calc, hint: !!i.hint, slow: !!i.slow, marked: !!i.marked })) })),
     };
     if (S.kind === "full") {
       rec.score = Engine.estimateScore(rec.modules.flatMap((m) => m.items.map((i) => ({ diff: byId[i.id].diff, correct: i.correct }))));
@@ -956,7 +975,7 @@
         <p class="small muted">The estimate uses a statistical model of question difficulty. It's a rough guide, not an official College Board conversion.</p>`;
     } else {
       header = `<div class="scorecard"><div><div class="muted small">Correct</div><div class="bigscore">${correct}/${all.length}</div></div>
-        <div style="line-height:1.7">Current level: <b>${level(state.theta)}</b> on the score scale (started at ${state.settings.baseline})</div></div>`;
+        <div style="line-height:1.7">Current level: <b>${level(state.theta)}</b> on the score scale</div></div>`;
     }
 
     const timingCard = `<div class="card"><h2>Timing</h2>
@@ -983,17 +1002,59 @@
     }
     view(`<div class="page">
       <div class="hero"><div><h1>${esc(rec.title)}: Results</h1><p>${new Date(rec.date).toLocaleString()}</p></div>
-        <div><button class="btn primary" id="homeBtn">Back to home</button></div></div>
+        <div><button class="btn" id="coachBtn">Get pointers from Claude</button> <button class="btn primary" id="homeBtn">Back to home</button></div></div>
       ${header}
       <div class="cards" style="margin-bottom:10px">${timingCard}${desmosCard}
         <div class="card"><h2>By domain</h2><table class="skills"><tbody>${domRows}</tbody></table></div>
       </div>
-      <h3 class="section-title">Question review</h3>
-      <p class="small muted">Click a question to see the full solution. Times in red were over target.</p>
-      ${rec.modules.map((m) => `${rec.modules.length > 1 ? `<h4>${esc(m.label)}${m.route ? (m.route === "m2hard" ? " (harder)" : " (standard)") : ""}</h4>` : ""}
-        <div class="qlist">${m.items.map((i) => reviewItem(i, all.indexOf(i))).join("")}</div>`).join("")}
+      ${reviewListHTML(rec.modules)}
     </div>`);
     $("#homeBtn").onclick = home;
+    $("#coachBtn").onclick = () => showCoach(sessionSummary(rec), "this session");
+    bindReviewList(app);
+  }
+
+  /**
+   * Question-by-question review with filters. Missed and skipped questions open
+   * automatically, and by default only they are shown, so what went wrong is
+   * visible without clicking through every question.
+   */
+  function reviewListHTML(modules) {
+    const all = modules.flatMap((m) => m.items).filter((i) => byId[i.id]);
+    const missed = all.filter((i) => !i.correct).length;
+    const slow = all.filter((i) => i.correct && Engine.isSlow(byId[i.id], i.secs)).length;
+    const marked = all.filter((i) => i.marked).length;
+    const def = missed ? "missed" : "all";
+    const fbtn = (k, label, n) => `<button class="btn small ${k === def ? "primary" : ""}" data-filter="${k}" ${n === 0 && k !== "all" ? "disabled" : ""}>${label} (${n})</button>`;
+    return `<h3 class="section-title">Question review</h3>
+      <div class="toolbar reviewbar">
+        ${fbtn("missed", "Missed &amp; skipped", missed)}${fbtn("slow", "Correct but slow", slow)}${fbtn("marked", "Marked for review", marked)}${fbtn("all", "All", all.length)}
+        <span class="sp" style="flex:1"></span><button class="linkbtn" data-expand="1">Expand all</button>&nbsp;&middot;&nbsp;<button class="linkbtn" data-expand="0">Collapse all</button>
+      </div>
+      <p class="small muted" id="reviewHint">${missed ? "Showing the questions you missed, with the correct answer and explanation open. Use the buttons above to see the rest." : "No missed questions. Click any question to see its full solution."} Times in red were over target.</p>
+      ${modules.map((m) => `${modules.length > 1 ? `<h4 class="modhead">${esc(m.label)}${m.route ? (m.route === "m2hard" ? " (harder)" : " (standard)") : ""}</h4>` : ""}
+        <div class="qlist">${m.items.map((i) => reviewItem(i, all.indexOf(i))).join("")}</div>`).join("")}`;
+  }
+
+  function bindReviewList(root) {
+    const items = $$(".qitem", root);
+    const apply = (k) => {
+      $$("[data-filter]", root).forEach((b) => b.classList.toggle("primary", b.dataset.filter === k));
+      for (const el of items) {
+        const show = k === "all" || (k === "missed" && el.dataset.res !== "ok") || (k === "slow" && el.dataset.slow === "1") || (k === "marked" && el.dataset.marked === "1");
+        el.classList.toggle("hidden", !show);
+      }
+      $$(".modhead", root).forEach((h) => { const list = h.nextElementSibling; h.classList.toggle("hidden", !$$(".qitem:not(.hidden)", list).length); });
+      const hint = $("#reviewHint", root);
+      if (hint) hint.textContent = ({ missed: "Showing the questions you missed or skipped, with the correct answer and explanation open.",
+        slow: "Showing questions you got right but slower than the target time; each has the faster route.",
+        marked: "Showing the questions you marked for review during the test.",
+        all: "Showing every question. Missed ones are open; click any other to see its solution." })[k] + " Times in red were over target.";
+    };
+    $$("[data-filter]", root).forEach((b) => (b.onclick = () => apply(b.dataset.filter)));
+    $$("[data-expand]", root).forEach((b) => (b.onclick = () => items.forEach((el) => { if (!el.classList.contains("hidden")) el.open = b.dataset.expand === "1"; })));
+    const def = $("[data-filter].primary", root);
+    if (def) apply(def.dataset.filter);
   }
 
   function reviewItem(i, n) {
@@ -1010,12 +1071,135 @@
       const cls = o === q.answer ? " correct" : o === i.resp ? " wrong" : "";
       return `<div class="crow"><div class="choice${cls}"><span class="letter">${L[di]}</span><span class="ctext">${q.choices[oi]}</span></div></div>`;
     }).join("")}</div>` : "";
-    const flags = `${i.calc ? '<span class="tag">used Desmos</span>' : ""}${i.hint ? '<span class="tag">hint</span>' : ""}${q.desmos && !i.calc && (!i.correct || Engine.isSlow(q, i.secs)) ? '<span class="tag warn">Desmos would help</span>' : ""}`;
-    return `<details class="qitem"><summary><span class="muted">${n + 1}</span><span class="res ${res}">${res === "ok" ? "&#10003;" : res === "no" ? "&#10007;" : "&ndash;"}</span>
+    const slowOk = i.correct && Engine.isSlow(q, i.secs);
+    const choiceText = (o) => q.choices[L.indexOf(o)].replace(/<[^>]+>/g, "").trim();
+    let wrong = "";
+    if (i.resp == null) wrong = `You left this blank. The correct answer is <b>${key}</b>.`;
+    else if (!i.correct) wrong = q.type === "mc"
+      ? `You chose <b>${yours}</b> (${esc(choiceText(i.resp).slice(0, 90))}), but the correct answer is <b>${key}</b> (${esc(choiceText(q.answer).slice(0, 90))}).`
+      : `You entered <b>${yours}</b>, but the correct answer is <b>${key}</b>.`;
+    else if (slowOk) wrong = `Correct, but it took ${fmtTime(i.secs)} against a ${fmtTime(target(q))} target.${q.tip ? " The faster route is below." : ""}`;
+    const flags = `${i.marked ? '<span class="tag">marked</span>' : ""}${i.calc ? '<span class="tag">used Desmos</span>' : ""}${i.hint ? '<span class="tag">hint</span>' : ""}${q.desmos && !i.calc && (!i.correct || Engine.isSlow(q, i.secs)) ? '<span class="tag warn">Desmos would help</span>' : ""}`;
+    return `<details class="qitem" data-res="${res}" data-slow="${slowOk ? 1 : 0}" data-marked="${i.marked ? 1 : 0}" ${res !== "ok" ? "open" : ""}><summary><span class="muted">${n + 1}</span><span class="res ${res}">${res === "ok" ? "&#10003;" : res === "no" ? "&#10007;" : "&ndash;"}</span>
       <span class="meta">${esc(q.skill)} ${calcTag(q)} ${diffTag(q.diff)} ${flags}</span><span class="small ${over ? "slowtime" : "muted"}">${fmtTime(i.secs)}</span></summary>
-      <div class="body">${RW ? `<div class="passage-r">${q.passage}</div>` : ""}<div class="stem">${q.stem}</div>${choices}
+      <div class="body">${wrong ? `<div class="whatwrong ${res === "ok" ? "slow" : ""}">${wrong}</div>` : ""}${RW ? `<div class="passage-r">${q.passage}</div>` : ""}<div class="stem">${q.stem}</div>${choices}
         <div class="answers"><span>Your answer: <b>${yours}</b></span><span>Correct answer: <b>${key}</b></span><span>Time: ${fmtTime(i.secs)} (target ${fmtTime(target(q))})</span><span class="muted">${q.id}</span></div>
         <div class="explain">${q.explain}</div>${tipBox(q)}</div></details>`;
+  }
+
+  // ================================================================== COACHING SUMMARY
+  // Plain-text summaries meant to be pasted into a chat with Claude for focused pointers.
+  // They include question IDs (so a Claude session with this repository can look up every
+  // question) plus enough text to make sense on their own in any Claude chat.
+  function plain(h, max) {
+    const d = document.createElement("textarea");
+    d.innerHTML = String(h || "").replace(/<(table|tr|p|li|br|div)[^>]*>/gi, " ").replace(/<[^>]+>/g, "");
+    let t = d.value.replace(/\\[()[\]]/g, "").replace(/\\lt\b/g, "<").replace(/\\gt\b/g, ">").replace(/\\le\b/g, "≤").replace(/\\ge\b/g, "≥")
+      .replace(/\{,\}/g, ",").replace(/\\(?:tfrac|dfrac)/g, "\\frac").replace(/\s+/g, " ").trim();
+    if (max && t.length > max) t = t.slice(0, max - 1) + "…";
+    return t;
+  }
+  const subjectName = () => (RW ? "Reading & Writing" : "Math");
+  const choiceOf = (q, letter) => (q.type === "mc" ? plain(q.choices[L.indexOf(letter)], 120) : letter);
+
+  function sessionSummary(rec) {
+    const all = rec.modules.flatMap((m) => m.items).filter((i) => byId[i.id]);
+    const correct = all.filter((i) => i.correct).length;
+    const time = all.reduce((a, i) => a + i.secs, 0);
+    const allowed = rec.modules.reduce((a, m) => a + (m.allowed || 0), 0);
+    const out = [];
+    out.push(`SAT ${subjectName()} practice results (from the SAT practice app)`);
+    out.push(`Latest official SAT ${subjectName()} score: ${state.settings.baseline}. App's current estimate: ${level(state.theta)}.`);
+    out.push(`Session: ${rec.title}, ${new Date(rec.date).toLocaleDateString()}. Correct: ${correct}/${all.length}.` +
+      (rec.score ? ` Estimated score ${rec.score.score} (range ${rec.score.low}-${rec.score.high}), Module 2 ${rec.route === "m2hard" ? "harder" : "standard"} version.` : ""));
+    out.push(`Time: ${fmtTime(time)} used${allowed ? ` of ${fmtTime(allowed)} allowed` : ""}; average ${fmtTime(all.length ? time / all.length : 0)} per question (SAT pace ${fmtTime(Engine.PACE_SEC)}).`);
+    const byDom = {};
+    for (const i of all) { const d = (byDom[byId[i.id].domain] = byDom[byId[i.id].domain] || [0, 0]); d[1]++; if (i.correct) d[0]++; }
+    out.push("By domain: " + Object.entries(byDom).map(([d, [c, n]]) => `${DOMAINS[d]} ${c}/${n}`).join("; ") + ".");
+    if (!RW) {
+      const dq = all.filter((i) => byId[i.id].desmos);
+      out.push(`Desmos: opened on ${dq.filter((i) => i.calc).length} of ${dq.length} Desmos-route questions.`);
+    }
+    out.push("");
+    out.push("Question by question (number. result | ID | skill | difficulty | " + (RW ? "rule" : "route") + " | time vs target | notes):");
+    all.forEach((i, n) => {
+      const q = byId[i.id];
+      const slow = i.correct && Engine.isSlow(q, i.secs);
+      const res = i.resp == null ? "SKIPPED" : i.correct ? (slow ? "correct but slow" : "correct") : "WRONG";
+      const notes = [i.marked ? "marked for review" : "", i.hint ? "used hint" : "", !RW && i.calc ? "used Desmos" : "", !RW && q.desmos && !i.calc ? "no Desmos" : ""].filter(Boolean).join(", ");
+      out.push(`${n + 1}. ${res} | ${q.id} | ${q.skill} | ${Engine.DIFF_NAME[q.diff]} | ${RW ? ruleTitle(q.rule) : q.desmos ? "Desmos" : "by hand"} | ${fmtTime(i.secs)} vs ${fmtTime(target(q))}${notes ? " | " + notes : ""}`);
+      if (!i.correct || slow) {
+        if (RW) out.push(`   Passage: ${plain(q.passage, 320)}`);
+        out.push(`   Question: ${plain(q.stem, RW ? 160 : 300)}`);
+        if (!i.correct) out.push(`   Answer given: ${i.resp == null ? "(blank)" : choiceOf(q, i.resp)} | Correct: ${choiceOf(q, q.answer)}`);
+      }
+    });
+    out.push("");
+    out.push(coachRequest());
+    return out.join("\n");
+  }
+
+  function overallSummary() {
+    const out = [];
+    const answered = Object.values(state.items).reduce((a, it) => a + it.n, 0);
+    const st = habitStats();
+    out.push(`SAT ${subjectName()} overall progress (from the SAT practice app)`);
+    out.push(`Latest official SAT ${subjectName()} score: ${state.settings.baseline}. App's current estimate: ${level(state.theta)}. Questions answered: ${answered}.`);
+    out.push(`Average time on correct answers: ${st.correctN ? fmtTime(st.avgCorrect) : "n/a"} (SAT pace ${fmtTime(Engine.PACE_SEC)}). Correct-but-slow questions: ${st.slowN}.` +
+      (!RW && st.dN ? ` Desmos opened on ${pct(st.dUsed, st.dN)}% of Desmos-route questions.` : ""));
+    const skills = Object.entries(state.skills).filter(([, r]) => r.n).map(([sk, r]) => [sk, Engine.mastery(state, sk), r]).sort((a, b) => a[1] - b[1]);
+    out.push("");
+    out.push("Skills, weakest first (chance on a hard question | correct/attempted):");
+    for (const [sk, p, r] of skills) out.push(`- ${sk}: ${Math.round(p * 100)}% | ${r.correct}/${r.n}`);
+    if (RW) {
+      const rs = ruleStats();
+      const rows = window.SAT_RULES.filter((r) => rs[r.id]).map((r) => [r.title, rs[r.id].score / rs[r.id].n, rs[r.id]]).sort((a, b) => a[1] - b[1]);
+      out.push("");
+      out.push("Rules, weakest first (mastery | questions seen | slow):");
+      for (const [t, p, r] of rows) out.push(`- ${t}: ${Math.round(p * 100)}% | ${r.n} | ${r.slow}`);
+    }
+    const trouble = Engine.troubleIds(state, QUESTIONS);
+    out.push("");
+    out.push(`Trouble spots (missed, slow, or needed a hint), ${trouble.length}: ${trouble.slice(0, 40).join(", ")}${trouble.length > 40 ? ", …" : ""}`);
+    if (state.sessions.length) {
+      out.push("");
+      out.push("Recent sessions:");
+      for (const r of state.sessions.slice(-8)) {
+        const all = r.modules.flatMap((m) => m.items);
+        out.push(`- ${new Date(r.date).toLocaleDateString()} ${r.title}: ${all.filter((i) => i.correct).length}/${all.length}${r.score ? `, est. ${r.score.score}` : ""}`);
+      }
+    }
+    out.push("");
+    out.push(coachRequest());
+    return out.join("\n");
+  }
+
+  function coachRequest() {
+    return `Please act as my SAT ${subjectName()} coach. Based on these results, give me focused pointers:\n` +
+      `1. The 2-3 patterns behind my mistakes and slow answers (concepts, traps, or habits), citing question numbers.\n` +
+      (RW ? `2. Which rules to drill next, and the one trap I keep falling for.\n` : `2. Where Desmos would have been faster, and one Desmos habit to build.\n`) +
+      `3. A pacing fix, if timing cost me points.\n4. Exactly what to practice next in the app (which mode, length, and focus).\nKeep it short and specific.`;
+  }
+
+  function showCoach(text, what) {
+    const canShare = typeof navigator.share === "function";
+    const ov = overlay(`<div class="pop wide"><button class="close" aria-label="Close">&times;</button><h3>Get pointers from Claude</h3>
+      <div class="modal-body">
+        <p>Copy this summary of ${esc(what)} and paste it into a chat with Claude (claude.ai or the Claude app). It lists every question with your answer, the correct answer, and your time, and asks for focused pointers.</p>
+        <textarea id="coachText" readonly rows="14" class="coachtext">${esc(text)}</textarea>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+          <button class="btn primary" id="copyCoach">Copy summary</button>
+          ${canShare ? `<button class="btn" id="shareCoach">Share…</button>` : ""}
+          <span class="small muted" id="copyMsg"></span>
+        </div>
+        <p class="small muted">Tip: pasting it into the Claude Code session that built this app gives the most specific advice, because it can open each question by its ID. Nothing is sent anywhere until you paste it yourself.</p>
+      </div></div>`);
+    $("#copyCoach", ov).onclick = async () => {
+      const ta = $("#coachText", ov);
+      try { await navigator.clipboard.writeText(text); $("#copyMsg", ov).textContent = "Copied. Now paste it into Claude."; }
+      catch (e) { ta.focus(); ta.select(); $("#copyMsg", ov).textContent = "Selected. Press Ctrl/Cmd+C (or tap Copy) to copy."; }
+    };
+    if (canShare) $("#shareCoach", ov).onclick = () => navigator.share({ title: "SAT practice results", text }).catch(() => {});
   }
 
   // ================================================================== DESMOS PLAYBOOK
@@ -1112,6 +1296,11 @@
           </div>
           <p class="small">The latest official score sets the starting difficulty. After about 20 answers, the app's own estimate takes over. The PIN keeps the answer key one click away from casual browsing; it is not real security.</p>
           <div><button class="btn small" id="saveSet">Save settings</button></div></div>
+        <div class="card"><h2>Scores</h2>
+          <p>Latest official score: <b>${state.settings.baseline}</b><br>App's current estimate: <b>${level(state.theta)}</b></p>
+          ${(() => { const full = state.sessions.filter((r) => r.score).slice(-5).reverse();
+            return full.length ? `<p class="small"><b>Recent full-section estimates:</b><br>${full.map((r) => `${new Date(r.date).toLocaleDateString()}: ${r.score.score} (${r.score.low}&ndash;${r.score.high})`).join("<br>")}</p>` : `<p class="small muted">No full sections yet.</p>`; })()}
+          <p class="small muted">Scores are kept here, off the student's home screen, so practice stays focused on skills rather than the number. A score still appears on the results page right after a full section.</p></div>
         <div class="card"><h2>Progress data</h2>
           <p class="grow">Progress is saved in this browser only. Export it to back it up or move it to another computer.</p>
           <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn small" id="expBtn">Export</button>
