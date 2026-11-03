@@ -207,7 +207,7 @@ const server = http.createServer((req, res) => {
   // ---------------------------------------------------------------- timed set (11 questions, speed pace, coach)
   step("timed set: 11 questions at speed pace with pacing coach");
   await page.click("#homeBtn");
-  assert.match(await page.textContent(".hero p"), /Starting point: 740/);
+  assert(!/\b[2-8]\d0\b/.test(await page.textContent(".hero")), "no score on the home screen");
   await page.selectOption("#sLen", "11");
   await page.selectOption("#sPace", "speed");
   assert.match(await page.textContent("#setTime"), /14:40/);
@@ -292,7 +292,9 @@ const server = http.createServer((req, res) => {
   assert.match(overall, /Skills, weakest first/);
   assert.match(overall, /Trouble spots/);
   await page.click("#overlay .close");
+  assert(!/Est\. score|Current level/.test(await page.textContent(".page")), "no scores on the home page");
   await page.click("#parentBtn");
+  assert.match(await page.textContent(".cards"), /Latest official score: 740[\s\S]*Recent full-section estimates:/);
   const n = await page.locator(".bank-q").count();
   const katexErrors = await page.locator(".katex-error").count();
   const rawDelims = await page.evaluate(() => [...document.querySelectorAll(".bank-q")].filter((el) => /\\\(|\\\[/.test(el.innerText)).map((el) => el.querySelector("b").textContent));

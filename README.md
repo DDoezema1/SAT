@@ -23,6 +23,8 @@ The math section is tuned for a student who already scores in the 700s, so the g
 
 **Desmos Playbook.** One page of the Desmos techniques that matter on the SAT: sliders for unknown constants, counting solutions, max/min, regression from a table, lists for statistics, equivalent expressions, degree mode, and when *not* to use Desmos. It's also reachable from inside the calculator panel.
 
+**Scores stay in the background.** The home screens don't show the student's official score or the app's estimate. An estimated score appears on the results page right after a full section. The Parent area has a **Scores** card with the latest official score, the current estimate, and recent full-section estimates.
+
 **Seeing the answers.**
 - Practice modes (Adaptive Practice, Desmos Drill, Trouble Spots, Rule Drill) show the correct answer, the explanation, and the Desmos strategy or rule right after each question.
 - Timed Sets show answers on the results page.

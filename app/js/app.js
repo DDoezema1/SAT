@@ -113,7 +113,7 @@
     <div class="page">
       ${subjectTabs()}
       <div class="hero">
-        <div><h1>SAT Math Practice</h1><p>Starting point: <b>${state.settings.baseline}</b> &middot; current estimate: <b>${level(state.theta)}</b> &middot; goal: faster, and Desmos-first</p></div>
+        <div><h1>SAT Math Practice</h1><p>Hard questions &middot; faster pacing &middot; Desmos first</p></div>
         <label class="namefield">Student name <input id="nameIn" value="${esc(state.name)}" placeholder="Your name" maxlength="30"></label>
       </div>
       <div class="cards">
@@ -213,7 +213,7 @@
     <div class="page">
       ${subjectTabs()}
       <div class="hero">
-        <div><h1>SAT Reading &amp; Writing</h1><p>Starting point: <b>${state.settings.baseline}</b> &middot; current estimate: <b>${level(state.theta)}</b> &middot; focus: the must-know rules that win the most points</p></div>
+        <div><h1>SAT Reading &amp; Writing</h1><p>The must-know rules that win the most points</p></div>
         <label class="namefield">Student name <input id="nameIn" value="${esc(state.name)}" placeholder="Your name" maxlength="30"></label>
       </div>
       <div class="cards">
@@ -335,7 +335,6 @@
     return `
       <h3 class="section-title">Your progress</h3>
       <div class="statrow">
-        <div class="stat"><div class="v">${level(state.theta)}</div><div class="l">Current level<br>(started at ${state.settings.baseline})</div></div>
         <div class="stat"><div class="v">${answered}</div><div class="l">Questions answered</div></div>
         <div class="stat"><div class="v">${st.correctN ? fmtTime(st.avgCorrect) : "&mdash;"}</div><div class="l">Average time on<br>correct answers</div></div>
         <div class="stat"><div class="v">${st.slowN}</div><div class="l">Correct but slow<br>(over target)</div></div>
@@ -365,11 +364,10 @@
       const all = s.modules.flatMap((m) => m.items);
       const c = all.filter((i) => i.correct).length;
       return `<tr><td>${new Date(s.date).toLocaleDateString()}</td><td>${esc(s.title)}</td><td>${c}/${all.length}</td>
-        <td>${s.score ? `<b>${s.score.score}</b> <span class="muted small">(${s.score.low}&ndash;${s.score.high})</span>` : ""}</td>
         <td><button class="linkbtn" data-session="${s.id}">Review</button></td></tr>`;
     }).join("");
     return `<h3 class="section-title">Recent sessions</h3>
-      <div class="tablewrap"><table class="skills"><thead><tr><th>Date</th><th>Session</th><th>Correct</th><th>Est. score</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`;
+      <div class="tablewrap"><table class="skills"><thead><tr><th>Date</th><th>Session</th><th>Correct</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`;
   }
 
   // ================================================================== START
@@ -977,7 +975,7 @@
         <p class="small muted">The estimate uses a statistical model of question difficulty. It's a rough guide, not an official College Board conversion.</p>`;
     } else {
       header = `<div class="scorecard"><div><div class="muted small">Correct</div><div class="bigscore">${correct}/${all.length}</div></div>
-        <div style="line-height:1.7">Current level: <b>${level(state.theta)}</b> on the score scale (started at ${state.settings.baseline})</div></div>`;
+        <div style="line-height:1.7">Current level: <b>${level(state.theta)}</b> on the score scale</div></div>`;
     }
 
     const timingCard = `<div class="card"><h2>Timing</h2>
@@ -1298,6 +1296,11 @@
           </div>
           <p class="small">The latest official score sets the starting difficulty. After about 20 answers, the app's own estimate takes over. The PIN keeps the answer key one click away from casual browsing; it is not real security.</p>
           <div><button class="btn small" id="saveSet">Save settings</button></div></div>
+        <div class="card"><h2>Scores</h2>
+          <p>Latest official score: <b>${state.settings.baseline}</b><br>App's current estimate: <b>${level(state.theta)}</b></p>
+          ${(() => { const full = state.sessions.filter((r) => r.score).slice(-5).reverse();
+            return full.length ? `<p class="small"><b>Recent full-section estimates:</b><br>${full.map((r) => `${new Date(r.date).toLocaleDateString()}: ${r.score.score} (${r.score.low}&ndash;${r.score.high})`).join("<br>")}</p>` : `<p class="small muted">No full sections yet.</p>`; })()}
+          <p class="small muted">Scores are kept here, off the student's home screen, so practice stays focused on skills rather than the number. A score still appears on the results page right after a full section.</p></div>
         <div class="card"><h2>Progress data</h2>
           <p class="grow">Progress is saved in this browser only. Export it to back it up or move it to another computer.</p>
           <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn small" id="expBtn">Export</button>

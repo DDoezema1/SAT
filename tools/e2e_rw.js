@@ -44,7 +44,8 @@ const server = http.createServer((req, res) => {
   await page.click(".subjtabs a[href='english.html']");
   await page.waitForSelector("#playbookBtn");
   step("R&W home loads from the Math tab");
-  assert.match(await page.textContent(".hero"), /Reading & Writing[\s\S]*Starting point: 700/);
+  assert.match(await page.textContent(".hero"), /Reading & Writing/);
+  assert(!/\b[2-8]\d0\b/.test(await page.textContent(".hero")), "no score on the home screen");
   const nRules = await page.evaluate(() => window.SAT_RULES.length);
   await shot("rw-01-home");
 
