@@ -341,6 +341,27 @@ A line in the \(xy\)-plane passes through the point \((1,-4)\) and through the p
 
 **Explanation:** Solve the system: \(y=3x-7\), so \(x+2(3x-7)=7\), \(7x=21\), \(x=3\), \(y=2\). Slope from \((1,-4)\) to \((3,2)\): \(\frac{2-(-4)}{3-1}=3\).
 
+### FIG-01 · Systems of two linear equations in two variables · Very hard · Desmos · computed
+
+                                  x  y  -2  2  4  6  8  -4  -2  2  4  6  8  O       The graph of a system of two linear equations is shown. If the equation \(x+4y=15\) is added to the system, how many solutions \((x,y)\) will the resulting system of three equations have?
+
+- A) Zero
+- B) Exactly one
+- C) Exactly two
+- D) Infinitely many
+
+**Answer:** B
+
+**Explanation:** From the graph, the lines are \(y=-x+6\) (through \((0,6)\) and \((6,0)\)) and \(y=2x-3\) (through \((0,-3)\) with slope 2). They intersect at \((3,3)\). A solution to all three equations must be that point. Check \(x+4y=15\): \(3+4(3)=15\). ✓ So the third line passes through \((3,3)\), and the system has exactly one solution.
+
+### FIG-13 · Linear equations in one variable · Hard · Desmos · computed
+
+\[|-4x+9|=31\]What is the sum of the solutions to the given equation?
+
+**Answer:** 9/2
+
+**Explanation:** An absolute value equals 31 when the inside is 31 or \(-31\). \(-4x+9=31\) gives \(x=-5.5\); \(-4x+9=-31\) gives \(x=10\). The sum is \(4.5\).
+
 ## Advanced Math
 
 ### ADV-01 · Nonlinear equations in one variable and systems of equations in two variables · Hard · Desmos · computed
@@ -894,6 +915,27 @@ The function \(f\) is defined by \(f(x)=x^2-6x+5\). The function \(g\) is define
 
 **Explanation:** \(f(x)=(x-1)(x-5)\) has zeros 1 and 5. \(f(x-k)\) shifts the graph \(k\) units to the right, so the zeros become \(1+k\) and \(5+k\). These equal 4 and 8 when \(k=3\). (\(-3\) is the trap from shifting in the wrong direction.)
 
+### FIG-02 · Nonlinear functions · Hard · Desmos · computed
+
+                                x  y  -2  2  4  6  -6  -4  -2  2  4  6  O     (2, −4)    The graph of \(y=f(x)\) is shown, where \(f\) is a quadratic function. Its vertex is \((2,-4)\). Which equation defines \(f\)?
+
+- A) \(f(x)=x(x-4)\)
+- B) \(f(x)=(x+2)^2-4\)
+- C) \(f(x)=-x(x-4)\)
+- D) \(f(x)=(x-2)^2+4\)
+
+**Answer:** A
+
+**Explanation:** The graph crosses the \(x\)-axis at 0 and 4, so \(f(x)=a\,x(x-4)\). At the vertex, \(f(2)=a(2)(-2)=-4a=-4\), so \(a=1\). Vertex form gives the same function: \((x-2)^2-4=x^2-4x\). The traps \((x+2)^2-4\) and \((x-2)^2+4\) flip a sign, and \(-x(x-4)\) has the right zeros but opens downward.
+
+### FIG-03 · Nonlinear functions · Very hard · Desmos · computed
+
+                          x  y  -2  -1  1  2  3  4  8  16  24  O     (0, 3)   (2, 12)    The graph of the exponential function \(f\), where \(f(x)=ab^{x}\) and \(a\) and \(b\) are positive constants, passes through the points \((0,3)\) and \((2,12)\), as shown. What is the value of \(f(3)\)?
+
+**Answer:** 24
+
+**Explanation:** \(f(0)=a=3\). Then \(f(2)=3b^2=12\), so \(b^2=4\) and \(b=2\). So \(f(3)=3(2)^3=24\). (Reading the graph alone at \(x=3\) is hard to do precisely; use the two labeled points.)
+
 ## Problem-Solving and Data Analysis
 
 ### PSD-01 · Percentages · Medium · By hand · computed
@@ -1337,6 +1379,64 @@ Each of the following data sets has a mean of 6. Which data set has the greatest
 
 **Explanation:** Standard deviation measures typical distance from the mean. In 1, 1, 6, 11, 11, four of the five values are 5 away from the mean, more than in any other set. (1, 5, 6, 7, 11 has the same range, but most of its values are clustered near 6.)
 
+### FIG-05 · One-variable data: distributions and measures of center and spread · Hard · By hand · computed
+
+     2   3    4      5       6     7    8   9   10   11   12    13   The dot plot shows the 12 values in a data set. If the value 12 is removed from the data set, which of the following is true about the mean and median of the remaining 11 values compared with those of the original 12 values?
+
+- A) The mean decreases, and the median stays the same.
+- B) The mean decreases, and the median decreases.
+- C) The mean stays the same, and the median stays the same.
+- D) The mean stays the same, and the median decreases.
+
+**Answer:** A
+
+**Explanation:** Mean: the original sum is 66, so the mean is \(\frac{66}{12}=5.5\); without 12 it is \(\frac{54}{11}\approx4.9\), a decrease. Median: the original median is the average of the 6th and 7th values (both 5), so it's 5. The new median is the 6th of 11 values, which is also 5. An extreme value pulls the mean but barely affects the median.
+
+### FIG-06 · One-variable data: distributions and measures of center and spread · Hard · By hand · computed
+
+    0   2   4   6   8   10   12       0  10  20  30  40    Frequency  50   The histogram summarizes the distribution of 30 values in a data set. Each bar includes its left endpoint but not its right endpoint (for example, the first bar represents values from 0 up to but not including 10). Which of the following could be the median of the data set?
+
+- A) \(12\)
+- B) \(18\)
+- C) \(24\)
+- D) \(35\)
+
+**Answer:** C
+
+**Explanation:** With 30 values, the median is the average of the 15th and 16th values. Counting from the left: 3 values below 10, then 8 more (11 total) below 20, then 10 more (21 total) below 30. So the 15th and 16th values are both between 20 and 30, and the median must be in that interval. Only 24 is.
+
+### FIG-07 · Two-variable data: models and scatterplots · Medium · By hand · computed
+
+                                        x  y  2  4  6  8  10  12  14  16  2  4  6  8  10  12  O                The scatterplot shows the relationship between two variables, \(x\) and \(y\), along with a line of best fit that passes through \((0,2)\) and \((10,7)\). Based on the line of best fit, what is the predicted value of \(y\) when \(x=14\)?
+
+**Answer:** 9
+
+**Explanation:** The slope of the line is \(\frac{7-2}{10-0}=0.5\), so the line is \(y=0.5x+2\). At \(x=14\): \(y=0.5(14)+2=9\).
+
+### FIG-08 · Two-variable data: models and scatterplots · Hard · By hand · computed
+
+                                 x  y  2  4  6  8  10  12  2  4  6  8  O                The scatterplot shows 10 data points and a line of best fit, \(y=0.5x+2\). For how many of the data points is the actual \(y\)-value greater than the \(y\)-value predicted by the line of best fit?
+
+**Answer:** 5
+
+**Explanation:** Points above the line have actual values greater than predicted. The points at \(x=1,3,5,7,9\) lie above the line (for example, at \(x=3\) the actual value is 3.9 and the predicted value is 3.5). The points at \(x=2,4,6,8,10\) lie below it. That makes 5.
+
+### FIG-09 · Percentages · Hard · By hand · computed
+
+    0   10   20   30   40   50   60   70      Q1  Q2  Q3  Q4    Sales (thousands of $)   The bar graph shows a company's sales, in thousands of dollars, for each quarter of a year. By what percent did sales increase from the first quarter (Q1) to the third quarter (Q3)?
+
+**Answer:** 125/2
+
+**Explanation:** From the graph, Q1 sales were 40 and Q3 sales were 65 (thousand dollars). Percent increase: \(\frac{65-40}{40}\times100=62.5\). Enter 62.5 (no percent sign).
+
+### FIG-12 · Ratios, rates, proportional relationships, and units · Very hard · By hand · computed
+
+A car accelerates at a constant rate of 3.2 meters per second squared. What is this rate in kilometers per minute squared? (1 kilometer = 1,000 meters)
+
+**Answer:** 11.52
+
+**Explanation:** Convert meters to kilometers (divide by 1,000) and seconds squared to minutes squared. Since 1 minute = 60 seconds, 1 minute squared = \(60^2=3{,}600\) seconds squared, so multiply by 3,600: \(3.2\times\frac{3600}{1000}=11.52\) kilometers per minute squared. The trap is multiplying by 60 instead of \(60^2\), which gives 0.192.
+
 ## Geometry and Trigonometry
 
 ### GEO-01 · Circles · Hard · By hand · computed
@@ -1687,4 +1787,33 @@ In the \(xy\)-plane, a triangle has vertices at \((0,0)\), \((10,0)\), and \((4,
 **Answer:** 8
 
 **Explanation:** Area using the base on the \(x\)-axis: \(\frac12(10)(8)=40\). The side opposite \((0,0)\) runs from \((10,0)\) to \((4,8)\) and has length \(\sqrt{36+64}=10\). The same area with that side as the base: \(\frac12(10)h=40\), so \(h=8\).
+
+### FIG-04 · Circles · Hard · Desmos · computed
+
+                                    x  y  -8  -6  -4  -2  2  4  -4  -2  2  4  6  O     (−2, 1)   (1, 5)    The circle shown in the \(xy\)-plane has its center at \((-2,1)\) and passes through the point \((1,5)\). Which of the following is an equation of the circle?
+
+- A) \((x+2)^2+(y-1)^2=25\)
+- B) \((x-2)^2+(y+1)^2=25\)
+- C) \((x+2)^2+(y-1)^2=5\)
+- D) \((x-2)^2+(y+1)^2=5\)
+
+**Answer:** A
+
+**Explanation:** The radius is the distance from \((-2,1)\) to \((1,5)\): \(\sqrt{3^2+4^2}=5\), so \(r^2=25\). With center \((h,k)=(-2,1)\), the equation is \((x+2)^2+(y-1)^2=25\). The other choices flip the signs of the center or forget to square the radius.
+
+### FIG-10 · Lines, angles, and triangles · Hard · By hand · computed
+
+      ℓ  m  (3x + 15)°  (5x − 25)°  y°   Note: Figure not drawn to scale.  In the figure, line \(\ell\) is parallel to line \(m\), and both are intersected by a transversal. The angle marked \((3x+15)^\circ\) and the angle marked \((5x-25)^\circ\) are corresponding angles, each lying above its line and to the right of the transversal. The angle marked \(y^\circ\) lies below line \(m\) and to the right of the transversal. What is the value of \(y\)?
+
+**Answer:** 105
+
+**Explanation:** Corresponding angles formed by parallel lines are equal: \(3x+15=5x-25\), so \(x=20\) and each angle is \(75^\circ\). The angle \(y^\circ\) and the \(75^\circ\) angle at line \(m\) are adjacent and share the part of \(m\) to the right of the transversal; their other sides point in opposite directions along the transversal. So they form a linear pair and are supplementary: \(y=180-75=105\).
+
+### FIG-11 · Right triangles and trigonometry · Very hard · By hand · computed
+
+      A  B  C  D  15  20   In right triangle \(ABC\), angle \(C\) is a right angle, \(AC=15\), and \(BC=20\). Point \(D\) lies on \(\overline{AB}\) such that \(\overline{CD}\) is perpendicular to \(\overline{AB}\). What is the length of \(\overline{AD}\)?
+
+**Answer:** 9
+
+**Explanation:** \(AB=\sqrt{15^2+20^2}=25\). Triangles \(ADC\) and \(ACB\) are similar (each has a right angle and shares angle \(A\)), so \(\frac{AD}{AC}=\frac{AC}{AB}\). That gives \(AD=\frac{15^2}{25}=9\).
 

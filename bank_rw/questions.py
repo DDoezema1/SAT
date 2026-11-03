@@ -507,3 +507,133 @@ Q(id="RW-INF-10", domain="INFO", skill="Central Ideas and Details", diff=2, rule
            "Harrison completed his fourth sea clock design in 1759."],
   answer="A",
   explain="The text sets up a problem (longitude) and presents its solution (Harrison's accurate sea clocks). The first choice covers both. The second and fourth choices are details, and the third contradicts the text, since pendulum clocks failed at sea.")
+
+
+# ====================================================================== Calibration additions
+# Official practice tests 4, 7 and 10 showed Words in Context is the single most common
+# question type (31 of 198, about 16%), so the bank needed more of them, plus more reading
+# (purpose, inference, data) and verb tense/form items.
+
+Q(id="RW-CRF-09", domain="CRAFT", skill="Words in Context", diff=2, rule="wordsincontext",
+  passage=f"<p>Although the new documentary covers the composer's entire career, it devotes the most attention to her early years in Havana, a period that earlier biographers had largely {B} in favor of her later international fame.</p>",
+  stem=WORD, choices=["emphasized", "overlooked", "celebrated", "fabricated"], answer="B",
+  explain="&ldquo;In favor of her later international fame&rdquo; tells you earlier biographers focused elsewhere, so they paid little attention to the early years: &ldquo;overlooked&rdquo;. &ldquo;Emphasized&rdquo; and &ldquo;celebrated&rdquo; reverse the logic, and nothing suggests anyone made anything up.")
+
+Q(id="RW-CRF-10", domain="CRAFT", skill="Words in Context", diff=2, rule="wordsincontext",
+  passage=f"<p>The engineers' initial design for the pedestrian bridge proved remarkably {B} in load tests, it supported nearly three times the weight required by the city's safety codes without any measurable damage.</p>",
+  stem=WORD, choices=["fragile:", "robust:", "ornate:", "provisional:"], answer="B",
+  explain="The colon introduces evidence: the bridge held three times the required weight without damage. That describes a strong design, so &ldquo;robust:&rdquo;. &ldquo;Fragile&rdquo; is the opposite, and &ldquo;ornate&rdquo; (decorative) and &ldquo;provisional&rdquo; (temporary) aren't supported.")
+
+Q(id="RW-CRF-11", domain="CRAFT", skill="Words in Context", diff=3, rule="wordsincontext",
+  passage=f"<p>Rather than {B} the earlier study's conclusions about sleep and memory, the new research builds on them, using a sample ten times larger to confirm the original findings and extend them to older adults.</p>",
+  stem=WORD, choices=["refute", "corroborate", "replicate", "extend"], answer="A",
+  explain="&ldquo;Rather than&rdquo; signals the opposite of what the new research does. It confirms and builds on the earlier conclusions, so the contrast is with disproving them: &ldquo;refute&rdquo;. &ldquo;Corroborate,&rdquo; &ldquo;replicate,&rdquo; and &ldquo;extend&rdquo; all describe what the new research actually does, which is the trap.")
+
+Q(id="RW-CRF-12", domain="CRAFT", skill="Words in Context", diff=3, rule="wordsincontext",
+  passage=f"<p>Many reviewers found the novel's ending {B} after hundreds of pages of slowly building tension between the two families, the conflict is resolved in a single abrupt paragraph that leaves several major questions unanswered.</p>",
+  stem=WORD, choices=["perfunctory:", "meticulous:", "inevitable:", "sentimental:"], answer="A",
+  explain="The explanation after the colon describes an ending that is rushed and incomplete (&ldquo;a single abrupt paragraph&rdquo;), so &ldquo;perfunctory:&rdquo; (done quickly and without care) fits. &ldquo;Meticulous&rdquo; is the opposite. Nothing suggests the ending was predictable or overly emotional.")
+
+Q(id="RW-CRF-13", domain="CRAFT", skill="Words in Context", diff=2, rule="wordsincontext",
+  passage=f"<p>The historian cautions that the surviving letters offer only a {B} picture of daily life in the colony: nearly all of them were written by a handful of wealthy merchants, so the experiences of farmers, laborers, and enslaved people are largely missing.</p>",
+  stem=WORD, choices=["partial", "vivid", "fictional", "comprehensive"], answer="A",
+  explain="&ldquo;Only&rdquo; and the explanation that most people's experiences are &ldquo;largely missing&rdquo; point to an incomplete picture: &ldquo;partial&rdquo;. &ldquo;Comprehensive&rdquo; is the opposite, and nothing suggests the letters are invented.")
+
+Q(id="RW-CRF-14", domain="CRAFT", skill="Words in Context", diff=2, rule="wordsincontext",
+  passage=f"<p>Oceanographer Sylvia Earle has spent more than five decades advocating for marine conservation. Her {B} efforts led her organization, Mission Blue, to recognize more than 100 &ldquo;Hope Spots,&rdquo; ocean areas that are critical to the health of the sea and deserve special protection.</p>",
+  stem=WORD, choices=["sporadic", "tireless", "reluctant", "clandestine"], answer="B",
+  explain="&ldquo;More than five decades&rdquo; of advocacy that produced more than 100 Hope Spots describes sustained, energetic work: &ldquo;tireless&rdquo;. &ldquo;Sporadic&rdquo; (occasional) and &ldquo;reluctant&rdquo; contradict decades of commitment, and &ldquo;clandestine&rdquo; (secret) doesn't fit public advocacy.")
+
+Q(id="RW-CRF-15", domain="CRAFT", skill="Words in Context", diff=3, rule="wordsincontext",
+  passage="<p>The following text is from Jack London's 1903 novel <i>The Call of the Wild</i>.</p><p>Buck did not read the newspapers, or he would have known that trouble was brewing, not alone for himself, but for every tide-water dog, strong of muscle and with warm, long hair, from Puget Sound to San Diego.</p>",
+  stem="As used in the text, what does the word &ldquo;brewing&rdquo; most nearly mean?",
+  choices=["fermenting", "developing", "steeping", "boiling"], answer="B",
+  explain="Trouble that is &ldquo;brewing&rdquo; is trouble that is beginning to form and will soon arrive: &ldquo;developing&rdquo;. &ldquo;Fermenting,&rdquo; &ldquo;steeping,&rdquo; and &ldquo;boiling&rdquo; are literal meanings related to making drinks, which is the common-meaning trap.")
+
+Q(id="RW-CRF-16", domain="CRAFT", skill="Words in Context", diff=2, rule="wordsincontext",
+  passage="<p>The following text is from Herman Melville's 1851 novel <i>Moby-Dick</i>.</p><p>Call me Ishmael. Some years ago&mdash;never mind how long precisely&mdash;having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.</p>",
+  stem="As used in the text, what does the word &ldquo;interest&rdquo; most nearly mean?",
+  choices=["engage", "benefit", "alarm", "charge"], answer="A",
+  explain="Ishmael has nothing on shore to hold his attention, so &ldquo;interest&rdquo; means to occupy or hold his attention: &ldquo;engage&rdquo;. &ldquo;Charge&rdquo; plays on the financial meaning of interest (prompted by the mention of money), which is the trap.")
+
+Q(id="RW-CRF-17", domain="CRAFT", skill="Words in Context", diff=2, rule="wordsincontext",
+  passage=f"<p>Because the theory makes {B} predictions, stating exactly how many arc seconds a planet's orbit should shift each century, scientists can test it directly against telescope observations.</p>",
+  stem=WORD, choices=["vague", "precise", "controversial", "modest"], answer="B",
+  explain="The text explains that the predictions state <i>exactly</i> how much the orbit should shift, and that is why they can be tested. So the predictions are &ldquo;precise&rdquo;. &ldquo;Vague&rdquo; is the opposite.")
+
+Q(id="RW-CRF-18", domain="CRAFT", skill="Words in Context", diff=3, rule="wordsincontext",
+  passage=f"<p>The architect's designs are deliberately {B} although her buildings use the clean lines and glass walls of modern architecture, they are organized around open courtyards modeled on traditional homes found throughout the region.</p>",
+  stem=WORD, choices=["eclectic:", "austere:", "derivative:", "whimsical:"], answer="A",
+  explain="The explanation after the colon describes designs that combine elements from different styles (modern and traditional), which is what &ldquo;eclectic:&rdquo; means. &ldquo;Derivative&rdquo; is negative and suggests mere copying, which the text doesn't imply. &ldquo;Austere&rdquo; and &ldquo;whimsical&rdquo; don't describe a combination.")
+
+Q(id="RW-CRF-19", domain="CRAFT", skill="Text Structure and Purpose", diff=2, rule="structure",
+  passage="<p>In 1977, Kenyan environmentalist Wangari Maathai founded the Green Belt Movement, which pays women in rural communities to plant trees. The trees help restore damaged soil and provide firewood, but Maathai saw the program as more than an environmental project: by earning income and organizing their communities, the women gained a voice in local decisions. In 2004, Maathai became the first African woman to receive the Nobel Peace Prize.</p>",
+  stem="Which choice best states the main purpose of the text?",
+  choices=["To describe an environmental program and show that its founder saw it as serving social goals as well",
+           "To argue that tree planting is the most effective way to prevent soil erosion",
+           "To compare Maathai's work with the work of other Nobel Peace Prize winners",
+           "To explain how the trees planted by the program are used for firewood"],
+  answer="A",
+  explain="The text presents the Green Belt Movement and stresses that Maathai saw it as &ldquo;more than an environmental project,&rdquo; because it gave women income and a voice. The first choice captures both parts. No argument about the &ldquo;most effective&rdquo; method is made, no comparison appears, and firewood is a minor detail.")
+
+Q(id="RW-CRF-20", domain="CRAFT", skill="Text Structure and Purpose", diff=3, rule="structure",
+  passage="<p>The Venus flytrap's leaves snap shut when an insect touches the small trigger hairs on their inner surface. A single touch, however, is not enough: the trap closes only if a second hair is touched within about 20 seconds of the first. This two-touch requirement likely keeps the plant from wasting energy by closing on raindrops or bits of debris that brush against it only once.</p>",
+  stem="Which choice best describes the function of the third sentence in the overall structure of the text?",
+  choices=["It offers a likely explanation for the requirement described in the second sentence.",
+           "It describes a second type of trap used by the Venus flytrap.",
+           "It challenges the claim made in the first sentence about how the trap closes.",
+           "It gives an example of an insect that triggers the trap."],
+  answer="A",
+  explain="The second sentence describes the two-touch requirement, and the third explains why it probably exists (to avoid wasting energy). So it offers a likely explanation for that requirement. It doesn't introduce a new trap, contradict the first sentence, or name an insect.")
+
+Q(id="RW-INF-11", domain="INFO", skill="Inferences", diff=2, rule="inference",
+  passage=f"<p>Many songbirds learn their songs by listening to adult birds during a sensitive period early in life. In classic experiments, young white-crowned sparrows raised without hearing adult songs developed abnormal songs, while those that heard recordings of adult songs during their first months developed normal ones. These findings suggest that {B}</p>",
+  stem=INFER,
+  choices=["hearing adult songs early in life is important for these sparrows to develop typical songs.",
+           "all songbirds are born knowing the songs of their species.",
+           "white-crowned sparrows cannot learn songs from recordings.",
+           "adult sparrows deliberately teach songs to young birds through demonstration."],
+  answer="A",
+  explain="Birds that heard adult songs early developed normal songs, and birds that didn't developed abnormal ones, so hearing adult songs early in life is important for typical songs. The second choice is contradicted (the isolated birds' songs were abnormal), the third is contradicted (recordings worked), and the text never says adults teach deliberately.")
+
+Q(id="RW-INF-12", domain="INFO", skill="Inferences", diff=3, rule="inference",
+  passage=f"<p>Coral reefs cover less than 1 percent of the ocean floor, yet they are home to roughly a quarter of all known marine species. Because so many species depend on such a small area, {B}</p>",
+  stem=INFER,
+  choices=["damage to coral reefs could affect a disproportionately large share of the ocean's biodiversity.",
+           "most marine species could easily move to other habitats if reefs were damaged.",
+           "coral reefs are the only marine habitats that support more than one species.",
+           "the ocean floor outside coral reefs supports no marine life."],
+  answer="A",
+  explain="If about 25 percent of species depend on less than 1 percent of the ocean floor, then harming that small area could harm a share of species far larger than its size: damage to coral reefs could affect a disproportionately large share of the ocean's biodiversity. The other choices are unsupported or contradicted (&ldquo;only,&rdquo; &ldquo;no marine life&rdquo;).")
+
+Q(id="RW-INF-13", domain="INFO", skill="Command of Evidence", diff=3, rule="quant",
+  passage="<p>A student researching a town's energy use claims that solar power overtook wind power as a source of the town's electricity during the period shown in the table.</p>"
+          "<table class='data'><tr><th>Year</th><th>Solar (gigawatt-hours)</th><th>Wind (gigawatt-hours)</th></tr>"
+          "<tr><td>2018</td><td>12</td><td>14</td></tr><tr><td>2019</td><td>15</td><td>13</td></tr><tr><td>2020</td><td>21</td><td>16</td></tr></table>",
+  stem="Which choice best describes data from the table that support the student's claim?",
+  choices=["Wind produced more electricity than solar in 2018, but solar produced more than wind in both 2019 and 2020.",
+           "Solar production increased every year from 2018 to 2020.",
+           "Wind production was highest in 2020.",
+           "Solar produced more electricity than wind in every year shown."],
+  answer="A",
+  explain="&ldquo;Overtook&rdquo; requires wind to be ahead first and solar to be ahead later. Only the first choice shows both: wind led in 2018 (14 vs. 12), and solar led in 2019 and 2020. The second and third choices are true but don't show solar passing wind. The last choice is false, because wind led in 2018.")
+
+Q(id="RW-SEC-37", domain="SEC", skill="Form, Structure, and Sense", diff=2, rule="tense",
+  passage=f"<p>The first transcontinental railroad in the United States was completed in May 1869. By that time, workers {B} nearly 2,000 miles of track across mountains, deserts, and plains, connecting the eastern rail network to California.</p>",
+  stem=CONV, choices=["lay", "have laid", "had laid", "will have laid"], answer="C",
+  explain="&ldquo;By that time&rdquo; points to an action completed before another past event (the 1869 completion), which calls for the past perfect: &ldquo;had laid&rdquo;. &ldquo;Have laid&rdquo; connects to the present, and &ldquo;will have laid&rdquo; is future.")
+
+Q(id="RW-SEC-38", domain="SEC", skill="Form, Structure, and Sense", diff=2, rule="tense",
+  passage=f"<p>The Cassini spacecraft orbited Saturn for thirteen years. During that time, it {B} hundreds of thousands of images of the planet, its rings, and its moons before its mission ended with a planned plunge into Saturn's atmosphere in 2017.</p>",
+  stem=CONV, choices=["captures", "has captured", "captured", "will capture"], answer="C",
+  explain="The passage describes a mission that is over (&ldquo;orbited,&rdquo; &ldquo;ended &hellip; in 2017&rdquo;), so the simple past matches: &ldquo;captured&rdquo;. The present, present perfect, and future forms don't fit a finished past mission.")
+
+Q(id="RW-SEC-39", domain="SEC", skill="Form, Structure, and Sense", diff=3, rule="verbform",
+  passage=f"<p>After examining the chemical makeup of the glass ingots recovered from the ancient shipwreck, the archaeologists {B} that the glass had most likely been produced in workshops hundreds of miles from where the ship sank.</p>",
+  stem=CONV, choices=["concluding", "to conclude", "concluded", "having concluded"], answer="C",
+  explain="The subject &ldquo;the archaeologists&rdquo; needs a main verb, and only &ldquo;concluded&rdquo; is a finite verb. The other choices leave the sentence without one, making it a fragment.")
+
+Q(id="RW-SEC-40", domain="SEC", skill="Form, Structure, and Sense", diff=3, rule="agreement",
+  passage=f"<p>The James Webb Space Telescope's primary mirror, made of eighteen gold-coated hexagonal segments that unfolded after launch, {B} more than six times as much light-collecting area as the Hubble Space Telescope's mirror.</p>",
+  stem=CONV, choices=["have", "has", "having", "to have"], answer="B",
+  explain="The subject is &ldquo;mirror,&rdquo; which is singular; &ldquo;eighteen &hellip; segments&rdquo; is part of the description between the commas. The sentence needs a finite singular verb: &ldquo;has&rdquo;. &ldquo;Having&rdquo; and &ldquo;to have&rdquo; would leave the sentence without a main verb.")

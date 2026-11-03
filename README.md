@@ -42,14 +42,14 @@ The math section is tuned for a student who already scores in the 700s, so the g
 
 ## Math question bank
 
-There are 156 original questions:
+There are 169 original questions, 15 of them with a figure, graph, or table:
 
 | Domain | Count | Medium / Hard / Very hard |
 |---|---|---|
-| Algebra | 34 | 8 / 18 / 8 |
-| Advanced Math | 52 | 4 / 20 / 28 |
-| Problem-Solving & Data Analysis | 37 | 9 / 19 / 9 |
-| Geometry & Trigonometry | 33 | 4 / 16 / 13 |
+| Algebra | 36 | 8 / 19 / 9 |
+| Advanced Math | 54 | 4 / 21 / 29 |
+| Problem-Solving & Data Analysis | 43 | 10 / 23 / 10 |
+| Geometry & Trigonometry | 36 | 4 / 18 / 14 |
 
 - **65 are Desmos-route questions** (graphing is the intended fast route).
 - **23 by-hand questions also show a "Desmos alternative"**, so 88 questions teach a Desmos method.
@@ -60,7 +60,7 @@ Every answer key went through several review rounds before it could reach the ap
 
 ## Reading & Writing
 
-This page is built around **must-know rules** rather than a big question bank. Each of its 67 questions is tied to one of 21 high-impact rules. They are weighted toward the question types that are pure rules: grammar/punctuation, transitions, and student-notes questions. Those make up about half of each module and can be answered in 20–40 seconds once the rules are automatic.
+This page is built around **must-know rules** rather than a big question bank. Each of its 86 questions is tied to one of 21 high-impact rules. They are weighted toward the question types that are pure rules: grammar/punctuation, transitions, and student-notes questions. Those make up about half of each module and can be answered in 20–40 seconds once the rules are automatic.
 
 - **Must-Know Rules:** every rule on one page, ordered by points, each with an example, the trap the test sets, and a "Drill this rule" button. Covers:
   - punctuation: joining sentences, colons, nonessential elements, no punctuation in the core, *however*, possessives
