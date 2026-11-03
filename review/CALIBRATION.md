@@ -51,9 +51,24 @@ All new items went through the same checks as the rest of the bank:
 - Reading & Writing passes the automated checks and a separate re-solve, which led to replacing two arguably defensible distractors.
 - Every figure was rendered and inspected; one unreadable axis was fixed.
 
+## Comparison with the College Board Question Bank (hardest tier)
+
+The official Question Bank lists 1,925 math and 1,845 Reading & Writing questions, 610 of each rated Hard (split between score bands 6 and 7). A stratified sample of the hardest tier (Hard, band 7) was read for calibration: 54 math and 40 Reading & Writing questions. No official question was copied.
+
+| What was measured | Official Hard, band 7 | App before | Action |
+|---|---|---|---|
+| Math: where the difficulty comes from | Often traps and awkward numbers rather than advanced concepts: percent-of-percent wording, "which function models this pricing," squared and cubed unit conversions, messy-number geometry, parametric solutions of dependent systems | Concepts as hard or harder, but mostly clean numbers and few of these trap types | **Added 13 math questions** (HM-01 to HM-13) in these styles, all computer-verified |
+| Math: grid-in share / figures | 20 of 54 grid-in; 14 of 54 with a figure or table | 25% grid-in per module; figures added in #3 | ✅ |
+| R&W: reading passage length | Median **120** words (range 61–150) | Median **46** words | **Added 14 dense reading questions** (median ~110 words) built on well-documented research and public-domain literature |
+| R&W: hard question types | Command of Evidence (121 Hard), Boundaries (97), Inferences (72) lead | Few evidence and inference items | Added 4 evidence (support / weaken / quotation / table), 3 inference, 2 central idea, 2 purpose, 2 cross-text, 1 vocabulary |
+| R&W: hard grammar | The blank is buried in long, complex sentences | Short, simple sentences | **Added 4 grammar questions** with long interruptions, "together with" subjects, and possessive + appositive structures |
+| R&W difficulty labels | Hard means dense passages | Short passages labeled Hard / Very hard | Original reading items under 90 words **lowered one level**, so the hardest slots in timed sets go to the dense passages |
+
+Every new math question passes the computer check (a planted wrong key was caught). Every new Reading & Writing question passes the consistency checks (a planted wrong key was caught) and a separate re-solve, with the facts in each passage checked.
+
 ## Still not verified
 
-- **Exact difficulty labels.** The PDF practice tests don't label individual questions Easy/Medium/Hard; that lives in College Board's Educator Question Bank, which is served from a different site that is still blocked. The difficulty comparison above is by topic and by position in the module, not by official label.
+- **Item-level statistics.** The app's difficulty labels are calibrated by comparison with the official Hard tier, but not with real student response data, so they are informed estimates.
 - **The adaptive Bluebook versions** of these tests (22 and 27 questions per module) weren't available; the PDF editions use longer modules drawn from the same question pool.
 
 ## Sources
