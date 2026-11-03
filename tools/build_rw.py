@@ -6,7 +6,7 @@ catch the mistakes that slip into hand-written items:
   * every question links to a real rule, and the skill belongs to its domain
   * 4 distinct choices and a valid key
   * fill-in-the-blank questions contain exactly one blank; others contain none
-  * passages stay within SAT length (at most 170 words, excluding notes and tables)
+  * passages are 25-150 words by College Board's definition (1 word = 6 characters)
   * the explanation quotes the keyed choice (short choices), so a key typed with
     the wrong letter is caught; for long choices it must not quote a wrong choice instead
   * no explanation calls a choice by its letter (choices are shuffled in the app)
@@ -66,8 +66,11 @@ for q in QUESTIONS:
     nblank = q["passage"].count(BLANK)
     if fill and nblank != 1: e(f"fill-in question must have exactly one blank (has {nblank})")
     if not fill and nblank: e("blank in a non-fill question")
-    body = re.sub(r"<table.*?</table>|<ul>.*?</ul>", " ", q["passage"], flags=re.S)
-    if len(text(body).split()) > 170: e(f"passage too long ({len(text(body).split())} words)")
+    # College Board: each passage (or pair) is 25-150 words, where a "word" is 6 characters
+    # including spaces and punctuation. Tables are counted separately, so they're excluded.
+    body = re.sub(r"<table.*?</table>", " ", q["passage"], flags=re.S)
+    sat_words = len(text(body)) / 6
+    if not 25 <= sat_words <= 150: e(f"passage is {sat_words:.0f} SAT words (must be 25-150)")
     key = norm(ch[LETTERS.index(q["answer"])])
     ex = norm(q["explain"])
     if len(key) <= 60:
