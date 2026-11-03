@@ -10,13 +10,13 @@ Each question in `bank/*.py` comes with a `verify()` function that solves the pr
 - **Grid-in:** the key must equal the computed value, and it must be enterable in the SAT answer box (5 characters, or 6 with a minus sign).
 - **"Must be true" questions:** random simulations test every choice. For example, PSD-10 runs 4,000 random score lists and ADV-08 runs 40 random polynomials. Only the keyed choice may hold in every case.
 
-Results: **125 of 130** questions were verified by computation. The other 5 (PSD-13, PSD-14, PSD-15, PSD-32, PSD-33) test the interpretation of a study's design, which can't be computed. They were reviewed by hand in Round 3.
+Results: **151 of 156** questions were verified by computation. The other 5 (PSD-13, PSD-14, PSD-15, PSD-32, PSD-33) test the interpretation of a study's design, which can't be computed. They were reviewed by hand in Round 3.
 
 *Checking the checker:* wrong keys were planted on purpose (a wrong grid-in answer, a wrong letter, and two identical choices). The build caught all three and refused to export.
 
 ## Round 2: Rendering
 
-- `tools/check_render.js` compiles all 1,385 math snippets with KaTeX in strict mode: **0 errors**.
+- `tools/check_render.js` compiles all 1,817 math snippets with KaTeX in strict mode: **0 errors**.
 - `tools/e2e.js` opens the real app in Chromium and renders the entire bank. It found **one real bug**: in PSD-08, `\(7<x<9\)` was read by the browser as an HTML tag, which broke that explanation. The fix applies to the whole bank: the build now rewrites `<` and `>` inside math as `\lt` and `\gt`, and a lint rule fails the build if a raw `<` ever appears inside math again.
 
 ## Round 3: Line-by-line read-through
@@ -37,6 +37,15 @@ Every stem, choice, key, and explanation was re-read and re-solved, looking for 
 - **Answer-letter balance:** as written, few keys landed on D. A test-savvy student could exploit that. The app now shuffles statement choices on each attempt and randomly reverses numeric choices, so the numbers stay in order. Seven explanations that referred to choices by letter ("Choice B…") were rewritten to describe the choice itself, so they stay correct after shuffling.
 - **Grid-in grading** follows the SAT rules, and every grid-in key in the bank was checked against the grader: any exact equivalent is accepted (7/2, 3.5, 3.50); a repeating decimal must fill the answer box and may be truncated or rounded (2/3 accepts .6666, .6667, 0.666, 0.667, but not .66 or .67).
 - **Blueprint:** module assembly is tested to always produce 22 unique questions in the SAT domain mix (7 Algebra, 7 Advanced Math, 4 Problem-Solving & Data Analysis, 4 Geometry & Trigonometry), with the harder Module 2 measurably harder than the standard one.
+
+## Top-band additions (second batch)
+
+26 questions aimed at 740+ students (`bank/top.py`, ids `TOP-xx`) and 23 "Desmos alternative" notes on by-hand questions (`bank/desmos_alt.py`) went through the same rounds:
+
+- **Round 1:** all 26 verified by computation. Examples: TOP-02 counts distinct real roots for every integer \(c\) from \(-60\) to \(59\); TOP-03 scans \(2^x-x^2\) for sign changes; TOP-20 brute-forces every list of 5 positive integers. Wrong keys were planted in two of them, and the build caught both.
+- **Round 2:** rendered in KaTeX and in the browser with no errors.
+- **Round 3:** read through and re-solved. One fix: TOP-06 asked what "must be true" about one specific data set; it now asks which statements "are true".
+- Every Desmos alternative was checked against the question's own numbers. For example, the GEO-02 note gives the diameter as \(2\sqrt{17}\approx8.25\), and the PSD-24 list has the right 20 values.
 
 ## Your round
 

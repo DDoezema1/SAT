@@ -163,6 +163,7 @@ test("adaptive practice raises difficulty for a strong student", () => {
 
 test("adaptive practice eases off for a struggling student", () => {
   const st = E.defaultState();
+  E.setBaseline(st, 600);
   const used = new Set();
   const diffs = [];
   for (let i = 0; i < 20; i++) {
@@ -193,6 +194,63 @@ test("score estimate: monotonic, bounded, sensible anchors", () => {
   assert(E.estimateScore(mk(44, 3)).score >= 760);
   assert(E.estimateScore(mk(0, 1)).score <= 350);
   assert(E.estimateScore(mk(22, 2)).score > 600 && E.estimateScore(mk(22, 2)).score < 700);
+});
+
+test("default starting level is the 740 baseline", () => {
+  const st = E.defaultState();
+  assert.strictEqual(E.thetaToScore(st.theta), 740);
+  assert.strictEqual(st.settings.baseline, 740);
+  E.setBaseline(st, 680);
+  assert.strictEqual(E.thetaToScore(st.theta), 680);
+});
+
+test("slow correct answers count as partial mastery and become trouble spots", () => {
+  const q = Q.find((q) => q.diff === 3);
+  const fast = E.defaultState(), slow = E.defaultState();
+  const rf = E.recordAnswer(fast, q, true, Date.now(), { secs: 60 });
+  const rs = E.recordAnswer(slow, q, true, Date.now(), { secs: 400 });
+  assert(!rf.slow && rs.slow);
+  assert(slow.skills[q.skill].theta < fast.skills[q.skill].theta);
+  assert(!E.isTrouble(fast.items[q.id]));
+  assert(E.isTrouble(slow.items[q.id]));
+  assert.deepStrictEqual(E.troubleIds(slow, Q), [q.id]);
+});
+
+test("using the Desmos hint caps credit and marks a trouble spot", () => {
+  const q = Q.find((q) => q.desmos);
+  const st = E.defaultState();
+  const r = E.recordAnswer(st, q, true, Date.now(), { secs: 30, hint: true });
+  assert.strictEqual(r.credit, 0.5);
+  assert(E.isTrouble(st.items[q.id]));
+});
+
+test("trouble spots are re-served ahead of mastered questions after a few days", () => {
+  const st = E.defaultState();
+  const old = Date.now() - 5 * 86400000;
+  const geo = Q.filter((q) => q.domain === "GEO");
+  for (const q of geo) E.recordAnswer(st, q, true, old, { secs: 30 });          // all fast and correct...
+  const slowQ = geo[3];
+  E.recordAnswer(st, slowQ, true, old, { secs: 500 });                         // ...except one slow one
+  const picked = E.nextPractice(st, Q, { domain: "GEO" }, new Set(), rng(3));
+  assert.strictEqual(picked.id, slowQ.id);
+});
+
+test("timed sets: 11 and 22 questions, scaled blueprint, top-band mix at 740", () => {
+  assert.deepStrictEqual(E.scaleBlueprint(11), { ALG: 4, ADV: 3, PSD: 2, GEO: 2 });
+  assert.deepStrictEqual(E.scaleBlueprint(22), { ALG: 7, ADV: 7, PSD: 4, GEO: 4 });
+  const st = E.defaultState();
+  assert.strictEqual(E.levelMix(st), "top");
+  for (const n of [11, 22]) {
+    const set = E.buildModule(st, Q, E.levelMix(st), new Set(), rng(n), null, n);
+    assert.strictEqual(set.length, n);
+    assert(!set.some((q) => q.diff === 1), "no medium questions for a 740 student");
+    assert(set.filter((q) => q.diff === 3).length >= n / 2, "mostly very hard");
+  }
+  const dset = E.buildModule(st, Q, "top", new Set(), rng(1), null, 11, { filter: (q) => q.desmos });
+  assert.strictEqual(dset.length, 11);
+  assert(dset.every((q) => q.desmos));
+  const alg = E.buildModule(st, Q, "top", new Set(), rng(1), null, 11, { domain: "ALG" });
+  assert(alg.length === 11 && alg.every((q) => q.domain === "ALG"));
 });
 
 console.log(`\n${passed} tests passed`);

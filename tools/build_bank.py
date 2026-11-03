@@ -31,6 +31,8 @@ from bank.common import QUESTIONS, SKILLS  # noqa: E402
 import bank.algebra, bank.advanced, bank.psda, bank.geometry  # noqa: E402,F401
 try:
     import bank.extra  # noqa: F401
+    import bank.top  # noqa: F401
+    import bank.desmos_alt  # noqa: F401
 except ImportError:
     pass
 

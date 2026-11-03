@@ -154,9 +154,73 @@ const server = http.createServer((req, res) => {
   assert.strictEqual((await page.textContent(".bigscore")).trim(), "9/10");
   step("practice results 9/10");
 
+  // ---------------------------------------------------------------- timed set (11 questions, speed pace, coach)
+  step("timed set: 11 questions at speed pace with pacing coach");
+  await page.click("#homeBtn");
+  assert.match(await page.textContent(".hero p"), /Starting point: 740/);
+  await page.selectOption("#sLen", "11");
+  await page.selectOption("#sPace", "speed");
+  assert.match(await page.textContent("#setTime"), /14:40/);
+  await page.click("#setBtn");
+  assert.match(await page.textContent("#navBtn"), /Question 1 of 11/);
+  assert.match(await page.textContent("#timer"), /^14:[34]\d$/);
+  await page.waitForTimeout(1200);
+  assert.match(await page.textContent("#pace"), /on pace/);
+  assert.match(await page.textContent("#watch"), /⏱ 0:0\d \/ 1:20/);
+  const setDiffs = await page.evaluate(() => JSON.parse(localStorage.getItem("satMathPractice.v1")).active.items.map((i) => window.SAT_QUESTIONS.find((q) => q.id === i.id).diff));
+  assert(!setDiffs.includes(1), "a 740 student gets no medium questions in a timed set");
+  await shot("13-timed-set-coach");
+  for (let i = 0; i < 11; i++) {
+    await answer(i !== 4);
+    if (i === 2) { await page.click("#calcBtn"); await page.click("#calcClose"); }   // Desmos use gets tracked
+    await page.click("#nextBtn");
+  }
+  await page.click("#nextBtn");               // submit from Check Your Work
+  await page.waitForSelector(".bigscore");
+  assert.strictEqual((await page.textContent(".bigscore")).trim(), "10/11");
+  assert.match(await page.textContent(".cards"), /Timing[\s\S]*of 14:40[\s\S]*Desmos use/);
+  const calcFlag = await page.evaluate(() => JSON.parse(localStorage.getItem("satMathPractice.v1")).sessions.at(-1).modules[0].items[2].calc);
+  assert.strictEqual(calcFlag, true, "opening Desmos on a question is recorded");
+  await shot("14-timed-set-results");
+
+  // ---------------------------------------------------------------- Desmos drill
+  step("Desmos speed drill: calculator auto-opens, hint, feedback");
+  await page.click("#homeBtn");
+  await page.click("#drillBtn");
+  assert(await page.evaluate(() => !document.querySelector("#calcPanel").classList.contains("hidden")), "calculator opens automatically");
+  const drillQ = await page.evaluate(() => { const s = JSON.parse(localStorage.getItem("satMathPractice.v1")).active; return window.SAT_QUESTIONS.find((q) => q.id === s.items[0].id); });
+  assert(drillQ.desmos, "drill serves Desmos questions");
+  await page.click("#hintBtn");
+  assert.match(await page.textContent(".qcol"), /Hint:/);
+  await shot("15-drill-hint");
+  await answer(true);
+  await page.click("#nextBtn");
+  await page.waitForSelector(".feedback");
+  assert.match(await page.textContent(".feedback"), /Desmos strategy/);
+  const drillItem = await page.evaluate(() => JSON.parse(localStorage.getItem("satMathPractice.v1")).active.items[0]);
+  assert(drillItem.hint && drillItem.calc);
+  await page.click("#moreBtn");
+  await page.click("#endNow");
+  await page.waitForSelector(".bigscore");
+
+  // ---------------------------------------------------------------- trouble spots + playbook
+  step("trouble spots and playbook");
+  await page.click("#homeBtn");
+  assert.match(await page.textContent("body"), /you missed, answered slowly, or needed a hint on/);
+  assert(!(await page.isDisabled("#retryBtn")));
+  await page.click("#retryBtn");
+  const tIds = await page.evaluate(() => { const st = JSON.parse(localStorage.getItem("satMathPractice.v1")); return [st.active.items[0].id, Object.entries(st.items).filter(([, it]) => !it.lastCorrect || it.lastSlow || it.lastHint).map(([id]) => id)]; });
+  assert(tIds[1].includes(tIds[0]), "trouble-spot session serves a trouble spot");
+  await page.click("#moreBtn");
+  await page.click("#saveExit");
+  await page.click("#abandonBtn");
+  await page.click("#playbookBtn");
+  assert.match(await page.textContent(".playbook"), /Regression from a table/);
+  await shot("16-playbook");
+  await page.click("#homeBtn");
+
   // ---------------------------------------------------------------- resume
   step("save & resume");
-  await page.click("#homeBtn");
   await page.click("#practiceBtn");
   await answer(true);
   await page.click("#moreBtn");
@@ -185,6 +249,10 @@ const server = http.createServer((req, res) => {
   await page.check(`[data-dis="${firstId}"]`);
   const dis = await page.evaluate(() => JSON.parse(localStorage.getItem("satMathPractice.v1")).disabled);
   assert(dis[firstId]);
+  // baseline setting
+  await page.fill("#baseSet", "700");
+  await page.click("#saveSet");
+  assert.strictEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("satMathPractice.v1")).settings.baseline), 700);
 
   // mobile layout sanity
   await page.setViewportSize({ width: 390, height: 844 });

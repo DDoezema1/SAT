@@ -216,3 +216,27 @@ table.skills tr.dom td { background: var(--soft); font-weight: 700; }
   table.skills th, table.skills td { padding: 7px 6px; }
   table.skills td:nth-child(4), table.skills th:nth-child(4) { display: none; }
 }
+
+/* ------------------------------------------------------------------ pacing coach, drills, playbook */
+.pace { font-size: 12px; font-weight: 700; min-height: 15px; font-variant-numeric: tabular-nums; }
+.pace.ahead { color: var(--green); }
+.pace.behind { color: var(--red); }
+.watch { font-size: 13px; font-variant-numeric: tabular-nums; color: var(--muted); padding: 2px 8px; border-radius: 10px; }
+.watch.warn { background: var(--amber-soft); color: var(--amber); font-weight: 700; }
+.watch.over { background: var(--red-soft); color: var(--red); font-weight: 700; }
+.slowtag { color: var(--red); font-weight: 600; }
+.slowtime { color: var(--red); font-weight: 700; }
+.tag.warn { background: var(--amber-soft); color: var(--amber); }
+.card.feature { border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue) inset; }
+label.check { display: flex; align-items: center; gap: 6px; color: var(--ink); }
+.form input[type=number] { width: 110px; }
+.pop.wide { max-width: 860px; }
+.playbook { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.playbook .note { grid-column: 1 / -1; font-size: 15px; }
+.pb { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; font-size: 14.5px; line-height: 1.55; }
+.pb h4 { margin: 0 0 6px; font-size: 16px; }
+.pb p { margin: 6px 0; }
+.pb ul { margin: 6px 0; padding-left: 20px; }
+.pb code, .tipbox code { background: #eef1f6; padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+.calc-open .qpane.dirpane { display: none; }
+.qhead .mark, .qhead .watch, .qhead .btn, .qhead .tag { white-space: nowrap; }

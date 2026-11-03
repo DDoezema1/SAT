@@ -9,6 +9,12 @@
   const B = { 1: 0.5, 2: 1.5, 3: 2.3 };
   const DIFF_NAME = { 1: "Medium", 2: "Hard", 3: "Very hard" };
   const PACE_SEC = 95;            // 35 min / 22 questions, about the real pace
+  const SPEED_PACE_SEC = 80;      // training pace: builds a time buffer for the hardest questions
+  // Time a strong student should need per question, by difficulty. Correct answers that
+  // take more than SLOW_FACTOR times this count as "slow" (only partly mastered).
+  const TARGET_SEC = { 1: 60, 2: 90, 3: 120 };
+  const SLOW_FACTOR = 1.3;
+  const DEFAULT_BASELINE = 740;   // most recent official SAT Math score (editable in the Parent area)
   const MODULE_SEC = 35 * 60;
   const MODULE_LEN = 22;
   const BLUEPRINT = { ALG: 7, ADV: 7, PSD: 4, GEO: 4 };   // per module, ~SAT domain weights
@@ -16,6 +22,7 @@
     m1: { 1: 6, 2: 10, 3: 6 },
     m2hard: { 1: 2, 2: 9, 3: 11 },
     m2std: { 1: 9, 2: 10, 3: 3 },
+    top: { 1: 0, 2: 8, 3: 14 },   // for students already scoring 700+: hard and very hard only
   };
   const ROUTE_THRESHOLD = 14;     // correct answers in module 1 (of 22) to reach the harder module 2
   const DAY = 86400000;
@@ -83,14 +90,17 @@
   }
 
   // ---------------------------------------------------------------- student model
+  const scoreToTheta = (score) => (score - 500) / 100;
+  const thetaToScore = (th) => Math.max(200, Math.min(800, Math.round((500 + 100 * th) / 10) * 10));
+
   function defaultState() {
     return {
       version: 1,
       name: "",
-      settings: { calc: "always", pin: "" },
-      theta: 1.0,           // overall ability, starts near a 600 level
+      settings: { calc: "always", pin: "", baseline: DEFAULT_BASELINE },
+      theta: scoreToTheta(DEFAULT_BASELINE),   // overall ability on the score scale
       skills: {},           // skill -> {theta, n, correct}
-      items: {},            // question id -> {n, correct, last, lastCorrect, wrongStreak}
+      items: {},            // question id -> {n, correct, last, lastCorrect, lastSlow, lastSecs, lastCalc}
       sessions: [],
       disabled: {},         // question id -> true (parent removed it)
       active: null,         // in-progress session snapshot
@@ -101,18 +111,51 @@
     return state.skills[skill] || (state.skills[skill] = { theta: state.theta, n: 0, correct: 0 });
   }
 
-  /** Elo-style update after one answer. Unanswered counts as wrong. */
-  function recordAnswer(state, q, correct, now) {
+  /** Set the starting level from an official score. Only moves the estimate while there is little data. */
+  function setBaseline(state, score) {
+    state.settings.baseline = score;
+    if ((state.n || 0) < 20) {
+      state.theta = scoreToTheta(score);
+      for (const sk of Object.values(state.skills)) if (sk.n < 3) sk.theta = state.theta;
+    }
+  }
+
+  const isSlow = (q, secs) => secs != null && secs > TARGET_SEC[q.diff] * SLOW_FACTOR;
+
+  /**
+   * Elo-style update after one answer. Unanswered counts as wrong. A correct answer that
+   * took too long earns only partial credit (0.6), and so does one where the Desmos hint
+   * was used (0.5): on test day both cost points through lost time.
+   * extra = {secs, calc, hint}
+   */
+  function recordAnswer(state, q, correct, now, extra) {
+    extra = extra || {};
+    const slow = !!correct && isSlow(q, extra.secs);
+    let y = correct ? (slow ? 0.6 : 1) : 0;
+    if (extra.hint) y = Math.min(y, 0.5);
     const b = B[q.diff];
     const sk = skillRec(state, q.skill);
     const kSkill = Math.max(0.25, 0.9 / Math.sqrt(1 + sk.n / 4));
-    sk.theta += kSkill * ((correct ? 1 : 0) - sigmoid(sk.theta - b));
+    sk.theta += kSkill * (y - sigmoid(sk.theta - b));
     sk.n += 1; sk.correct += correct ? 1 : 0;
     state.n = (state.n || 0) + 1;
-    const kGlobal = Math.max(0.2, 0.6 / Math.sqrt(1 + state.n / 6));
-    state.theta += kGlobal * ((correct ? 1 : 0) - sigmoid(state.theta - b));
+    const kGlobal = Math.max(0.15, 0.5 / Math.sqrt(1 + state.n / 6));
+    state.theta += kGlobal * (y - sigmoid(state.theta - b));
     const it = state.items[q.id] || (state.items[q.id] = { n: 0, correct: 0, last: 0, lastCorrect: false });
     it.n += 1; it.correct += correct ? 1 : 0; it.last = now || Date.now(); it.lastCorrect = !!correct;
+    it.lastSlow = slow; it.lastSecs = extra.secs; it.lastCalc = !!extra.calc; it.lastHint = !!extra.hint;
+    return { slow, credit: y };
+  }
+
+  /** A question is a trouble spot if the last attempt was wrong, slow, or needed the hint. */
+  const isTrouble = (it) => !!it && (!it.lastCorrect || !!it.lastSlow || !!it.lastHint);
+  function troubleIds(state, questions) {
+    return questions.filter((q) => !state.disabled[q.id] && isTrouble(state.items[q.id])).map((q) => q.id);
+  }
+
+  /** Difficulty mix for a timed set, based on the current level. */
+  function levelMix(state) {
+    return state.theta >= 2.0 ? "top" : state.theta >= 1.2 ? "m2hard" : "m1";
   }
 
   /** Probability of answering a typical Hard question in this skill correctly. */
@@ -129,9 +172,9 @@
     const it = state.items[q.id];
     let p = 2.0 * (1 - mastery(state, q.skill));     // weak skills first
     if (!it) p += 3;                                  // brand new
-    else if (!it.lastCorrect && now - it.last > 2 * DAY) p += 1.5;   // missed before: spaced retry
-    else if (!it.lastCorrect) p -= 1;                 // missed very recently: wait a bit
-    else p -= 3 + Math.min(it.correct, 3);            // already mastered: rarely repeat
+    else if (isTrouble(it) && now - it.last > 2 * DAY) p += it.lastCorrect ? 2.5 : 3;   // missed or slow before: spaced retry
+    else if (isTrouble(it)) p -= 1;                   // just seen: wait a bit
+    else p -= 3 + Math.min(it.correct, 3);            // answered correctly and quickly: rarely repeat
     if (it) p -= Math.max(0, 1.5 - (now - it.last) / (7 * DAY));     // seen in the past week
     return p + 0.6 * rand(rng);
   }
@@ -160,16 +203,36 @@
     return { 1: out[0], 2: out[1], 3: out[2] };
   }
 
-  /** Assemble a 22-question module following the domain blueprint and a difficulty mix. */
-  function buildModule(state, questions, mixKey, used, rng, now) {
+  /** Scale the 22-question domain blueprint to n questions (largest-remainder rounding). */
+  function scaleBlueprint(n, domains) {
+    const doms = domains || Object.keys(BLUEPRINT);
+    const tot = doms.reduce((a, d) => a + BLUEPRINT[d], 0);
+    const raw = doms.map((d) => (n * BLUEPRINT[d]) / tot);
+    const out = raw.map(Math.floor);
+    let left = n - out.reduce((a, b) => a + b, 0);
+    const order = doms.map((_, i) => i).sort((i, j) => (raw[j] - out[j]) - (raw[i] - out[i]) || i - j);
+    for (let i = 0; left > 0; i = (i + 1) % doms.length, left--) out[order[i]]++;
+    return Object.fromEntries(doms.map((d, i) => [d, out[i]]));
+  }
+
+  /**
+   * Assemble a module or timed set: domain blueprint scaled to n questions, a difficulty
+   * mix, and within that, the questions the student most needs (weak skills, trouble spots,
+   * unseen questions). opts.filter optionally restricts the pool (e.g. Desmos-only).
+   */
+  function buildModule(state, questions, mixKey, used, rng, now, n, opts) {
     now = now || Date.now();
+    n = n || MODULE_LEN;
+    opts = opts || {};
     const mix = DIFF_MIX[mixKey];
+    const base = opts.filter ? questions.filter(opts.filter) : questions;
+    const domains = opts.domain && opts.domain !== "ALL" ? [opts.domain] : null;
     const picked = [];
-    for (const dom of Object.keys(BLUEPRINT)) {
-      const want = allocate(BLUEPRINT[dom], mix);
+    for (const [dom, count] of Object.entries(scaleBlueprint(n, domains))) {
+      const want = allocate(count, mix);
       for (const d of [3, 2, 1]) {
         for (let i = 0; i < want[d]; i++) {
-          const pool = available(state, questions, used).filter((q) => q.domain === dom);
+          const pool = available(state, base, used).filter((q) => q.domain === dom);
           // exact difficulty first, then the nearest difficulty
           const order = d === 2 ? [2, 3, 1] : d === 3 ? [3, 2, 1] : [1, 2, 3];
           let q = null;
@@ -177,7 +240,7 @@
             q = pickBest(pool.filter((x) => x.diff === dd), state, now, rng);
             if (q) break;
           }
-          if (!q) q = pickBest(available(state, questions, used), state, now, rng);
+          if (!q) q = pickBest(available(state, base, used), state, now, rng);
           if (!q) break;
           picked.push(q); used.add(q.id);
         }
@@ -251,9 +314,10 @@
   }
 
   const api = {
-    B, DIFF_NAME, PACE_SEC, MODULE_SEC, MODULE_LEN, BLUEPRINT, ROUTE_THRESHOLD,
-    parseRational, sprInputAllowed, gradeSPR, isCorrect,
-    defaultState, recordAnswer, mastery, buildModule, route, nextPractice, estimateScore,
+    B, DIFF_NAME, PACE_SEC, SPEED_PACE_SEC, TARGET_SEC, SLOW_FACTOR, MODULE_SEC, MODULE_LEN, BLUEPRINT, ROUTE_THRESHOLD, DEFAULT_BASELINE,
+    parseRational, sprInputAllowed, gradeSPR, isCorrect, isSlow, isTrouble, troubleIds,
+    defaultState, setBaseline, scoreToTheta, thetaToScore, recordAnswer, mastery, levelMix, scaleBlueprint,
+    buildModule, route, nextPractice, estimateScore,
   };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.Engine = api;

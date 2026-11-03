@@ -293,6 +293,54 @@ In the \(xy\)-plane, the graph of the linear function \(f\) passes through the p
 
 **Explanation:** The vertices of the triangle are where the boundary lines meet: \((0,0)\) from \(y=\frac12x\) and \(x=0\); \((0,10)\) from \(y=-2x+10\) and \(x=0\); and \((4,2)\) from \(-2x+10=\frac12x\). The greatest \(y\)-value in a triangle occurs at a vertex: 10.
 
+### TOP-04 · Linear inequalities in one or two variables · Very hard · Desmos · computed
+
+\[y\le3x+2\]\[y\le-x+10\]\[y\ge0\]Point \((x,y)\) lies in the solution region of the given system of inequalities. What is the maximum possible value of \(2x+y\)?
+
+**Answer:** 20
+
+**Explanation:** The region is a triangle with vertices \(\left(-\frac23,0\right)\), \((2,8)\), and \((10,0)\). A linear expression like \(2x+y\) is greatest at a vertex: \(-\frac43\), \(12\), and \(20\). The maximum is 20, at \((10,0)\). The trap is assuming the &ldquo;top&rdquo; corner \((2,8)\) wins.
+
+### TOP-11 · Systems of two linear equations in two variables · Hard · Desmos · computed
+
+\[0.35x+1.2y=8.95\]\[2.4x-0.75y=7.5\]If \((x,y)\) is the solution to the given system of equations, what is the value of \(xy\)?
+
+**Answer:** 30
+
+**Explanation:** Solving by elimination works but is slow with these decimals: the solution is \((5,6)\), so \(xy=30\).
+
+### TOP-19 · Linear functions · Very hard · By hand · computed
+
+The function \(f\) is linear, and \(f(3x+1)=6x+11\) for all values of \(x\). What is the value of \(f(7)\)?
+
+**Answer:** 23
+
+**Explanation:** Fast route: find the \(x\) that makes the input equal 7. \(3x+1=7\) gives \(x=2\), so \(f(7)=6(2)+11=23\). (General route: let \(u=3x+1\); then \(x=\frac{u-1}{3}\) and \(f(u)=2(u-1)+11=2u+9\).)
+
+### TOP-24 · Systems of two linear equations in two variables · Hard · Desmos · computed
+
+\[y=\tfrac23x+4\]\[y=kx-2\]In the given system of equations, \(k\) is a constant. The solution to the system has an \(x\)-coordinate of 9. What is the value of \(k\)?
+
+**Answer:** 4/3
+
+**Explanation:** At \(x=9\), the first equation gives \(y=6+4=10\). That point is on the second line: \(10=9k-2\), so \(k=\frac{12}{9}=\frac43\). Acceptable entries include 4/3 and 1.333.
+
+### TOP-25 · Linear inequalities in one or two variables · Hard · By hand · computed
+
+The solutions to the inequality \(4-3x\le k\), where \(k\) is a constant, are all values of \(x\) such that \(x\ge-2\). What is the value of \(k\)?
+
+**Answer:** 10
+
+**Explanation:** \(4-3x\le k\) gives \(-3x\le k-4\). Dividing by \(-3\) flips the inequality: \(x\ge\frac{4-k}{3}\). Setting \(\frac{4-k}{3}=-2\) gives \(k=10\). Check: \(4-3x\le10\) gives \(x\ge-2\). ✓
+
+### TOP-26 · Linear equations in two variables · Hard · Desmos · computed
+
+A line in the \(xy\)-plane passes through the point \((1,-4)\) and through the point where the graphs of \(3x-y=7\) and \(x+2y=7\) intersect. What is the slope of the line?
+
+**Answer:** 3
+
+**Explanation:** Solve the system: \(y=3x-7\), so \(x+2(3x-7)=7\), \(7x=21\), \(x=3\), \(y=2\). Slope from \((1,-4)\) to \((3,2)\): \(\frac{2-(-4)}{3-1}=3\).
+
 ## Advanced Math
 
 ### ADV-01 · Nonlinear equations in one variable and systems of equations in two variables · Hard · Desmos · computed
@@ -725,6 +773,127 @@ In the \(xy\)-plane, the graphs of \(y=3|x-2|\) and \(y=x+4\) intersect at two p
 
 **Explanation:** Case \(x\ge2\): \(3(x-2)=x+4\), so \(2x=10\) and \(x=5\). Case \(x \lt 2\): \(-3(x-2)=x+4\), so \(-3x+6=x+4\) and \(x=\frac12\). Both satisfy their case conditions. Sum: \(5+\frac12=\frac{11}{2}=5.5\).
 
+### TOP-01 · Nonlinear functions · Very hard · Desmos · computed
+
+In the \(xy\)-plane, the graph of \(y=2x^2+bx+18\), where \(b\) is a negative constant, has exactly one \(x\)-intercept. What is the \(x\)-coordinate of that \(x\)-intercept?
+
+**Answer:** 3
+
+**Explanation:** Exactly one \(x\)-intercept means the vertex sits on the \(x\)-axis: discriminant \(b^2-4(2)(18)=0\), so \(b^2=144\) and \(b=-12\) (negative). The intercept is the vertex: \(x=-\frac{b}{2a}=\frac{12}{4}=3\). Check: \(2x^2-12x+18=2(x-3)^2\).
+
+### TOP-02 · Nonlinear functions · Very hard · Desmos · computed
+
+\[f(x)=x^3-3x^2-9x+c\]In the given function, \(c\) is a constant. The equation \(f(x)=0\) has exactly three distinct real solutions. What is the greatest possible integer value of \(c\)?
+
+**Answer:** 26
+
+**Explanation:** A cubic crosses the \(x\)-axis three times only if its local maximum is above the axis and its local minimum is below it. The turning points of \(x^3-3x^2-9x\) are at \(x=-1\) (local max, value 5) and \(x=3\) (local min, value \(-27\)). Adding \(c\) shifts the graph up by \(c\): we need \(5+c \gt 0\) and \(-27+c \lt 0\), so \(-5 \lt c \lt 27\). The greatest integer is 26. (At \(c=27\), the minimum touches the axis, giving only two distinct solutions.)
+
+### TOP-03 · Nonlinear equations in one variable and systems of equations in two variables · Very hard · Desmos · computed
+
+How many real solutions does the equation \(2^{x}=x^{2}\) have?
+
+- A) One
+- B) Two
+- C) Three
+- D) Four
+
+**Answer:** C
+
+**Explanation:** Two solutions are easy to spot: \(x=2\) (\(4=4\)) and \(x=4\) (\(16=16\)). The trap is missing the third: for negative \(x\), \(2^x\) is between 0 and 1 while \(x^2\) grows, so the graphs cross once more, near \(x\approx-0.77\). For \(x \gt 4\), \(2^x\) stays above \(x^2\). Total: three.
+
+### TOP-05 · Nonlinear equations in one variable and systems of equations in two variables · Very hard · Desmos · computed
+
+In the \(xy\)-plane, the graph of \(y=|x-3|\) and the graph of \(y=\frac12x+k\), where \(k\) is a constant, intersect at exactly one point. What is the value of \(k\)?
+
+**Answer:** -3/2
+
+**Explanation:** The V-shaped graph has its vertex at \((3,0)\) and arms with slopes \(\pm1\). The line has slope \(\frac12\), which is less steep than either arm. If the line is above the vertex, it crosses both arms (two points); if it's below, it misses the V entirely. Exactly one intersection happens only when the line passes through the vertex: \(0=\frac12(3)+k\), so \(k=-\frac32=-1.5\).
+
+### TOP-07 · Nonlinear functions · Hard · Desmos · computed
+
+The functions \(f\) and \(g\) are defined by \(f(x)=-0.5x^2+6x-10\) and \(g(x)=2x-4\). What is the maximum value of \(f(x)-g(x)\)?
+
+**Answer:** 2
+
+**Explanation:** \(f(x)-g(x)=-0.5x^2+4x-6\). The vertex is at \(x=-\frac{4}{2(-0.5)}=4\), and the value there is \(-8+16-6=2\).
+
+### TOP-09 · Nonlinear functions · Very hard · Desmos · computed
+
+The function \(f\) is defined by \(f(x)=a(1.5)^{x}+b\), where \(a\) and \(b\) are constants. The graph of \(y=f(x)\) passes through the points \((0,7)\) and \((2,12)\). What is the value of \(f(4)\)?
+
+**Answer:** 93/4
+
+**Explanation:** \(f(0)=a+b=7\) and \(f(2)=2.25a+b=12\). Subtracting gives \(1.25a=5\), so \(a=4\) and \(b=3\). Then \(f(4)=4(1.5)^4+3=4(5.0625)+3=23.25\).
+
+### TOP-10 · Nonlinear equations in one variable and systems of equations in two variables · Very hard · Desmos · computed
+
+Which of the following equations has exactly two distinct real solutions?
+
+- A) \(x^3-3x+3=0\)
+- B) \(x^3-3x+1=0\)
+- C) \(x^3-3x+2=0\)
+- D) \(x^3-3x+5=0\)
+
+**Answer:** C
+
+**Explanation:** The graph of \(y=x^3-3x\) has a local maximum of 2 (at \(x=-1\)) and a local minimum of \(-2\) (at \(x=1\)). Adding a constant \(d\) shifts it up. With \(d=2\), the local minimum is exactly 0, so the graph touches the axis at \(x=1\) and crosses it once more: \(x^3-3x+2=(x-1)^2(x+2)\), with two distinct solutions. \(d=1\) gives three solutions; \(d=3\) and \(d=5\) give one.
+
+### TOP-14 · Nonlinear functions · Very hard · By hand · computed
+
+The polynomial \(p(x)=x^3+ax^2+bx-6\), where \(a\) and \(b\) are constants, has \(x-3\) and \(x+1\) as factors. What is the value of \(a+b\)?
+
+**Answer:** -7
+
+**Explanation:** \(p(3)=27+9a+3b-6=0\) gives \(3a+b=-7\). \(p(-1)=-1+a-b-6=0\) gives \(a-b=7\). Adding: \(4a=0\), so \(a=0\) and \(b=-7\). So \(a+b=-7\). (Shortcut: for this cubic the product of the roots is 6, so \(3\cdot(-1)\cdot r=6\) gives a third root \(r=-2\) and \(p(x)=(x-3)(x+1)(x+2)\). Then \(p(1)=(-2)(2)(3)=-12\), and also \(p(1)=1+a+b-6\), so \(a+b=-7\).)
+
+### TOP-15 · Nonlinear functions · Hard · Desmos · computed
+
+The function \(f\) is defined by \(f(x)=3x^2-12x+k\), where \(k\) is a constant. The minimum value of \(f(x)\) is 5. What is the value of \(k\)?
+
+- A) \(5\)
+- B) \(12\)
+- C) \(17\)
+- D) \(29\)
+
+**Answer:** C
+
+**Explanation:** The minimum occurs at the vertex, \(x=\frac{12}{6}=2\): \(f(2)=12-24+k=k-12\). Setting \(k-12=5\) gives \(k=17\).
+
+### TOP-16 · Nonlinear equations in one variable and systems of equations in two variables · Very hard · Desmos · computed
+
+In the \(xy\)-plane, the line \(y=c\), where \(c\) is a constant, intersects the parabola \(y=4x^2-20x+23\) at two points that are 3 units apart. What is the value of \(c\)?
+
+**Answer:** 7
+
+**Explanation:** The parabola is symmetric about \(x=\frac{20}{8}=2.5\), so two points 3 units apart are at \(x=2.5\pm1.5\), which is \(x=1\) and \(x=4\). Then \(c=4(1)^2-20(1)+23=7\). Check: \(4(16)-80+23=7\). ✓
+
+### TOP-17 · Nonlinear functions · Hard · Desmos · computed
+
+An investment earns 4.5% interest, compounded annually. What is the least whole number of years after which the value of the investment will be at least double its initial value?
+
+- A) \(14\)
+- B) \(15\)
+- C) \(16\)
+- D) \(22\)
+
+**Answer:** C
+
+**Explanation:** Solve \(1.045^n\ge2\). \(1.045^{15}\approx1.935\), which is not yet double, and \(1.045^{16}\approx2.022\). So 16 years. (22 is the trap from \(100\div4.5\), which ignores compounding.)
+
+### TOP-21 · Nonlinear functions · Hard · By hand · computed
+
+The function \(f\) is defined by \(f(x)=x^2-6x+5\). The function \(g\) is defined by \(g(x)=f(x-k)\), where \(k\) is a constant. The \(x\)-intercepts of the graph of \(y=g(x)\) are at \(x=4\) and \(x=8\). What is the value of \(k\)?
+
+- A) \(-3\)
+- B) \(2\)
+- C) \(3\)
+- D) \(7\)
+
+**Answer:** C
+
+**Explanation:** \(f(x)=(x-1)(x-5)\) has zeros 1 and 5. \(f(x-k)\) shifts the graph \(k\) units to the right, so the zeros become \(1+k\) and \(5+k\). These equal 4 and 8 when \(k=3\). (\(-3\) is the trap from shifting in the wrong direction.)
+
 ## Problem-Solving and Data Analysis
 
 ### PSD-01 · Percentages · Medium · By hand · computed
@@ -1126,6 +1295,48 @@ A principal wants to know whether a new online study tool improves test scores f
 
 **Explanation:** A cause-and-effect conclusion requires random  assignment  to the treatment, and generalizing to the school requires a random  sample  from the school. Letting students choose introduces self-selection: motivated students may both use the tool and score higher. Comparing two existing classes confounds the tool with the teacher and class. Self-reports measure opinions, not scores.
 
+### TOP-06 · One-variable data: distributions and measures of center and spread · Hard · Desmos · computed
+
+A data set consists of the values 12, 15, 15, 18, 21, 24, 26, 29, 33, and 37. The value 37 is replaced with 47. Which of the following statements about the new data set, compared with the original, are true? I. The mean increases by 1. II. The median does not change. III. The standard deviation increases. 
+
+- A) I and II only
+- B) I and III only
+- C) II and III only
+- D) I, II, and III
+
+**Answer:** D
+
+**Explanation:** I: the sum increases by 10 across 10 values, so the mean increases by \(\frac{10}{10}=1\). ✓ II: the median is the average of the 5th and 6th values (21 and 24), and neither changes. ✓ III: the largest value moves farther from the mean, so the spread increases. ✓
+
+### TOP-12 · Two-variable data: models and scatterplots · Hard · Desmos · computed
+
+The table shows five data points that lie exactly on the graph of a quadratic function.   \(x\)  0  1  2  3  4    \(y\)  3  2  3  6  11   What is the value of \(y\) when \(x=7\)?
+
+**Answer:** 38
+
+**Explanation:** The \(y\)-values change by \(-1,1,3,5\); the second differences are constant at 2, so \(a=\frac22=1\). With \(c=3\) (the value at \(x=0\)) and \(1+b+3=2\), \(b=-2\). So \(y=x^2-2x+3\), and at \(x=7\): \(49-14+3=38\).
+
+### TOP-20 · One-variable data: distributions and measures of center and spread · Very hard · By hand · computed
+
+A list of 5 positive integers has a mean of 12 and a median of 13. The list has a unique mode of 15. What is the greatest possible value of the smallest integer in the list?
+
+**Answer:** 8
+
+**Explanation:** The sum is \(5\times12=60\). In order, the list is \(a\le b\le13\le d\le e\). A unique mode of 15 needs at least two 15s, and both must be above the median, so \(d=e=15\). Then \(a+b=60-13-30=17\). For 15 to be the  unique  mode, \(a\neq b\) and \(b\neq13\). Making \(a\) as large as possible with \(a \lt b\): \(a=8\), \(b=9\).
+
+### TOP-23 · One-variable data: distributions and measures of center and spread · Hard · Desmos · computed
+
+Each of the following data sets has a mean of 6. Which data set has the greatest standard deviation?
+
+- A) 2, 4, 6, 8, 10
+- B) 1, 5, 6, 7, 11
+- C) 4, 5, 6, 7, 8
+- D) 1, 1, 6, 11, 11
+
+**Answer:** D
+
+**Explanation:** Standard deviation measures typical distance from the mean. In 1, 1, 6, 11, 11, four of the five values are 5 away from the mean, more than in any other set. (1, 5, 6, 7, 11 has the same range, but most of its values are clustered near 6.)
+
 ## Geometry and Trigonometry
 
 ### GEO-01 · Circles · Hard · By hand · computed
@@ -1439,4 +1650,41 @@ A right circular cone has a height of 12 centimeters and a slant height of 13 ce
 **Answer:** A
 
 **Explanation:** The cone's radius is \(\sqrt{13^2-12^2}=5\), but you don't actually need it: equal volumes with equal radii give \(\pi r^2h=\frac13\pi r^2(12)\), so \(h=4\). (The slant height is extra information. 5 is the trap: that's the radius.)
+
+### TOP-08 · Circles · Very hard · Desmos · computed
+
+In the \(xy\)-plane, a circle with center \((4,3)\) and radius \(r\) is tangent to the line \(y=-\frac34x+2\). What is the value of \(r\)?
+
+**Answer:** 16/5
+
+**Explanation:** The radius to a point of tangency is perpendicular to the tangent line, so \(r\) is the distance from \((4,3)\) to the line \(3x+4y-8=0\): \(\frac{|3(4)+4(3)-8|}{\sqrt{3^2+4^2}}=\frac{16}{5}=3.2\).
+
+### TOP-13 · Right triangles and trigonometry · Hard · Desmos · computed
+
+In right triangle \(ABC\), angle \(B\) is a right angle, the measure of angle \(A\) is \(32^\circ\), and \(AC=25\). Which of the following is closest to the length of \(\overline{BC}\)?
+
+- A) \(12.5\)
+- B) \(13.2\)
+- C) \(15.6\)
+- D) \(21.2\)
+
+**Answer:** B
+
+**Explanation:** \(\overline{AC}\) is the hypotenuse, and \(\overline{BC}\) is opposite angle \(A\): \(BC=25\sin32^\circ\approx13.2\). 21.2 comes from using cosine (that gives \(AB\)), and 15.6 comes from tangent.
+
+### TOP-18 · Circles · Very hard · Desmos · computed
+
+In the \(xy\)-plane, the circles \(x^2+y^2=25\) and \((x-6)^2+y^2=13\) intersect at two points. What is the distance between these two points?
+
+**Answer:** 6
+
+**Explanation:** Subtract the equations: \(x^2-(x-6)^2=12\), so \(12x-36=12\) and \(x=4\). Then \(y^2=25-16=9\), so the points are \((4,3)\) and \((4,-3)\), which are 6 apart.
+
+### TOP-22 · Lines, angles, and triangles · Very hard · By hand · computed
+
+In the \(xy\)-plane, a triangle has vertices at \((0,0)\), \((10,0)\), and \((4,8)\). What is the length of the altitude from \((0,0)\) to the opposite side?
+
+**Answer:** 8
+
+**Explanation:** Area using the base on the \(x\)-axis: \(\frac12(10)(8)=40\). The side opposite \((0,0)\) runs from \((10,0)\) to \((4,8)\) and has length \(\sqrt{36+64}=10\). The same area with that side as the base: \(\frac12(10)h=40\), so \(h=8\).
 

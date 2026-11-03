@@ -1,44 +1,58 @@
 # SAT Math Practice
 
-A practice app for the math section of the digital SAT. It's built around hard questions, the built-in Desmos graphing calculator, a timed adaptive test, and a student model that steers practice toward weak skills.
+A practice app for the math section of the digital SAT. It's tuned for a student who already scores in the 700s, so the goal is the last 50–60 points. In practice that means three things: more accuracy on the hardest questions, faster pacing, and reaching for Desmos whenever it's the fastest route.
 
 ## What's in it
 
-**Full Math Section (adaptive).** Two 22-question modules at 35 minutes each, like the real test. Module 1 mixes difficulty levels. A student who gets 14 or more of its 22 questions right is routed to the *harder* Module 2; everyone else gets the standard Module 2. At the end you get an estimated 200–800 score with a likely range, a breakdown by domain, Desmos versus by-hand accuracy, time per question, and a full worked solution for every question.
+**Timed Set (the everyday mode).** A short, test-like block: 11 questions (half a module, 17:25) or 22 (one module, 35:00). It's built at her level, so a 740 student gets only Hard and Very hard questions. The questions are drawn from her trouble spots and weak skills. Pace is either SAT pace (1:35 per question) or **speed training** (1:20 per question, which builds a time buffer for test day). It can focus on one domain or on Desmos questions only.
 
-**Adaptive Practice.** Questions are picked one at a time. The app favors skills where the student is weakest and aims for a difficulty just above her current level in that skill. Every answer updates a per-skill rating. Options:
+**Pacing coach** (optional, in any timed mode):
 
-- 10, 15, or 22 questions
-- focus on one domain, or all four
-- style: a mix, Desmos-only, or by-hand only
-- feedback after each question, or only at the end
-- SAT pace (1:35 per question) or untimed
+- under the timer, a live **ahead / on pace / behind** indicator
+- on each question, a **stopwatch** that turns amber at the target time and red when it's time to guess, mark the question, and move on
 
-**Retry Missed Questions.** Brings back every question she got wrong last time, with explanations.
+**Desmos Speed Drill.** 8 Desmos-route questions. The calculator opens automatically, each question has a target time, and a "Desmos hint" button is available if she's stuck (it counts as half credit). The Desmos solution appears after each answer.
 
-**Test-like interface.** The layout follows the general style of the digital testing app: a header with a countdown timer (with Hide), Calculator, Reference sheet, and Directions; Mark for Review; answer-choice cross-out (ABC); student-produced-response directions and an answer preview; a question navigator; and a Check Your Work page before each module is submitted. The clock can't be hidden in the last 5 minutes, and the module auto-submits at 0:00.
+**Trouble Spots.** Re-serves every question she **missed, answered slowly, or needed a hint on**. A correct answer that took too long counts as a trouble spot, because on test day time costs points.
 
-**Desmos.** The Desmos graphing calculator opens in a side panel that can be expanded, as on test day. Every question is tagged either **Desmos** (graphing is the fastest or smartest route) or **By hand** (reasoning or algebra is the intended route). Every Desmos question comes with a "Desmos strategy" note in its solution.
+**Adaptive Practice.** Questions are chosen one at a time based on accuracy *and speed*, with feedback after each question or only at the end.
 
-**Parent area.** Linked at the bottom of the home page, optionally behind a PIN. It holds:
+**Full Math Section.** Both modules, 2 × 22 questions at 35 minutes each. A student who gets 14 or more right on Module 1 is routed to the harder Module 2. You can save and exit between modules. At the end you get an estimated score.
 
-- the full answer key with explanations
-- a "Remove from practice" switch for each question
-- the calculator setting: always available (real SAT), or only on Desmos questions (to build by-hand skill)
-- progress export, import, and reset
+**Desmos Playbook.** One page of the Desmos techniques that matter on the SAT: sliders for unknown constants, counting solutions, max/min, regression from a table, lists for statistics, equivalent expressions, degree mode, and when *not* to use Desmos. It's also reachable from inside the calculator panel.
+
+**Results after every session** cover:
+
+- **Timing:** time used vs. allowed, average per question, correct-but-slow count, time spent on missed questions, and the biggest time sinks
+- **Desmos use:** how often she opened Desmos on Desmos questions; accuracy and time with vs. without it; "missed Desmos opportunities"
+- a worked solution and Desmos strategy for every question
+
+**Starting level.** The app starts at **740** (the latest official SAT Math score). It changes in the Parent area. After about 20 answers, the app's own estimate takes over.
+
+**Test-like interface.** Timer with Hide, Calculator (Desmos) panel, Reference sheet, Directions, Mark for Review, answer cross-out, grid-in answer preview, question navigator, and a Check Your Work page.
+
+**Parent area** (bottom of the home page, optional PIN):
+
+- answer key with explanations
+- "Remove from practice" switch for each question
+- baseline score and calculator setting
+- export, import, and reset of progress
 
 ## The question bank
 
-There are 130 original questions:
+There are 156 original questions:
 
 | Domain | Count | Medium / Hard / Very hard |
 |---|---|---|
-| Algebra | 28 | 8 / 14 / 6 |
-| Advanced Math | 40 | 4 / 16 / 20 |
-| Problem-Solving & Data Analysis | 33 | 9 / 16 / 8 |
-| Geometry & Trigonometry | 29 | 4 / 15 / 10 |
+| Algebra | 34 | 8 / 18 / 8 |
+| Advanced Math | 52 | 4 / 20 / 28 |
+| Problem-Solving & Data Analysis | 37 | 9 / 19 / 9 |
+| Geometry & Trigonometry | 33 | 4 / 16 / 13 |
 
-About 35% are Desmos-route questions and 65% are by-hand. Most are multiple choice, with student-produced (grid-in) responses mixed in as on the real test. The bank covers all 19 official SAT math skills. It is large enough for two full sections with no repeated questions. After that, the app re-serves questions she missed, and spaces out the ones she already got right.
+- **65 are Desmos-route questions** (graphing is the intended fast route).
+- **23 by-hand questions also show a "Desmos alternative"**, so 88 questions teach a Desmos method.
+- A top-band set of 26 questions targets what separates 740 from 790: tangency and number-of-solutions conditions with parameters, regressions, cubic behavior, messy systems, and statistics from lists.
+- All 19 official SAT math skills are covered.
 
 Every answer key went through several review rounds before it could reach the app. See [review/REVIEW.md](review/REVIEW.md) for the details and [review/answer-key.md](review/answer-key.md) for a readable answer key.
 
@@ -64,7 +78,7 @@ pip install sympy
 cd tools && npm ci && cd ..
 python3 tools/build_bank.py     # verify every question and regenerate app/js/questions.js
 node tools/check_render.js      # compile every math snippet with KaTeX
-node tools/test_engine.js       # grading, adaptivity, and scoring tests
+node tools/test_engine.js       # grading, adaptivity, pacing, and scoring tests
 node tools/e2e.js               # drives the real app in a browser (needs Playwright)
 ```
 
@@ -73,5 +87,7 @@ Math goes inside `\( ... \)` or `\[ ... \]`. A plain `$` is just a dollar sign.
 ## Notes and limits
 
 - The score estimate comes from a statistical model of question difficulty (a Rasch model). It's a useful guide, not an official College Board conversion.
+- Target times per question: 1:00 for Medium, 1:30 for Hard, 2:00 for Very hard. A correct answer more than 30% over its target is counted as "slow".
 - Questions are text-only (tables, but no drawn figures), so geometry questions describe their figures in words.
+- At the top difficulty mix, there are enough unseen Hard and Very hard questions for roughly 3–4 one-module sets per domain mix. After that, the app re-serves trouble spots first.
 - This is an independent practice tool and isn't affiliated with or endorsed by College Board. SAT is a trademark of College Board.
