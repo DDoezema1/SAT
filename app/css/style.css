@@ -266,3 +266,9 @@ label.check { display: flex; align-items: center; gap: 6px; color: var(--ink); }
 .figwrap { margin: 10px 0 16px; text-align: center; }
 svg.fig { max-width: 100%; height: auto; display: inline-block; }
 .figcap { font-family: var(--sans); font-size: 13px; color: var(--muted); font-style: italic; margin-top: 4px; }
+
+/* answer review */
+.reviewbar { margin: 4px 0 6px; }
+.whatwrong { background: var(--red-soft); border: 1px solid #f0c3c0; border-radius: 8px; padding: 10px 14px; margin: 14px 0 4px; font-size: 15px; line-height: 1.5; }
+.whatwrong.slow { background: var(--amber-soft); border-color: #f3d9a8; }
+.qitem.hidden { display: none; }

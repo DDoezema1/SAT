@@ -23,6 +23,13 @@ The math section is tuned for a student who already scores in the 700s, so the g
 
 **Desmos Playbook.** One page of the Desmos techniques that matter on the SAT: sliders for unknown constants, counting solutions, max/min, regression from a table, lists for statistics, equivalent expressions, degree mode, and when *not* to use Desmos. It's also reachable from inside the calculator panel.
 
+**Seeing the answers.**
+- Practice modes (Adaptive Practice, Desmos Drill, Trouble Spots, Rule Drill) show the correct answer, the explanation, and the Desmos strategy or rule right after each question.
+- Timed Sets show answers on the results page.
+- The Full Math Section has an optional **Review Module 1 answers first** button between the modules. It doesn't use any Module 2 time, but skip it for a test-day dress rehearsal.
+- On every review, missed and skipped questions open automatically. Each shows a plain line ("You chose B (…), but the correct answer is A (…)"), the choices marked red and green, the full explanation, and the faster Desmos route or rule.
+- Filters show Missed & skipped / Correct but slow / Marked for review / All.
+
 **Results after every session** cover:
 
 - **Timing:** time used vs. allowed, average per question, correct-but-slow count, time spent on missed questions, and the biggest time sinks

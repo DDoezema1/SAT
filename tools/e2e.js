@@ -94,6 +94,20 @@ const server = http.createServer((req, res) => {
   const route = await page.evaluate(() => JSON.parse(localStorage.getItem("satMathPractice.v1")).active.route);
   assert.strictEqual(route, "m2hard", "16/22 correct must route to the harder module");
   step("routed to harder module 2 after 16/22");
+  // optional Module 1 review before Module 2: 16 right, 6 wrong were answered above
+  step("Module 1 answer review before Module 2");
+  await page.click("#reviewM1");
+  assert.match(await page.textContent(".hero"), /16 of 22/);
+  assert.strictEqual(await page.locator(".qitem").count(), 22);
+  assert.strictEqual(await page.locator(".qitem:not(.hidden)").count(), 6, "missed questions shown by default");
+  assert.strictEqual(await page.locator(".qitem[open]:not(.hidden)").count(), 6, "missed questions open automatically");
+  assert.match(await page.textContent(".qitem:not(.hidden) .whatwrong"), /You chose .* but the correct answer is/);
+  await shot("04b-module1-review");
+  await page.click("[data-filter='all']");
+  assert.strictEqual(await page.locator(".qitem:not(.hidden)").count(), 22);
+  await page.click("[data-filter='marked']");
+  assert.strictEqual(await page.locator(".qitem:not(.hidden)").count(), 1, "the one marked question");
+  await page.click("[data-expand='1']");
   await page.click("#beginM2");
   assert.strictEqual(await page.textContent("#secTitle"), "Section 1, Module 2: Math");
 
@@ -148,7 +162,12 @@ const server = http.createServer((req, res) => {
   step(`results page: estimated score ${score}`);
   assert(score >= 200 && score <= 800);
   assert.strictEqual(await page.locator(".qitem").count(), 44);
-  await page.click(".qitem summary");
+  const missedShown = await page.locator(".qitem:not(.hidden)").count();
+  assert(missedShown > 0 && missedShown < 44, "results open on missed questions only");
+  assert.strictEqual(await page.locator(".qitem[open]:not(.hidden)").count(), missedShown);
+  await page.click("[data-filter='all']");
+  assert.strictEqual(await page.locator(".qitem:not(.hidden)").count(), 44);
+  await page.click("[data-filter='missed']");
   await shot("08-results");
 
   // ---------------------------------------------------------------- practice with feedback

@@ -886,9 +886,27 @@
       <h1>Module 1 complete</h1>
       <p>Nice work. Module 2 has 22 questions and 35 minutes. On the real SAT, which version of Module 2 you get depends on how you did on Module 1. You'll find out which one you got on your score report.</p>
       <p class="muted">Short on time? Save and exit now and start Module 2 later. The timer starts when you click Begin.</p>
-      <p><button class="btn primary" id="beginM2">Begin Module 2</button> <button class="btn" id="laterM2">Save and exit</button></p></div>`);
+      <p><button class="btn primary" id="beginM2">Begin Module 2</button> <button class="btn" id="reviewM1">Review Module 1 answers first</button> <button class="btn" id="laterM2">Save and exit</button></p>
+      <p class="small muted">Reviewing Module 1 now doesn't use any Module 2 time. On the real SAT you can't see answers until your score report, so skip it for a test-day dress rehearsal.</p></div>`);
     $("#beginM2").onclick = () => { S.phase = "q"; save(); renderTest(); };
+    $("#reviewM1").onclick = reviewModule1;
     $("#laterM2").onclick = () => { save(); home(); };
+  }
+
+  function reviewModule1() {
+    const m1 = S.done[0];
+    const items = m1.items.map((i) => ({ id: i.id, resp: i.resp, correct: !!i.correct, secs: i.secs, order: i.order, calc: !!i.calc, hint: !!i.hint, slow: !!i.slow, marked: !!i.marked }));
+    const c = items.filter((i) => i.correct).length;
+    view(`<div class="page">
+      <div class="hero"><div><h1>Module 1 review</h1><p><b>${c} of ${items.length}</b> correct &middot; ${c >= Engine.ROUTE_THRESHOLD ? "enough for the harder Module 2" : `${Engine.ROUTE_THRESHOLD} needed for the harder Module 2`}</p></div>
+        <div><button class="btn primary" id="beginM2">Begin Module 2</button> <button class="btn" id="backBetween">Back</button></div></div>
+      ${reviewListHTML([{ label: "Module 1", items }])}
+      <p style="margin-top:24px"><button class="btn primary" id="beginM2b">Begin Module 2</button></p>
+    </div>`);
+    bindReviewList(app);
+    const begin = () => { S.phase = "q"; save(); renderTest(); };
+    $("#beginM2").onclick = begin; $("#beginM2b").onclick = begin;
+    $("#backBetween").onclick = betweenModules;
   }
 
   function finishSession() {
@@ -901,7 +919,7 @@
     const rec = {
       id: S.id, kind: S.kind, title: S.title, date: Date.now(), route: S.route, pace: S.pace,
       modules: S.done.map((m) => ({ label: m.label, route: m.route, allowed: m.allowed,
-        items: m.items.map((i) => ({ id: i.id, resp: i.resp, correct: !!i.correct, secs: i.secs, order: i.order, calc: !!i.calc, hint: !!i.hint, slow: !!i.slow })) })),
+        items: m.items.map((i) => ({ id: i.id, resp: i.resp, correct: !!i.correct, secs: i.secs, order: i.order, calc: !!i.calc, hint: !!i.hint, slow: !!i.slow, marked: !!i.marked })) })),
     };
     if (S.kind === "full") {
       rec.score = Engine.estimateScore(rec.modules.flatMap((m) => m.items.map((i) => ({ diff: byId[i.id].diff, correct: i.correct }))));
@@ -988,12 +1006,48 @@
       <div class="cards" style="margin-bottom:10px">${timingCard}${desmosCard}
         <div class="card"><h2>By domain</h2><table class="skills"><tbody>${domRows}</tbody></table></div>
       </div>
-      <h3 class="section-title">Question review</h3>
-      <p class="small muted">Click a question to see the full solution. Times in red were over target.</p>
-      ${rec.modules.map((m) => `${rec.modules.length > 1 ? `<h4>${esc(m.label)}${m.route ? (m.route === "m2hard" ? " (harder)" : " (standard)") : ""}</h4>` : ""}
-        <div class="qlist">${m.items.map((i) => reviewItem(i, all.indexOf(i))).join("")}</div>`).join("")}
+      ${reviewListHTML(rec.modules)}
     </div>`);
     $("#homeBtn").onclick = home;
+    bindReviewList(app);
+  }
+
+  /**
+   * Question-by-question review with filters. Missed and skipped questions open
+   * automatically, and by default only they are shown, so what went wrong is
+   * visible without clicking through every question.
+   */
+  function reviewListHTML(modules) {
+    const all = modules.flatMap((m) => m.items).filter((i) => byId[i.id]);
+    const missed = all.filter((i) => !i.correct).length;
+    const slow = all.filter((i) => i.correct && Engine.isSlow(byId[i.id], i.secs)).length;
+    const marked = all.filter((i) => i.marked).length;
+    const def = missed ? "missed" : "all";
+    const fbtn = (k, label, n) => `<button class="btn small ${k === def ? "primary" : ""}" data-filter="${k}" ${n === 0 && k !== "all" ? "disabled" : ""}>${label} (${n})</button>`;
+    return `<h3 class="section-title">Question review</h3>
+      <div class="toolbar reviewbar">
+        ${fbtn("missed", "Missed &amp; skipped", missed)}${fbtn("slow", "Correct but slow", slow)}${fbtn("marked", "Marked for review", marked)}${fbtn("all", "All", all.length)}
+        <span class="sp" style="flex:1"></span><button class="linkbtn" data-expand="1">Expand all</button>&nbsp;&middot;&nbsp;<button class="linkbtn" data-expand="0">Collapse all</button>
+      </div>
+      <p class="small muted" id="reviewHint">${missed ? "Showing the questions you missed, with the correct answer and explanation open. Use the buttons above to see the rest." : "No missed questions. Click any question to see its full solution."} Times in red were over target.</p>
+      ${modules.map((m) => `${modules.length > 1 ? `<h4 class="modhead">${esc(m.label)}${m.route ? (m.route === "m2hard" ? " (harder)" : " (standard)") : ""}</h4>` : ""}
+        <div class="qlist">${m.items.map((i) => reviewItem(i, all.indexOf(i))).join("")}</div>`).join("")}`;
+  }
+
+  function bindReviewList(root) {
+    const items = $$(".qitem", root);
+    const apply = (k) => {
+      $$("[data-filter]", root).forEach((b) => b.classList.toggle("primary", b.dataset.filter === k));
+      for (const el of items) {
+        const show = k === "all" || (k === "missed" && el.dataset.res !== "ok") || (k === "slow" && el.dataset.slow === "1") || (k === "marked" && el.dataset.marked === "1");
+        el.classList.toggle("hidden", !show);
+      }
+      $$(".modhead", root).forEach((h) => { const list = h.nextElementSibling; h.classList.toggle("hidden", !$$(".qitem:not(.hidden)", list).length); });
+    };
+    $$("[data-filter]", root).forEach((b) => (b.onclick = () => apply(b.dataset.filter)));
+    $$("[data-expand]", root).forEach((b) => (b.onclick = () => items.forEach((el) => { if (!el.classList.contains("hidden")) el.open = b.dataset.expand === "1"; })));
+    const def = $("[data-filter].primary", root);
+    if (def) apply(def.dataset.filter);
   }
 
   function reviewItem(i, n) {
@@ -1010,10 +1064,18 @@
       const cls = o === q.answer ? " correct" : o === i.resp ? " wrong" : "";
       return `<div class="crow"><div class="choice${cls}"><span class="letter">${L[di]}</span><span class="ctext">${q.choices[oi]}</span></div></div>`;
     }).join("")}</div>` : "";
-    const flags = `${i.calc ? '<span class="tag">used Desmos</span>' : ""}${i.hint ? '<span class="tag">hint</span>' : ""}${q.desmos && !i.calc && (!i.correct || Engine.isSlow(q, i.secs)) ? '<span class="tag warn">Desmos would help</span>' : ""}`;
-    return `<details class="qitem"><summary><span class="muted">${n + 1}</span><span class="res ${res}">${res === "ok" ? "&#10003;" : res === "no" ? "&#10007;" : "&ndash;"}</span>
+    const slowOk = i.correct && Engine.isSlow(q, i.secs);
+    const choiceText = (o) => q.choices[L.indexOf(o)].replace(/<[^>]+>/g, "").trim();
+    let wrong = "";
+    if (i.resp == null) wrong = `You left this blank. The correct answer is <b>${key}</b>.`;
+    else if (!i.correct) wrong = q.type === "mc"
+      ? `You chose <b>${yours}</b> (${esc(choiceText(i.resp).slice(0, 90))}), but the correct answer is <b>${key}</b> (${esc(choiceText(q.answer).slice(0, 90))}).`
+      : `You entered <b>${yours}</b>, but the correct answer is <b>${key}</b>.`;
+    else if (slowOk) wrong = `Correct, but it took ${fmtTime(i.secs)} against a ${fmtTime(target(q))} target.${q.tip ? " The faster route is below." : ""}`;
+    const flags = `${i.marked ? '<span class="tag">marked</span>' : ""}${i.calc ? '<span class="tag">used Desmos</span>' : ""}${i.hint ? '<span class="tag">hint</span>' : ""}${q.desmos && !i.calc && (!i.correct || Engine.isSlow(q, i.secs)) ? '<span class="tag warn">Desmos would help</span>' : ""}`;
+    return `<details class="qitem" data-res="${res}" data-slow="${slowOk ? 1 : 0}" data-marked="${i.marked ? 1 : 0}" ${res !== "ok" ? "open" : ""}><summary><span class="muted">${n + 1}</span><span class="res ${res}">${res === "ok" ? "&#10003;" : res === "no" ? "&#10007;" : "&ndash;"}</span>
       <span class="meta">${esc(q.skill)} ${calcTag(q)} ${diffTag(q.diff)} ${flags}</span><span class="small ${over ? "slowtime" : "muted"}">${fmtTime(i.secs)}</span></summary>
-      <div class="body">${RW ? `<div class="passage-r">${q.passage}</div>` : ""}<div class="stem">${q.stem}</div>${choices}
+      <div class="body">${wrong ? `<div class="whatwrong ${res === "ok" ? "slow" : ""}">${wrong}</div>` : ""}${RW ? `<div class="passage-r">${q.passage}</div>` : ""}<div class="stem">${q.stem}</div>${choices}
         <div class="answers"><span>Your answer: <b>${yours}</b></span><span>Correct answer: <b>${key}</b></span><span>Time: ${fmtTime(i.secs)} (target ${fmtTime(target(q))})</span><span class="muted">${q.id}</span></div>
         <div class="explain">${q.explain}</div>${tipBox(q)}</div></details>`;
   }
