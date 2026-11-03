@@ -25,8 +25,10 @@ jobs:
         working-directory: tools
       - name: "Round 1: re-derive every answer key"
         run: python3 tools/build_bank.py
-      - name: "Generated bank must be committed"
-        run: git diff --exit-code app/js/questions.js
+      - name: "Reading & Writing bank checks"
+        run: python3 tools/build_rw.py
+      - name: "Generated banks must be committed"
+        run: git diff --exit-code app/js/questions.js app/js/rw_questions.js
       - name: "Round 2: compile every math snippet"
         run: node tools/check_render.js
       - name: "Engine tests (grading, adaptivity, scoring)"
@@ -36,6 +38,7 @@ jobs:
           npx --yes playwright@1.48.2 install --with-deps chromium
           npm install --no-save playwright@1.48.2
           node e2e.js
+          node e2e_rw.js
         working-directory: tools
 
   deploy:

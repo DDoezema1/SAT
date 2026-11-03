@@ -1,8 +1,10 @@
-# SAT Math Practice
+# SAT Practice: Math and Reading & Writing
 
-A practice app for the math section of the digital SAT. It's tuned for a student who already scores in the 700s, so the goal is the last 50–60 points. In practice that means three things: more accuracy on the hardest questions, faster pacing, and reaching for Desmos whenever it's the fastest route.
+A practice app for the digital SAT. The **Math** page (`app/index.html`) and the **Reading & Writing** page (`app/english.html`) share one interface and switch with the tabs at the top.
 
-## What's in it
+The math section is tuned for a student who already scores in the 700s, so the goal is the last 50–60 points. In practice that means three things: more accuracy on the hardest questions, faster pacing, and reaching for Desmos whenever it's the fastest route.
+
+## Math: what's in it
 
 **Timed Set (the everyday mode).** A short, test-like block: 11 questions (half a module, 17:25) or 22 (one module, 35:00). It's built at her level, so a 740 student gets only Hard and Very hard questions. The questions are drawn from her trouble spots and weak skills. Pace is either SAT pace (1:35 per question) or **speed training** (1:20 per question, which builds a time buffer for test day). It can focus on one domain or on Desmos questions only.
 
@@ -38,7 +40,7 @@ A practice app for the math section of the digital SAT. It's tuned for a student
 - baseline score and calculator setting
 - export, import, and reset of progress
 
-## The question bank
+## Math question bank
 
 There are 156 original questions:
 
@@ -56,11 +58,28 @@ There are 156 original questions:
 
 Every answer key went through several review rounds before it could reach the app. See [review/REVIEW.md](review/REVIEW.md) for the details and [review/answer-key.md](review/answer-key.md) for a readable answer key.
 
+## Reading & Writing
+
+This page is built around **must-know rules** rather than a big question bank. Each of its 67 questions is tied to one of 21 high-impact rules. They are weighted toward the question types that are pure rules: grammar/punctuation, transitions, and student-notes questions. Those make up about half of each module and can be answered in 20–40 seconds once the rules are automatic.
+
+- **Must-Know Rules:** every rule on one page, ordered by points, each with an example, the trap the test sets, and a "Drill this rule" button. Covers:
+  - punctuation: joining sentences, colons, nonessential elements, no punctuation in the core, *however*, possessives
+  - grammar: agreement, pronouns, tense, modifiers, complete sentences and parallel forms
+  - transitions and notes questions
+  - reading strategies: words in context, purpose, cross-text, evidence, data, inferences, main idea
+  - pacing
+- **Rule Drill:** shows the rule, then questions that test only that rule, with the rule and its trap repeated after every answer. The home page preselects her weakest rule.
+- **Timed Set:** 9, 13, or 27 questions at SAT pace (1:11 per question) or speed training (1:00 per question). One focus option is "Grammar, transitions & notes", the fast-points block. Results show **which rules cost points** and recommend what to drill next.
+- **Trouble Spots**, **Adaptive Practice**, and the pacing coach work as they do in Math, with **700** as the starting level.
+- Math and Reading & Writing keep **separate progress**.
+
+The Reading & Writing bank is intentionally small and focused. It covers each rule several times, but it doesn't have enough reading questions for full-length R&W modules, so there is no full R&W section yet.
+
 ## Running it
 
 It is a static web page with no server and no install.
 
-- **On one computer:** open `app/index.html` in Chrome, Edge, or Safari. The math renders offline. The Desmos calculator needs an internet connection.
+- **On one computer:** open `app/index.html` (Math) or `app/english.html` (Reading & Writing) in Chrome, Edge, or Safari. The math renders offline. The Desmos calculator needs an internet connection.
 - **As a website (recommended):** the included GitHub workflow publishes `app/` to GitHub Pages. One-time setup: in the repo, go to **Settings → Pages → Source** and choose **GitHub Actions**. After the next push to `main`, the site is at `https://<your-user>.github.io/<repo>/`.
 
 Progress is saved in the browser, so use the same computer and browser each time. To move to another computer, use Export/Import in the Parent area.
@@ -76,10 +95,12 @@ Questions are written in Python under `bank/`. Each one has a `verify` function 
 ```bash
 pip install sympy
 cd tools && npm ci && cd ..
-python3 tools/build_bank.py     # verify every question and regenerate app/js/questions.js
+python3 tools/build_bank.py     # verify every math question and regenerate app/js/questions.js
+python3 tools/build_rw.py       # check the Reading & Writing bank and regenerate app/js/rw_questions.js
 node tools/check_render.js      # compile every math snippet with KaTeX
 node tools/test_engine.js       # grading, adaptivity, pacing, and scoring tests
-node tools/e2e.js               # drives the real app in a browser (needs Playwright)
+node tools/e2e.js               # drives the Math page in a browser (needs Playwright)
+node tools/e2e_rw.js            # drives the Reading & Writing page
 ```
 
 Math goes inside `\( ... \)` or `\[ ... \]`. A plain `$` is just a dollar sign.

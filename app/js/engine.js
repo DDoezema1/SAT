@@ -8,15 +8,15 @@
   // roughly 500 + 100*theta. Medium is about a 550 item, hard 650, very hard 730.
   const B = { 1: 0.5, 2: 1.5, 3: 2.3 };
   const DIFF_NAME = { 1: "Medium", 2: "Hard", 3: "Very hard" };
-  const PACE_SEC = 95;            // 35 min / 22 questions, about the real pace
-  const SPEED_PACE_SEC = 80;      // training pace: builds a time buffer for the hardest questions
+  let PACE_SEC = 95;              // 35 min / 22 questions, about the real pace
+  let SPEED_PACE_SEC = 80;        // training pace: builds a time buffer for the hardest questions
   // Time a strong student should need per question, by difficulty. Correct answers that
   // take more than SLOW_FACTOR times this count as "slow" (only partly mastered).
   const TARGET_SEC = { 1: 60, 2: 90, 3: 120 };
   const SLOW_FACTOR = 1.3;
-  const DEFAULT_BASELINE = 740;   // most recent official SAT Math score (editable in the Parent area)
-  const MODULE_SEC = 35 * 60;
-  const MODULE_LEN = 22;
+  let DEFAULT_BASELINE = 740;     // most recent official SAT Math score (editable in the Parent area)
+  let MODULE_SEC = 35 * 60;
+  let MODULE_LEN = 22;
   const BLUEPRINT = { ALG: 7, ADV: 7, PSD: 4, GEO: 4 };   // per module, ~SAT domain weights
   const DIFF_MIX = {
     m1: { 1: 6, 2: 10, 3: 6 },
@@ -313,7 +313,24 @@
     return { score: clamp(500 + 100 * th), low: clamp(500 + 100 * (th - se)), high: clamp(500 + 100 * (th + se)), theta: th };
   }
 
+  /**
+   * Switch subject-specific settings (used by the Reading & Writing page). Must be called
+   * before any state is created. cfg: {pace, speedPace, target, blueprint, moduleLen,
+   * moduleSec, baseline}
+   */
+  function configure(cfg) {
+    if (cfg.pace) PACE_SEC = cfg.pace;
+    if (cfg.speedPace) SPEED_PACE_SEC = cfg.speedPace;
+    if (cfg.target) Object.assign(TARGET_SEC, cfg.target);
+    if (cfg.blueprint) { for (const k of Object.keys(BLUEPRINT)) delete BLUEPRINT[k]; Object.assign(BLUEPRINT, cfg.blueprint); }
+    if (cfg.moduleLen) MODULE_LEN = cfg.moduleLen;
+    if (cfg.moduleSec) MODULE_SEC = cfg.moduleSec;
+    if (cfg.baseline) DEFAULT_BASELINE = cfg.baseline;
+    Object.assign(api, { PACE_SEC, SPEED_PACE_SEC, MODULE_LEN, MODULE_SEC, DEFAULT_BASELINE });
+  }
+
   const api = {
+    configure,
     B, DIFF_NAME, PACE_SEC, SPEED_PACE_SEC, TARGET_SEC, SLOW_FACTOR, MODULE_SEC, MODULE_LEN, BLUEPRINT, ROUTE_THRESHOLD, DEFAULT_BASELINE,
     parseRational, sprInputAllowed, gradeSPR, isCorrect, isSlow, isTrouble, troubleIds,
     defaultState, setBaseline, scoreToTheta, thetaToScore, recordAnswer, mastery, levelMix, scaleBlueprint,

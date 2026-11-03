@@ -47,6 +47,26 @@ Every stem, choice, key, and explanation was re-read and re-solved, looking for 
 - **Round 3:** read through and re-solved. One fix: TOP-06 asked what "must be true" about one specific data set; it now asks which statements "are true".
 - Every Desmos alternative was checked against the question's own numbers. For example, the GEO-02 note gives the diameter as \(2\sqrt{17}\approx8.25\), and the PSD-24 list has the right 20 values.
 
+## Reading & Writing questions
+
+English answers can't be computed, so these 67 questions went through different rounds. They are labeled "reviewed", not "computer-verified".
+
+1. **Automated consistency checks** (`tools/build_rw.py`, run on every build and in CI):
+   - every question links to a real rule
+   - 4 distinct choices and exactly one blank in fill-in questions
+   - passages within SAT length
+   - no explanation refers to a choice by its letter (choices are shuffled)
+   - **each explanation must quote the keyed choice exactly** in quotation marks, which catches a key typed with the wrong letter
+
+   To test the checks, wrong letters were planted on three questions, and the build caught all three. (While doing this, I found that Python could run a stale cached copy of the bank; the build scripts now bypass that cache.)
+2. **Separate re-solve:** I printed the reading and rhetoric questions with the answers hidden, solved each one again, and compared with the keys. Every key matched. Two items were tightened:
+   - **RW-INF-01:** a wrong quotation could arguably support the original claim, so the claim was rewritten until exactly one quotation fits.
+   - **RW-EXP-12:** the keyed answer said "became widely known", which the notes never state. Notes answers must stick to the notes, so it now says only what the notes support.
+3. **Grammar items** were written against the rule they test, with distractors that each break a specific rule, and re-checked against that rule.
+4. **Browser check:** all 67 questions render in the app, in the Parent area and in practice.
+
+Passages use well-established facts (for example the 1815 Tambora eruption, the 1994 Card–Krueger study, and Fleming's 1928 observation). The quoted literary texts are public domain (Dickinson; Austen's *Pride and Prejudice*) and were checked against their standard wording.
+
 ## Your round
 
-In the app, the **Parent area** (link at the bottom of the home page) shows every question with its answer and explanation. If anything looks off to you, check **Remove from practice** and that question will never be served. This file's companion, [answer-key.md](answer-key.md), has the same content as a plain document you can read through or print.
+In the app, the **Parent area** (link at the bottom of the home page) shows every question with its answer and explanation. If anything looks off to you, check **Remove from practice** and that question will never be served. [answer-key.md](answer-key.md) (Math) and [rw-answer-key.md](rw-answer-key.md) (Reading & Writing, grouped by rule) have the same content as plain documents you can read through or print.

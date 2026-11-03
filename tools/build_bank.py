@@ -26,6 +26,7 @@ import sympy as sp
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
+sys.dont_write_bytecode = True   # never run a stale cached copy of the bank
 
 from bank.common import QUESTIONS, SKILLS  # noqa: E402
 import bank.algebra, bank.advanced, bank.psda, bank.geometry  # noqa: E402,F401

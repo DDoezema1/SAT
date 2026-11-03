@@ -240,3 +240,24 @@ label.check { display: flex; align-items: center; gap: 6px; color: var(--ink); }
 .pb code, .tipbox code { background: #eef1f6; padding: 1px 5px; border-radius: 4px; font-size: 13px; }
 .calc-open .qpane.dirpane { display: none; }
 .qhead .mark, .qhead .watch, .qhead .btn, .qhead .tag { white-space: nowrap; }
+
+/* ------------------------------------------------------------------ Reading & Writing */
+.subjtabs { display: flex; gap: 6px; margin-bottom: 18px; }
+.subjtabs a { padding: 7px 16px; border-radius: 20px; border: 1px solid var(--line); text-decoration: none; color: var(--ink); font-weight: 600; font-size: 14px; }
+.subjtabs a.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.qpane.passage { border-right: 3px solid var(--line); font-family: var(--serif); font-size: 17px; line-height: 1.7; max-width: 50%; }
+.qpane.passage p { margin: 0 0 12px; }
+.qpane.passage ul, .passage-r ul { margin: 6px 0 0; padding-left: 22px; }
+.qpane.passage li, .passage-r li { margin-bottom: 6px; }
+.txtlabel { font-family: var(--sans); font-weight: 700; margin: 16px 0 4px !important; }
+.blank { display: inline-block; min-width: 70px; border-bottom: 2px solid var(--ink); color: transparent; line-height: 1.1; }
+.rwstem { font-size: 16.5px; }
+.passage-r { font-family: var(--serif); font-size: 16px; line-height: 1.6; background: var(--soft); border-radius: 8px; padding: 12px 16px; margin: 14px 0 6px; }
+.passage-r p { margin: 0 0 8px; }
+.rulebox { background: #f3f5fc; border-left-color: var(--blue); }
+.rulebox b { color: var(--blue-dark); }
+.pbgroup { grid-column: 1 / -1; margin: 18px 0 0; font-size: 17px; }
+.pb .ex { color: #1b6e3c; }
+.pb .trap { color: var(--amber); }
+@media (max-width: 820px) { .qpane.passage { max-width: none; border-right: none; border-bottom: 3px solid var(--line); } }
+.rulebox { margin-bottom: 16px; }
