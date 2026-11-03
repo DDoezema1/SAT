@@ -374,6 +374,21 @@ The error went unnoticed through three printings: neither the author nor her edi
 
 **Why:** With “neither … nor,” the verb agrees with the nearer subject, “her editors,” which is plural. The story is in the past (“went unnoticed”): “were”.
 
+### RW-SEC-40 · Form, Structure, and Sense · difficulty 3
+
+The James Webb Space Telescope's primary mirror, made of eighteen gold-coated hexagonal segments that unfolded after launch, ______ more than six times as much light-collecting area as the Hubble Space Telescope's mirror.
+
+*Which choice completes the text so that it conforms to the conventions of Standard English?*
+
+- A) have
+- B) has
+- C) having
+- D) to have
+
+**Answer:** B
+
+**Why:** The subject is “mirror,” which is singular; “eighteen … segments” is part of the description between the commas. The sentence needs a finite singular verb: “has”. “Having” and “to have” would leave the sentence without a main verb.
+
 ## Pronoun agreement & clarity
 
 ### RW-SEC-25 · Form, Structure, and Sense · difficulty 2
@@ -468,6 +483,36 @@ Before the printing press arrived in Europe in the mid-1400s, scribes copied boo
 
 **Why:** The passage describes the past (“Before … the mid-1400s, scribes copied”), so the simple past matches: “took”.
 
+### RW-SEC-37 · Form, Structure, and Sense · difficulty 2
+
+The first transcontinental railroad in the United States was completed in May 1869. By that time, workers ______ nearly 2,000 miles of track across mountains, deserts, and plains, connecting the eastern rail network to California.
+
+*Which choice completes the text so that it conforms to the conventions of Standard English?*
+
+- A) lay
+- B) have laid
+- C) had laid
+- D) will have laid
+
+**Answer:** C
+
+**Why:** “By that time” points to an action completed before another past event (the 1869 completion), which calls for the past perfect: “had laid”. “Have laid” connects to the present, and “will have laid” is future.
+
+### RW-SEC-38 · Form, Structure, and Sense · difficulty 2
+
+The Cassini spacecraft orbited Saturn for thirteen years. During that time, it ______ hundreds of thousands of images of the planet, its rings, and its moons before its mission ended with a planned plunge into Saturn's atmosphere in 2017.
+
+*Which choice completes the text so that it conforms to the conventions of Standard English?*
+
+- A) captures
+- B) has captured
+- C) captured
+- D) will capture
+
+**Answer:** C
+
+**Why:** The passage describes a mission that is over (“orbited,” “ended … in 2017”), so the simple past matches: “captured”. The present, present perfect, and future forms don't fit a finished past mission.
+
 ## Dangling modifiers
 
 ### RW-SEC-31 · Form, Structure, and Sense · difficulty 3
@@ -561,6 +606,21 @@ The park's volunteer program trains participants to monitor water quality in the
 **Answer:** B
 
 **Why:** The list items must match: “to monitor …, to remove …, and to educate.” Since the last item keeps “to,” the middle one must too: “to remove”.
+
+### RW-SEC-39 · Form, Structure, and Sense · difficulty 3
+
+After examining the chemical makeup of the glass ingots recovered from the ancient shipwreck, the archaeologists ______ that the glass had most likely been produced in workshops hundreds of miles from where the ship sank.
+
+*Which choice completes the text so that it conforms to the conventions of Standard English?*
+
+- A) concluding
+- B) to conclude
+- C) concluded
+- D) having concluded
+
+**Answer:** C
+
+**Why:** The subject “the archaeologists” needs a main verb, and only “concluded” is a finite verb. The other choices leave the sentence without one, making it a fragment.
 
 ## Transitions: name the relationship first
 
@@ -823,6 +883,156 @@ Reporters hoping for a clear answer were disappointed: the committee's report wa
 
 **Why:** The report offered “no firm recommendations” and hedged every claim, so it was vague and noncommittal: “equivocal,”. “Incisive” means the opposite (sharp and clear).
 
+### RW-CRF-09 · Words in Context · difficulty 2
+
+Although the new documentary covers the composer's entire career, it devotes the most attention to her early years in Havana, a period that earlier biographers had largely ______ in favor of her later international fame.
+
+*Which choice completes the text with the most logical and precise word or phrase?*
+
+- A) emphasized
+- B) overlooked
+- C) celebrated
+- D) fabricated
+
+**Answer:** B
+
+**Why:** “In favor of her later international fame” tells you earlier biographers focused elsewhere, so they paid little attention to the early years: “overlooked”. “Emphasized” and “celebrated” reverse the logic, and nothing suggests anyone made anything up.
+
+### RW-CRF-10 · Words in Context · difficulty 2
+
+The engineers' initial design for the pedestrian bridge proved remarkably ______ in load tests, it supported nearly three times the weight required by the city's safety codes without any measurable damage.
+
+*Which choice completes the text with the most logical and precise word or phrase?*
+
+- A) fragile:
+- B) robust:
+- C) ornate:
+- D) provisional:
+
+**Answer:** B
+
+**Why:** The colon introduces evidence: the bridge held three times the required weight without damage. That describes a strong design, so “robust:”. “Fragile” is the opposite, and “ornate” (decorative) and “provisional” (temporary) aren't supported.
+
+### RW-CRF-11 · Words in Context · difficulty 3
+
+Rather than ______ the earlier study's conclusions about sleep and memory, the new research builds on them, using a sample ten times larger to confirm the original findings and extend them to older adults.
+
+*Which choice completes the text with the most logical and precise word or phrase?*
+
+- A) refute
+- B) corroborate
+- C) replicate
+- D) extend
+
+**Answer:** A
+
+**Why:** “Rather than” signals the opposite of what the new research does. It confirms and builds on the earlier conclusions, so the contrast is with disproving them: “refute”. “Corroborate,” “replicate,” and “extend” all describe what the new research actually does, which is the trap.
+
+### RW-CRF-12 · Words in Context · difficulty 3
+
+Many reviewers found the novel's ending ______ after hundreds of pages of slowly building tension between the two families, the conflict is resolved in a single abrupt paragraph that leaves several major questions unanswered.
+
+*Which choice completes the text with the most logical and precise word or phrase?*
+
+- A) perfunctory:
+- B) meticulous:
+- C) inevitable:
+- D) sentimental:
+
+**Answer:** A
+
+**Why:** The explanation after the colon describes an ending that is rushed and incomplete (“a single abrupt paragraph”), so “perfunctory:” (done quickly and without care) fits. “Meticulous” is the opposite. Nothing suggests the ending was predictable or overly emotional.
+
+### RW-CRF-13 · Words in Context · difficulty 2
+
+The historian cautions that the surviving letters offer only a ______ picture of daily life in the colony: nearly all of them were written by a handful of wealthy merchants, so the experiences of farmers, laborers, and enslaved people are largely missing.
+
+*Which choice completes the text with the most logical and precise word or phrase?*
+
+- A) partial
+- B) vivid
+- C) fictional
+- D) comprehensive
+
+**Answer:** A
+
+**Why:** “Only” and the explanation that most people's experiences are “largely missing” point to an incomplete picture: “partial”. “Comprehensive” is the opposite, and nothing suggests the letters are invented.
+
+### RW-CRF-14 · Words in Context · difficulty 2
+
+Oceanographer Sylvia Earle has spent more than five decades advocating for marine conservation. Her ______ efforts led her organization, Mission Blue, to recognize more than 100 “Hope Spots,” ocean areas that are critical to the health of the sea and deserve special protection.
+
+*Which choice completes the text with the most logical and precise word or phrase?*
+
+- A) sporadic
+- B) tireless
+- C) reluctant
+- D) clandestine
+
+**Answer:** B
+
+**Why:** “More than five decades” of advocacy that produced more than 100 Hope Spots describes sustained, energetic work: “tireless”. “Sporadic” (occasional) and “reluctant” contradict decades of commitment, and “clandestine” (secret) doesn't fit public advocacy.
+
+### RW-CRF-15 · Words in Context · difficulty 3
+
+The following text is from Jack London's 1903 novel The Call of the Wild . Buck did not read the newspapers, or he would have known that trouble was brewing, not alone for himself, but for every tide-water dog, strong of muscle and with warm, long hair, from Puget Sound to San Diego.
+
+*As used in the text, what does the word “brewing” most nearly mean?*
+
+- A) fermenting
+- B) developing
+- C) steeping
+- D) boiling
+
+**Answer:** B
+
+**Why:** Trouble that is “brewing” is trouble that is beginning to form and will soon arrive: “developing”. “Fermenting,” “steeping,” and “boiling” are literal meanings related to making drinks, which is the common-meaning trap.
+
+### RW-CRF-16 · Words in Context · difficulty 2
+
+The following text is from Herman Melville's 1851 novel Moby-Dick . Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.
+
+*As used in the text, what does the word “interest” most nearly mean?*
+
+- A) engage
+- B) benefit
+- C) alarm
+- D) charge
+
+**Answer:** A
+
+**Why:** Ishmael has nothing on shore to hold his attention, so “interest” means to occupy or hold his attention: “engage”. “Charge” plays on the financial meaning of interest (prompted by the mention of money), which is the trap.
+
+### RW-CRF-17 · Words in Context · difficulty 2
+
+Because the theory makes ______ predictions, stating exactly how many arc seconds a planet's orbit should shift each century, scientists can test it directly against telescope observations.
+
+*Which choice completes the text with the most logical and precise word or phrase?*
+
+- A) vague
+- B) precise
+- C) controversial
+- D) modest
+
+**Answer:** B
+
+**Why:** The text explains that the predictions state exactly how much the orbit should shift, and that is why they can be tested. So the predictions are “precise”. “Vague” is the opposite.
+
+### RW-CRF-18 · Words in Context · difficulty 3
+
+The architect's designs are deliberately ______ although her buildings use the clean lines and glass walls of modern architecture, they are organized around open courtyards modeled on traditional homes found throughout the region.
+
+*Which choice completes the text with the most logical and precise word or phrase?*
+
+- A) eclectic:
+- B) austere:
+- C) derivative:
+- D) whimsical:
+
+**Answer:** A
+
+**Why:** The explanation after the colon describes designs that combine elements from different styles (modern and traditional), which is what “eclectic:” means. “Derivative” is negative and suggests mere copying, which the text doesn't imply. “Austere” and “whimsical” don't describe a combination.
+
 ## Purpose & structure: what does it DO?
 
 ### RW-CRF-05 · Text Structure and Purpose · difficulty 3
@@ -854,6 +1064,36 @@ Many people believe that sharks must swim constantly in order to breathe. This i
 **Answer:** A
 
 **Why:** The text states a belief, confirms it for some species, then gives an exception (“But other sharks…”). That pattern is qualifying a common belief. No scientists debate, no steps are listed, and no theories are compared.
+
+### RW-CRF-19 · Text Structure and Purpose · difficulty 2
+
+In 1977, Kenyan environmentalist Wangari Maathai founded the Green Belt Movement, which pays women in rural communities to plant trees. The trees help restore damaged soil and provide firewood, but Maathai saw the program as more than an environmental project: by earning income and organizing their communities, the women gained a voice in local decisions. In 2004, Maathai became the first African woman to receive the Nobel Peace Prize.
+
+*Which choice best states the main purpose of the text?*
+
+- A) To describe an environmental program and show that its founder saw it as serving social goals as well
+- B) To argue that tree planting is the most effective way to prevent soil erosion
+- C) To compare Maathai's work with the work of other Nobel Peace Prize winners
+- D) To explain how the trees planted by the program are used for firewood
+
+**Answer:** A
+
+**Why:** The text presents the Green Belt Movement and stresses that Maathai saw it as “more than an environmental project,” because it gave women income and a voice. The first choice captures both parts. No argument about the “most effective” method is made, no comparison appears, and firewood is a minor detail.
+
+### RW-CRF-20 · Text Structure and Purpose · difficulty 3
+
+The Venus flytrap's leaves snap shut when an insect touches the small trigger hairs on their inner surface. A single touch, however, is not enough: the trap closes only if a second hair is touched within about 20 seconds of the first. This two-touch requirement likely keeps the plant from wasting energy by closing on raindrops or bits of debris that brush against it only once.
+
+*Which choice best describes the function of the third sentence in the overall structure of the text?*
+
+- A) It offers a likely explanation for the requirement described in the second sentence.
+- B) It describes a second type of trap used by the Venus flytrap.
+- C) It challenges the claim made in the first sentence about how the trap closes.
+- D) It gives an example of an insect that triggers the trap.
+
+**Answer:** A
+
+**Why:** The second sentence describes the two-touch requirement, and the third explains why it probably exists (to avoid wasting energy). So it offers a likely explanation for that requirement. It doesn't introduce a new trap, contradict the first sentence, or name an insect.
 
 ## Two texts: how would author 2 respond?
 
@@ -951,6 +1191,21 @@ A city's transportation department surveyed residents in 2010 and 2020 about how
 
 **Why:** The claim compares the bicycle increase to the car decline. The bicycle share rose by 6 percentage points while the car share fell by 8 percentage points: 6 of the 8 points is “most.” The walking and bus choices are accurate but don't address the claim, and the last choice misreads 64 as 54.
 
+### RW-INF-13 · Command of Evidence · difficulty 3
+
+A student researching a town's energy use claims that solar power overtook wind power as a source of the town's electricity during the period shown in the table. Year Solar (gigawatt-hours) Wind (gigawatt-hours) 2018 12 14 2019 15 13 2020 21 16
+
+*Which choice best describes data from the table that support the student's claim?*
+
+- A) Wind produced more electricity than solar in 2018, but solar produced more than wind in both 2019 and 2020.
+- B) Solar production increased every year from 2018 to 2020.
+- C) Wind production was highest in 2020.
+- D) Solar produced more electricity than wind in every year shown.
+
+**Answer:** A
+
+**Why:** “Overtook” requires wind to be ahead first and solar to be ahead later. Only the first choice shows both: wind led in 2018 (14 vs. 12), and solar led in 2019 and 2020. The second and third choices are true but don't show solar passing wind. The last choice is false, because wind led in 2018.
+
 ## Inferences: the most modest conclusion
 
 ### RW-INF-05 · Inferences · difficulty 3
@@ -997,6 +1252,36 @@ Mercury is the planet closest to the Sun, and Venus is the second closest. Since
 **Answer:** A
 
 **Why:** “However” signals that the expectation (Venus is cooler) is wrong, and “traps heat so effectively” explains why: Venus's surface is hotter than Mercury's. The second choice contradicts the “thick clouds” that reflect light, and the last choice contradicts the first sentence.
+
+### RW-INF-11 · Inferences · difficulty 2
+
+Many songbirds learn their songs by listening to adult birds during a sensitive period early in life. In classic experiments, young white-crowned sparrows raised without hearing adult songs developed abnormal songs, while those that heard recordings of adult songs during their first months developed normal ones. These findings suggest that ______
+
+*Which choice most logically completes the text?*
+
+- A) hearing adult songs early in life is important for these sparrows to develop typical songs.
+- B) all songbirds are born knowing the songs of their species.
+- C) white-crowned sparrows cannot learn songs from recordings.
+- D) adult sparrows deliberately teach songs to young birds through demonstration.
+
+**Answer:** A
+
+**Why:** Birds that heard adult songs early developed normal songs, and birds that didn't developed abnormal ones, so hearing adult songs early in life is important for typical songs. The second choice is contradicted (the isolated birds' songs were abnormal), the third is contradicted (recordings worked), and the text never says adults teach deliberately.
+
+### RW-INF-12 · Inferences · difficulty 3
+
+Coral reefs cover less than 1 percent of the ocean floor, yet they are home to roughly a quarter of all known marine species. Because so many species depend on such a small area, ______
+
+*Which choice most logically completes the text?*
+
+- A) damage to coral reefs could affect a disproportionately large share of the ocean's biodiversity.
+- B) most marine species could easily move to other habitats if reefs were damaged.
+- C) coral reefs are the only marine habitats that support more than one species.
+- D) the ocean floor outside coral reefs supports no marine life.
+
+**Answer:** A
+
+**Why:** If about 25 percent of species depend on less than 1 percent of the ocean floor, then harming that small area could harm a share of species far larger than its size: damage to coral reefs could affect a disproportionately large share of the ocean's biodiversity. The other choices are unsupported or contradicted (“only,” “no marine life”).
 
 ## Main idea: the whole text, not one detail
 

@@ -261,3 +261,8 @@ label.check { display: flex; align-items: center; gap: 6px; color: var(--ink); }
 .pb .trap { color: var(--amber); }
 @media (max-width: 820px) { .qpane.passage { max-width: none; border-right: none; border-bottom: 3px solid var(--line); } }
 .rulebox { margin-bottom: 16px; }
+
+/* figures */
+.figwrap { margin: 10px 0 16px; text-align: center; }
+svg.fig { max-width: 100%; height: auto; display: inline-block; }
+.figcap { font-family: var(--sans); font-size: 13px; color: var(--muted); font-style: italic; margin-top: 4px; }
