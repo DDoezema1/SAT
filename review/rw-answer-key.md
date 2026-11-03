@@ -81,7 +81,7 @@ The ecologists identified three factors that predicted how quickly a coral reef 
 
 ### RW-SEC-07 · Boundaries · difficulty 3
 
-The museum's new exhibit on twentieth-century Mexican art features works by ______ Frida Kahlo, Diego Rivera, and Rufino Tamayo.
+The museum's new exhibit on twentieth-century Mexican art focuses on painters who helped shape the country's cultural identity after the Mexican Revolution. It features works by ______ Frida Kahlo, Diego Rivera, and Rufino Tamayo.
 
 *Which choice completes the text so that it conforms to the conventions of Standard English?*
 
@@ -299,7 +299,7 @@ Two independent groups, one in Canada and one in Japan, studied how sleep affect
 
 ### RW-SEC-20 · Boundaries · difficulty 2
 
-The Andean ______ wings, which can span ten feet, allow it to soar for hours over the mountains while barely flapping.
+Andean condors are among the largest flying birds in the world. The Andean ______ wings, which can span ten feet, allow it to soar for hours over the mountains while barely flapping.
 
 *Which choice completes the text so that it conforms to the conventions of Standard English?*
 
@@ -331,7 +331,7 @@ The collection of ancient manuscripts, many of which were rescued from flooded m
 
 ### RW-SEC-22 · Form, Structure, and Sense · difficulty 3
 
-Near the center of the Milky Way ______ a supermassive black hole, Sagittarius A*, with a mass about four million times that of the Sun.
+Astronomers have long suspected that most large galaxies have enormous black holes at their centers, and our own galaxy is no exception. Near the center of the Milky Way ______ a supermassive black hole, Sagittarius A*, with a mass about four million times that of the Sun.
 
 *Which choice completes the text so that it conforms to the conventions of Standard English?*
 
@@ -346,7 +346,7 @@ Near the center of the Milky Way ______ a supermassive black hole, Sagittarius A
 
 ### RW-SEC-23 · Form, Structure, and Sense · difficulty 2
 
-Each of the volunteers who participated in last winter's bird count ______ trained in advance to identify local species by their songs and calls.
+Bird counts depend on volunteers who can identify species quickly and accurately, often without ever seeing the birds. Each of the volunteers who participated in last winter's bird count ______ trained in advance to identify local species by their songs and calls.
 
 *Which choice completes the text so that it conforms to the conventions of Standard English?*
 
@@ -472,7 +472,7 @@ Before the printing press arrived in Europe in the mid-1400s, scribes copied boo
 
 ### RW-SEC-31 · Form, Structure, and Sense · difficulty 3
 
-Born in 1907 in Coyoacán, Mexico, ______
+Frida Kahlo is among the most celebrated painters of the twentieth century, and many of her best-known works are self-portraits. Born in 1907 in Coyoacán, Mexico, ______
 
 *Which choice completes the text so that it conforms to the conventions of Standard English?*
 
@@ -487,7 +487,7 @@ Born in 1907 in Coyoacán, Mexico, ______
 
 ### RW-SEC-32 · Form, Structure, and Sense · difficulty 3
 
-After analyzing thousands of hours of underwater recordings, ______
+Male humpback whales in a population sing a shared song, but the song does not stay the same from one season to the next. After analyzing thousands of hours of underwater recordings, ______
 
 *Which choice completes the text so that it conforms to the conventions of Standard English?*
 
@@ -502,7 +502,7 @@ After analyzing thousands of hours of underwater recordings, ______
 
 ### RW-SEC-33 · Form, Structure, and Sense · difficulty 2
 
-Stretching thousands of miles across northern China, ______
+The Great Wall is not a single continuous structure but a network of walls and fortifications built and connected by different dynasties. Stretching thousands of miles across northern China, ______
 
 *Which choice completes the text so that it conforms to the conventions of Standard English?*
 
@@ -906,7 +906,7 @@ Text 1 For much of the twentieth century, many paleontologists pictured dinosaur
 
 ### RW-INF-02 · Command of Evidence · difficulty 2
 
-Researchers hypothesized that American crows can recognize individual human faces and remember people who have threatened them.
+American crows live in family groups and often band together to harass predators that threaten them. Researchers hypothesized that American crows can recognize individual human faces and remember people who have threatened them.
 
 *Which finding, if true, would most directly support the researchers' hypothesis?*
 

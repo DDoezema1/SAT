@@ -53,7 +53,7 @@ Q(id="RW-SEC-06", domain="SEC", skill="Boundaries", diff=2, rule="colon",
   explain="A complete sentence introduces a list, so a colon is correct: &ldquo;event:&rdquo;. A semicolon must be followed by a complete sentence, and the list isn't one. A comma creates a confusing run-on list. A colon after &ldquo;such as&rdquo; is always wrong.")
 
 Q(id="RW-SEC-07", domain="SEC", skill="Boundaries", diff=3, rule="colon",
-  passage=f"<p>The museum's new exhibit on twentieth-century Mexican art features works by {B} Frida Kahlo, Diego Rivera, and Rufino Tamayo.</p>",
+  passage=f"<p>The museum's new exhibit on twentieth-century Mexican art focuses on painters who helped shape the country's cultural identity after the Mexican Revolution. It features works by {B} Frida Kahlo, Diego Rivera, and Rufino Tamayo.</p>",
   stem=CONV, choices=["artists such as:", "artists such as", "artists, such as:", "artists; such as"], answer="B",
   explain="&ldquo;Works by artists such as&rdquo; isn't a complete sentence, so no colon can follow it, and a semicolon can't either. The phrase flows straight into its list: &ldquo;artists such as&rdquo;.")
 
@@ -118,7 +118,7 @@ Q(id="RW-SEC-19", domain="SEC", skill="Boundaries", diff=3, rule="possessive",
   explain="&ldquo;Both&rdquo; means more than one team, and the findings belong to them, so the plural possessive is needed: &ldquo;teams'&rdquo;. &ldquo;Teams&rdquo; with no apostrophe isn't possessive, and &ldquo;team's&rdquo; is singular.")
 
 Q(id="RW-SEC-20", domain="SEC", skill="Boundaries", diff=2, rule="possessive",
-  passage=f"<p>The Andean {B} wings, which can span ten feet, allow it to soar for hours over the mountains while barely flapping.</p>",
+  passage=f"<p>Andean condors are among the largest flying birds in the world. The Andean {B} wings, which can span ten feet, allow it to soar for hours over the mountains while barely flapping.</p>",
   stem=CONV, choices=["condors", "condors'", "condor's", "condors's"], answer="C",
   explain="&ldquo;Allow it&rdquo; tells you there is one condor, and the wings belong to it: singular possessive &ldquo;condor's&rdquo;.")
 
@@ -129,12 +129,12 @@ Q(id="RW-SEC-21", domain="SEC", skill="Form, Structure, and Sense", diff=3, rule
   explain="Cross out &ldquo;of ancient manuscripts&rdquo; and the extra information between the commas: the subject is &ldquo;The collection,&rdquo; which is singular. &ldquo;Now&rdquo; signals present tense: &ldquo;is&rdquo;.")
 
 Q(id="RW-SEC-22", domain="SEC", skill="Form, Structure, and Sense", diff=3, rule="agreement",
-  passage=f"<p>Near the center of the Milky Way {B} a supermassive black hole, Sagittarius A*, with a mass about four million times that of the Sun.</p>",
+  passage=f"<p>Astronomers have long suspected that most large galaxies have enormous black holes at their centers, and our own galaxy is no exception. Near the center of the Milky Way {B} a supermassive black hole, Sagittarius A*, with a mass about four million times that of the Sun.</p>",
   stem=CONV, choices=["lie", "lies", "are lying", "have lain"], answer="B",
   explain="The sentence is inverted: the subject comes after the verb. What lies near the center? &ldquo;a supermassive black hole,&rdquo; which is singular: &ldquo;lies&rdquo;.")
 
 Q(id="RW-SEC-23", domain="SEC", skill="Form, Structure, and Sense", diff=2, rule="agreement",
-  passage=f"<p>Each of the volunteers who participated in last winter's bird count {B} trained in advance to identify local species by their songs and calls.</p>",
+  passage=f"<p>Bird counts depend on volunteers who can identify species quickly and accurately, often without ever seeing the birds. Each of the volunteers who participated in last winter's bird count {B} trained in advance to identify local species by their songs and calls.</p>",
   stem=CONV, choices=["were", "are", "was", "have been"], answer="C",
   explain="The subject is &ldquo;Each,&rdquo; which is singular (&ldquo;of the volunteers&rdquo; is a prepositional phrase), and &ldquo;last winter&rdquo; signals past tense: &ldquo;was&rdquo;.")
 
@@ -174,7 +174,7 @@ Q(id="RW-SEC-30", domain="SEC", skill="Form, Structure, and Sense", diff=3, rule
   explain="The passage describes the past (&ldquo;Before &hellip; the mid-1400s, scribes copied&rdquo;), so the simple past matches: &ldquo;took&rdquo;.")
 
 Q(id="RW-SEC-31", domain="SEC", skill="Form, Structure, and Sense", diff=3, rule="modifier",
-  passage=f"<p>Born in 1907 in Coyoac&aacute;n, Mexico, {B}</p>",
+  passage=f"<p>Frida Kahlo is among the most celebrated painters of the twentieth century, and many of her best-known works are self-portraits. Born in 1907 in Coyoac&aacute;n, Mexico, {B}</p>",
   stem=CONV,
   choices=["Frida Kahlo's self-portraits explore themes of identity, pain, and Mexican culture.",
            "the self-portraits of Frida Kahlo explore themes of identity, pain, and Mexican culture.",
@@ -184,7 +184,7 @@ Q(id="RW-SEC-31", domain="SEC", skill="Form, Structure, and Sense", diff=3, rule
   explain="Who was born in 1907? Frida Kahlo, so her name must come right after the comma, as in &ldquo;Frida Kahlo painted self-portraits exploring themes of identity, pain, and Mexican culture.&rdquo; In the other choices, the self-portraits or the themes would be the ones &ldquo;born.&rdquo; Note that &ldquo;Frida Kahlo's self-portraits&rdquo; makes the self-portraits the subject, not Kahlo.")
 
 Q(id="RW-SEC-32", domain="SEC", skill="Form, Structure, and Sense", diff=3, rule="modifier",
-  passage=f"<p>After analyzing thousands of hours of underwater recordings, {B}</p>",
+  passage=f"<p>Male humpback whales in a population sing a shared song, but the song does not stay the same from one season to the next. After analyzing thousands of hours of underwater recordings, {B}</p>",
   stem=CONV,
   choices=["the researchers concluded that humpback whale songs change gradually from year to year.",
            "humpback whale songs were found by the researchers to change gradually from year to year.",
@@ -194,7 +194,7 @@ Q(id="RW-SEC-32", domain="SEC", skill="Form, Structure, and Sense", diff=3, rule
   explain="Who analyzed the recordings? The researchers, so they must come right after the comma: &ldquo;the researchers concluded that humpback whale songs change gradually from year to year.&rdquo; The songs, the conclusion, and the changes didn't analyze anything.")
 
 Q(id="RW-SEC-33", domain="SEC", skill="Form, Structure, and Sense", diff=2, rule="modifier",
-  passage=f"<p>Stretching thousands of miles across northern China, {B}</p>",
+  passage=f"<p>The Great Wall is not a single continuous structure but a network of walls and fortifications built and connected by different dynasties. Stretching thousands of miles across northern China, {B}</p>",
   stem=CONV,
   choices=["the Great Wall's construction took place over many centuries.",
            "the Great Wall was built and rebuilt over many centuries.",
@@ -413,7 +413,7 @@ Q(id="RW-INF-01", domain="INFO", skill="Command of Evidence", diff=3, rule="evid
   explain="The claim has two parts: hope <i>asks nothing</i>, and that holds <i>even in the most desperate times</i>. &ldquo;Yet - never - in Extremity, / It asked a crumb - of me.&rdquo; matches both: &ldquo;Extremity&rdquo; is the most desperate time, and hope never &ldquo;asked a crumb.&rdquo; The quotation about the chillest land shows hope present in hard places but says nothing about asking; &ldquo;never stops&rdquo; is about persistence.")
 
 Q(id="RW-INF-02", domain="INFO", skill="Command of Evidence", diff=2, rule="evidence",
-  passage="<p>Researchers hypothesized that American crows can recognize individual human faces and remember people who have threatened them.</p>",
+  passage="<p>American crows live in family groups and often band together to harass predators that threaten them. Researchers hypothesized that American crows can recognize individual human faces and remember people who have threatened them.</p>",
   stem="Which finding, if true, would most directly support the researchers' hypothesis?",
   choices=["Crows that had been captured by researchers wearing a particular mask scolded people wearing that mask years later but ignored people wearing a different mask.",
            "Crows often gather in large groups to roost during the winter months.",

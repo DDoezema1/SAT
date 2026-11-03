@@ -11,7 +11,10 @@
   const STORE = RW ? "satRWPractice.v1" : "satMathPractice.v1";
   const RULES = Object.fromEntries((window.SAT_RULES || []).map((r) => [r.id, r]));
   if (RW) Engine.configure({ pace: 71, speedPace: 60, target: { 1: 45, 2: 65, 3: 85 },
-    blueprint: { CRAFT: 7, INFO: 7, SEC: 7, EXPR: 6 }, moduleLen: 27, moduleSec: 32 * 60, baseline: 700 });
+    blueprint: { CRAFT: 7, INFO: 7, SEC: 7, EXPR: 6 }, moduleLen: 27, moduleSec: 32 * 60, baseline: 700,
+    sprShare: null, order: "domain", ungrouped: ["SEC"],
+    skillOrder: ["Words in Context", "Text Structure and Purpose", "Cross-Text Connections", "Central Ideas and Details",
+      "Command of Evidence", "Inferences", "Boundaries", "Form, Structure, and Sense", "Transitions", "Rhetorical Synthesis"] });
   // Desmos's public demo API key. To use your own, replace it here (see README).
   const DESMOS_URL = "https://www.desmos.com/api/v1.9/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6";
   const DRILL_LEN = 8;
